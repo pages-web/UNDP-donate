@@ -1,12 +1,12 @@
-import { createContext, forwardRef, useContext } from 'react';
-import { Button, ButtonProps } from '../ui/button';
-import { cn } from '@/lib/utils';
-import { MinusIcon, PlusIcon } from 'lucide-react';
-import { Input } from '../ui/input';
-import { cva } from 'class-variance-authority';
+import { createContext, forwardRef, useContext } from "react";
+import { Button, ButtonProps } from "../ui/button";
+import { cn } from "@/lib/utils";
+import { MinusIcon, PlusIcon } from "lucide-react";
+import { Input } from "../ui/input";
+import { cva } from "class-variance-authority";
 
 type CounterProps = React.PropsWithChildren & {
-  size?: 'sm' | 'default' | 'lg';
+  size?: "sm" | "default" | "lg";
   disabled?: boolean;
 };
 
@@ -18,7 +18,7 @@ function useCounter() {
   const context = useContext(CountContext);
 
   if (!context) {
-    throw new Error('useCounter must be used within a <Counter />');
+    throw new Error("useCounter must be used within a <Counter a/>");
   }
 
   return context;
@@ -33,18 +33,18 @@ const Counter = ({ children, ...props }: CounterProps) => {
 };
 
 const inputVariants = cva(
-  'border-0 text-center text-sm font-medium outline-none focus:ring-0 shadow-none rounded-none px-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
+  "border-0 text-center text-sm font-medium outline-none focus:ring-0 shadow-none rounded-none px-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
   {
     variants: {
       size: {
-        default: 'h-9 w-9',
-        sm: 'h-7 w-7',
-        lg: 'h-11 w-11'
-      }
+        default: "h-9 w-9",
+        sm: "h-7 w-7",
+        lg: "h-11 w-11",
+      },
     },
     defaultVariants: {
-      size: 'default'
-    }
+      size: "default",
+    },
   }
 );
 
@@ -64,32 +64,32 @@ const CounterInput = forwardRef<
   );
 });
 
-CounterInput.displayName = 'CounterInput';
+CounterInput.displayName = "CounterInput";
 
-const buttonVariants = cva('', {
+const buttonVariants = cva("", {
   variants: {
     size: {
-      default: 'h-9 w-9',
-      sm: 'h-7 w-7',
-      lg: 'h-11 w-11'
-    }
+      default: "h-9 w-9",
+      sm: "h-7 w-7",
+      lg: "h-11 w-11",
+    },
   },
   defaultVariants: {
-    size: 'default'
-  }
+    size: "default",
+  },
 });
 
-const iconVariants = cva('text-neutral-600', {
+const iconVariants = cva("text-neutral-600", {
   variants: {
     size: {
-      default: 'h-4 w-4',
-      sm: 'h-4 <w-4></w-4>',
-      lg: 'h-5 w-5'
-    }
+      default: "h-4 w-4",
+      sm: "h-4 <w-4></w-4>",
+      lg: "h-5 w-5",
+    },
   },
   defaultVariants: {
-    size: 'default'
-  }
+    size: "default",
+  },
 });
 
 const CounterButton = forwardRef<
@@ -105,13 +105,13 @@ const CounterButton = forwardRef<
       className={cn(buttonVariants({ size, className }))}
       variant="ghost"
       ref={ref}
-      size={'icon'}
+      size={"icon"}
     >
       <Icon className={iconVariants({ size })} />
     </Button>
   );
 });
 
-CounterButton.displayName = 'CounterButton';
+CounterButton.displayName = "CounterButton";
 
 export { Counter, CounterButton, CounterInput };
