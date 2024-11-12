@@ -11,10 +11,10 @@ import { Metadata } from "next/types";
 import { getMessages } from "next-intl/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-export const fontSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans", // Ensure this is defined correctly
-});
+// export const fontSans = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-sans", // Ensure this is defined correctly
+// });
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -92,8 +92,8 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable // Correctly use the CSS variable here
+          "min-h-screen bg-background font-sans antialiased"
+          // fontSans.variable // Correctly use the CSS variable here
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
