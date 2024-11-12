@@ -28,7 +28,7 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@react-google-maps/api": "^2.19.2",
     "@types/react-copy-to-clipboard": "^5.0.7",
-    "@vercel/speed-insights": "^1.0.10",
+    "@vercel/speed-insights": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "css-loader": "^7.1.2",

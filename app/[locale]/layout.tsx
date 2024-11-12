@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn, getSimilarColorWithOpacity, hexToHsl } from "@/lib/utils";
 import DefaultLayout from "@/components/layouts";
 import Providers from "@/store";
@@ -10,10 +9,11 @@ import { getConfig } from "@/sdk/queries/auth";
 import ConfigProvider from "@/components/layouts/config";
 import { Metadata } from "next/types";
 import { getMessages } from "next-intl/server";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const fontSans = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-sans", // Ensure this is defined correctly
 });
 
 interface RootLayoutProps {
@@ -93,7 +93,7 @@ export default async function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable // Correctly use the CSS variable here
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
@@ -103,8 +103,9 @@ export default async function RootLayout({
             </ConfigProvider>
           </Providers>
           <Toaster richColors closeButton />
-          <SpeedInsights />
-        </NextIntlClientProvider>
+          <SpeedInsights /> {/* Ensure this is correctly placed */}
+        </NextIntlClientProvider>{" "}
+        {/* Make sure this tag is properly closed */}
       </body>
     </html>
   );
