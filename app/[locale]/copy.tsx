@@ -1,10 +1,10 @@
-'use client';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { toast } from 'sonner';
-import { CopyIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+"use client";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "sonner";
+import { CopyIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const Copy = () => {
   return (
@@ -14,26 +14,26 @@ const Copy = () => {
         <div className="relative">
           <Input
             className="px-12 font-bold disabled:opacity-80"
-            value="821 008 606"
+            value="517 6606 219"
             disabled
           />
           <CopyToClipboard
-            text="821008606"
-            onCopy={() => toast.success('Данс хуулагдлаа.')}
+            text="5176606219"
+            onCopy={() => toast.success("Данс хуулагдлаа.")}
           >
             <Button
               variant="outline"
-              className="absolute right-0 top-0 h-10 w-10"
+              className="absolute right-0 top-0 h-10 w-10 text-black"
               size="icon"
             >
               <CopyIcon className="h-5 w-5" />
             </Button>
           </CopyToClipboard>
           <img
-            src="/tdbbank.avif"
+            src="/images/haanbank.png"
             height={40}
             width={40}
-            className="absolute top-[1px] left-[1px] bottom-[1px] h-[38px] w-[38px] z-10 rounded"
+            className="absolute top-[1px] left-[1px] bottom-[1px] h-[38px] w-[38px] z-10 rounded text-black"
           />
         </div>
       </div>
@@ -41,11 +41,11 @@ const Copy = () => {
         <Label>Дансны эзэмшигчийн нэр</Label>
         <div className="relative">
           <Input
-            className="px-12 font-bold disabled:opacity-80"
-            value="НООРОГ КРЕАТИВ СТУДИО ХХК"
+            className="px-12 font-bold disabled:opacity-80 "
+            value="Боловсролын санаачилгууд ТББ"
             disabled
           />
-          <div className="absolute top-[1px] left-[1px] bottom-[1px] h-[38px] w-[38px] z-10 rounded flex items-center justify-center">
+          <div className="absolute top-[1px] left-[1px] bottom-[1px] h-[38px] w-[38px] text-black z-10 rounded flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -63,12 +63,12 @@ const Copy = () => {
             </svg>
           </div>
           <CopyToClipboard
-            text="НООРОГ КРЕАТИВ СТУДИО ХХК"
-            onCopy={() => toast.success('Дансны эзэмшигчийн нэр хуулагдлаа.')}
+            text="Боловсролын санаачилгууд ТББ"
+            onCopy={() => toast.success("Дансны эзэмшигчийн нэр хуулагдлаа.")}
           >
             <Button
               variant="outline"
-              className="absolute right-0 top-0 h-10 w-10"
+              className="absolute right-0 top-0 h-10 w-10 text-black"
               size="icon"
             >
               <CopyIcon className="h-5 w-5" />

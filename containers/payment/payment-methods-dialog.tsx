@@ -1,16 +1,16 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
-import { Sheet, SheetContent } from '@/components/ui/sheet';
-import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { XIcon } from 'lucide-react';
-import Payment from './payment-methods';
-import { useMediaQuery } from '@/hooks/use-media-query';
-import { Drawer, DrawerContent } from '@/components/ui/drawer';
-import { useAtom } from 'jotai';
-import { openMethodsAtom } from '@/store/payment.store';
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { XIcon } from "lucide-react";
+import Payment from "./payment-methods";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import { useAtom } from "jotai";
+import { openMethodsAtom } from "@/store/payment.store";
 
 const PaymentMethods = () => {
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const [open, setOpen] = useAtom(openMethodsAtom);
 
   if (isDesktop)

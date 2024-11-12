@@ -1,18 +1,18 @@
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { BanIcon, InfoIcon } from 'lucide-react';
-import Image from '@/components/ui/image';
-import { DialogFooter } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { useSetAtom } from 'jotai';
-import { handleMethodAtom } from '@/store/payment.store';
-import BackButton from './back-button';
-import CheckPayment from './check-payment';
-import Link from 'next/link';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { BanIcon, InfoIcon } from "lucide-react";
+import Image from "@/components/ui/image";
+import { DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { useSetAtom } from "jotai";
+import { handleMethodAtom } from "@/store/payment.store";
+import BackButton from "./back-button";
+import CheckPayment from "./check-payment";
+import Link from "next/link";
 
 const getName = (name: string) => {
-  if (name === 'Trade and Development bank') return 'TDB';
-  if (name === 'National investment bank') return 'NIB';
-  if (name === 'Chinggis khaan bank') return 'CKHB';
+  if (name === "Trade and Development bank") return "TDB";
+  if (name === "National investment bank") return "NIB";
+  if (name === "Chinggis khaan bank") return "CKHB";
   return name;
 };
 
@@ -53,7 +53,7 @@ const QrDetail = ({
             {urls.map((url) => (
               <Button
                 className="text-xs flex flex-col gap-1 items-center justify-center px-2 py-3 shadow border border-border/10 h-auto rounded-md"
-                variant={'ghost'}
+                variant={"ghost"}
                 size="sm"
                 asChild
               >

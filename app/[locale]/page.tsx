@@ -1,18 +1,19 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Donate from '@/containers/donate/donate';
-import { getConfig } from '@/sdk/queries/auth';
-import { getProducts } from '@/sdk/queries/products';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Donate from "@/containers/donate/donate";
+import { getConfig } from "@/sdk/queries/auth";
+import { getProducts } from "@/sdk/queries/products";
 
-import { Metadata } from 'next/types';
-import Copy from './copy';
+import { Metadata } from "next";
+
+import Copy from "./copy";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { config } = await getConfig();
 
   return {
-    title: config.name + ' - Хандив өгөх',
+    title: config.name + " - Хандив өгөх",
     openGraph: {
-      title: config.name + ' - Хандив өгөх',
+      title: config.name + " - Хандив өгөх",
     },
   };
 }
@@ -33,6 +34,4 @@ export default async function Home() {
       </TabsContent>
     </Tabs>
   );
-
-  // return <Donate products={products} />;
 }

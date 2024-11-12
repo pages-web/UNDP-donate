@@ -1,15 +1,15 @@
-import { Button } from '@/components/ui/button';
-import { handleMethodAtom } from '@/store/payment.store';
-import { useSetAtom } from 'jotai';
+import { Button } from "@/components/ui/button";
+import { handleMethodAtom } from "@/store/payment.store";
+import { useSetAtom } from "jotai";
 
 const BackButton = ({ disabled }: { disabled?: boolean }) => {
   const handleMethod = useSetAtom(handleMethodAtom);
   return (
     <Button
       size="lg"
-      variant={'outline'}
+      variant={"outline"}
       className="flex-1 w-full"
-      onClick={() => handleMethod('')}
+      onClick={() => handleMethod("")}
       disabled={disabled}
       type="button"
     >

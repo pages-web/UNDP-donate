@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
-import { LoadingIcon } from '@/components/ui/loading';
-import { useCheckInvoice } from '@/sdk/hooks/payment';
-import { toast } from 'sonner';
-import { getLabel } from '@/lib/utils';
-import { useDonate } from '../donate/donate';
+import { Button } from "@/components/ui/button";
+import { LoadingIcon } from "@/components/ui/loading";
+import { useCheckInvoice } from "@/sdk/hooks/payment";
+import { toast } from "sonner";
+import { getLabel } from "@/lib/utils";
+import { useDonate } from "../donate/donate";
 
 const CheckPayment = ({ id, disabled }: { id: string; disabled?: boolean }) => {
   const { checkInvoice, loading } = useCheckInvoice();
@@ -18,7 +18,7 @@ const CheckPayment = ({ id, disabled }: { id: string; disabled?: boolean }) => {
           variables: { id },
           onCompleted({ invoicesCheck }) {
             toast.info(getLabel(invoicesCheck));
-            invoicesCheck === 'paid' && refetch();
+            invoicesCheck === "paid" && refetch();
           },
         })
       }

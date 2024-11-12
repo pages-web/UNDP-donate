@@ -1,11 +1,11 @@
-import { usePaymentConfig } from '@/sdk/queries/payment';
-import { RadioGroup } from '@/components/ui/radio-group';
-import PaymentType from './payment-type';
-import { Loading } from '@/components/ui/loading';
-import { useAtom } from 'jotai';
-import { handleMethodAtom } from '@/store/payment.store';
-import { useDonate } from '../donate/donate';
-import { useEffect } from 'react';
+import { usePaymentConfig } from "@/sdk/queries/payment";
+import { RadioGroup } from "@/components/ui/radio-group";
+import PaymentType from "./payment-type";
+import { Loading } from "@/components/ui/loading";
+import { useAtom } from "jotai";
+import { handleMethodAtom } from "@/store/payment.store";
+import { useDonate } from "../donate/donate";
+import { useEffect } from "react";
 
 const PaymentMethods = () => {
   const { loading, payments } = usePaymentConfig();
@@ -21,7 +21,7 @@ const PaymentMethods = () => {
   return (
     <>
       <h2 className="font-medium text-foreground mb-4 flex justify-between items-center">
-        Төлбөрийн төрлөө сонгоно уу{' '}
+        Төлбөрийн төрлөө сонгоно уу{" "}
         <span className="font-bold">
           {detail?.totalAmount.toLocaleString()}₮
         </span>

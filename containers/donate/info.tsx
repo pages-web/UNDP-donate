@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { CardContent } from '@/components/ui/card';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { CardContent } from "@/components/ui/card";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,18 +14,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { phoneZod } from '@/lib/zod';
-import { useAtom, useSetAtom } from 'jotai';
-import { deliveryInfoAtom, donateViewAtom } from '@/store/donate.store';
-import { useDonate } from './donate';
-import { LoadingIcon } from '@/components/ui/loading';
-import { ArrowLeftIcon } from 'lucide-react';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { phoneZod } from "@/lib/zod";
+import { useAtom, useSetAtom } from "jotai";
+import { deliveryInfoAtom, donateViewAtom } from "@/store/donate.store";
+import { useDonate } from "./donate";
+import { LoadingIcon } from "@/components/ui/loading";
+import { ArrowLeftIcon } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: 'Нэрээ бүтнээр нь оруулана уу',
+    message: "Нэрээ бүтнээр нь оруулана уу",
   }),
   phone: phoneZod,
 });
@@ -60,9 +60,12 @@ const DonateInfo = () => {
   }
 
   return (
-    <CardContent className="md:pt-0">
+    <CardContent className="md:pt-0 ">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6 text-black"
+        >
           <FormField
             control={form.control}
             name="name"
@@ -81,16 +84,21 @@ const DonateInfo = () => {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Утасны дугаар</FormLabel>
+                <FormLabel>Таны имэйл</FormLabel>
                 <FormControl>
-                  <Input placeholder="0000 0000" {...field} />
+                  <Input placeholder="..." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" size="lg" className="w-full" disabled={loading}>
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full text-white"
+            disabled={loading}
+          >
             {loading && <LoadingIcon />}
             Үргэлжлүүлэх
           </Button>
@@ -100,7 +108,7 @@ const DonateInfo = () => {
             size="lg"
             className="w-full !mt-4"
             disabled={loading}
-            onClick={() => setView('')}
+            onClick={() => setView("")}
           >
             <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
             Буцах

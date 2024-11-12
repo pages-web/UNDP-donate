@@ -1,28 +1,28 @@
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { DialogFooter } from '@/components/ui/dialog';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { DialogFooter } from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form';
-import { LoadingIcon } from '@/components/ui/loading';
-import { phoneZod } from '@/lib/zod';
-import { currentUserAtom } from '@/store/auth.store';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useAtomValue } from 'jotai';
-import { InfoIcon, CheckCircle2Icon } from 'lucide-react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import BackButton from './back-button';
+} from "@/components/ui/form";
+import { LoadingIcon } from "@/components/ui/loading";
+import { phoneZod } from "@/lib/zod";
+import { currentUserAtom } from "@/store/auth.store";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAtomValue } from "jotai";
+import { InfoIcon, CheckCircle2Icon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import BackButton from "./back-button";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@/components/ui/input-otp';
+} from "@/components/ui/input-otp";
 
 const formSchema = z.object({
   phone: phoneZod,
@@ -52,7 +52,7 @@ const PhoneDetail = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     values: {
-      phone: phone || '',
+      phone: phone || "",
     },
   });
 

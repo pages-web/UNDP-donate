@@ -1,10 +1,11 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const articleDetail = gql`
   query kbArticleDetail($id: String!) {
     knowledgeBaseArticleDetail(_id: $id) {
       _id
       content
+      summary
       image {
         url
       }
@@ -31,6 +32,7 @@ const articles = gql`
     ) {
       _id
       summary
+      content
       image {
         url
       }

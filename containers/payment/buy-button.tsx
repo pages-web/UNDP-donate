@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button';
-import PaymentMethods from './payment-methods-dialog';
-import PaymentDetail from './payment-detail-dialog';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { Button } from "@/components/ui/button";
+import PaymentMethods from "./payment-methods-dialog";
+import PaymentDetail from "./payment-detail-dialog";
+import { useAtomValue, useSetAtom } from "jotai";
 import {
   openDetailAtom,
   openMethodsAtom,
-  selectedMethodAtom
-} from '@/store/payment.store';
+  selectedMethodAtom,
+} from "@/store/payment.store";
 
 const BuyButton = () => {
   const setOpenMethods = useSetAtom(openMethodsAtom);

@@ -1,5 +1,5 @@
-import { StarIcon } from 'lucide-react';
-import { cn } from '../../lib/utils';
+import { StarIcon } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 const Rate = ({ rate }: { rate: number }) => {
   const intRate = Math.floor(rate);
@@ -10,8 +10,8 @@ const Rate = ({ rate }: { rate: number }) => {
           key={i}
           strokeWidth={2.5}
           className={cn(
-            'h-4 w-4',
-            intRate >= i + 1 && 'fill-amber-400 text-amber-400'
+            "h-4 w-4",
+            intRate >= i + 1 && "fill-amber-400 text-amber-400"
           )}
         />
       ))}

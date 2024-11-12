@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
 import {
   type Atom,
   Provider as JotaiProvider,
   atom,
-  useAtomValue
-} from 'jotai';
-import Apollo from '@/app/ApolloClient';
-import { selectAtom } from 'jotai/utils';
+  useAtomValue,
+} from "jotai";
+import Apollo from "@/app/[locale]/ApolloClient";
+import { selectAtom } from "jotai/utils";
 
 export const categorySheetAtom = atom<boolean>(false);
 export const cartSheetAtom = atom<boolean>(false);

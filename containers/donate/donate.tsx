@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import ChooseProducts from '@/components/choose-products/choose-products';
-import { onError } from '@/lib/utils';
-import { mutations, queries } from '@/sdk/graphql/order';
+import ChooseProducts from "@/components/choose-products/choose-products";
+import { onError } from "@/lib/utils";
+import { mutations, queries } from "@/sdk/graphql/order";
 import {
   donateItemAtom,
   donateOrderIdAtom,
   donateViewAtom,
   deliveryInfoAtom,
-} from '@/store/donate.store';
-import { IProduct } from '@/types/product.types';
+} from "@/store/donate.store";
+import { IProduct } from "@/types/product.types";
 import {
   ApolloCache,
   DefaultContext,
@@ -17,23 +17,23 @@ import {
   OperationVariables,
   useMutation,
   useQuery,
-} from '@apollo/client';
-import { useAtom, useSetAtom } from 'jotai';
-import { createContext, useContext, useEffect } from 'react';
-import DonateInfo from './info';
+} from "@apollo/client";
+import { useAtom, useSetAtom } from "jotai";
+import { createContext, useContext, useEffect } from "react";
+import DonateInfo from "./info";
 import {
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Loading } from '@/components/ui/loading';
-import PaymentMethods from '../payment/payment-methods';
-import PaymentDetail from '../payment/payment-detail';
-import Steps from '@/components/choose-products/steps';
-import { toast } from 'sonner';
-import { ArrowLeftIcon, CheckIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/card";
+import { Loading } from "@/components/ui/loading";
+import PaymentMethods from "../payment/payment-methods";
+import PaymentDetail from "../payment/payment-detail";
+import Steps from "@/components/choose-products/steps";
+import { toast } from "sonner";
+import { ArrowLeftIcon, CheckIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type DonateProps = React.PropsWithChildren & {
   loading: boolean;
@@ -60,7 +60,7 @@ export function useDonate() {
   const context = useContext(DonateContext);
 
   if (!context) {
-    throw new Error('useDonate must be used within a <Donate />');
+    throw new Error("useDonate must be used within a <Donate />");
   }
 
   return context;
@@ -84,7 +84,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
     skip: !Boolean(donateOrderId),
     variables: {
       id: donateOrderId,
-      customerId: 'visitor',
+      customerId: "visitor",
     },
     onCompleted({ orderDetail }) {
       const { items, deliveryInfo } = orderDetail;
@@ -97,15 +97,15 @@ const Donate = ({ products }: { products: IProduct[] }) => {
   const onCompleted = (_id: string) => {
     setDonateOrderId(_id);
     donateOrderId && refetch();
-    view === '' && setView('info');
-    view === 'info' && setView('payment');
+    view === "" && setView("info");
+    view === "info" && setView("payment");
   };
 
   const variables = {
     items: [donateItem],
     totalAmount: (donateItem?.count || 1) * (donateItem?.unitPrice || 1),
-    customerType: 'visitor',
-    type: 'eat',
+    customerType: "visitor",
+    type: "eat",
     _id: donateOrderId,
   };
 
@@ -127,30 +127,30 @@ const Donate = ({ products }: { products: IProduct[] }) => {
 
   const validateProduct: ValidateProduct = (func, params) => {
     if (!donateItem) {
-      setView('');
-      return toast.error('Мөнгөн дүнгээ оруулана уу');
+      setView("");
+      return toast.error("Мөнгөн дүнгээ оруулана уу");
     }
 
     if (
       unitProduct &&
       donateItem.productId === unitProduct._id &&
-      donateItem.count < 100
+      donateItem.count < 50
     ) {
-      setView('');
-      return toast.error('Хамгийн багадаа 100₮ оруулана уу');
+      setView("");
+      return toast.error("Хамгийн багадаа 100₮ оруулана уу");
     }
 
     return func(params);
   };
 
   const reset = () => {
-    setView('');
-    setDonateOrderId('');
+    setView("");
+    setDonateOrderId("");
     setDonateItem(null);
     setDeliveryInfo({
-      name: '',
-      phone: '',
-      description: '',
+      name: "",
+      phone: "",
+      description: "",
     });
   };
 
@@ -167,7 +167,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
       }}
     >
       <CardHeader className="flex items-center justify-between flex-row ">
-        <CardTitle>Хандив өгөх</CardTitle>
+        <CardTitle className="text-black">Хандив өгөх</CardTitle>
         <Steps validateProduct={validateProduct} />
       </CardHeader>
       {loading ? (
@@ -179,15 +179,15 @@ const Donate = ({ products }: { products: IProduct[] }) => {
         </>
       ) : (
         <>
-          {view === '' && (
+          {view === "" && (
             <ChooseProducts
               products={products}
               unitProduct={unitProduct}
               validateProduct={validateProduct}
             />
           )}
-          {view === 'info' && <DonateInfo />}
-          {view === 'payment' && (
+          {view === "info" && <DonateInfo />}
+          {view === "payment" && (
             <>
               <CardContent className="py-0 md:py-0">
                 <PaymentMethods />
@@ -200,7 +200,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
                   size="lg"
                   className="w-full !mt-4"
                   disabled={loading}
-                  onClick={() => setView('info')}
+                  onClick={() => setView("info")}
                 >
                   <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
                   Буцах
@@ -208,7 +208,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
               </CardFooter>
             </>
           )}
-          {view === 'success' && (
+          {view === "success" && (
             <>
               <CardContent>
                 <div className="flex flex-col items-center">
