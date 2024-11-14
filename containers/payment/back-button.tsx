@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "../../app/[locale]/components/ui/button";
 import { handleMethodAtom } from "@/store/payment.store";
 import { useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";

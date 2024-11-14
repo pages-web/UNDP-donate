@@ -1,6 +1,9 @@
-import { Alert, AlertDescription, AlertTitle } from "../../app/[locale]/components/ui/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../app/[locale]/components/ui/alert";
 import { Button } from "../../app/[locale]/components/ui/button";
-import { DialogFooter } from "../../app/[locale]/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -9,14 +12,13 @@ import {
   FormMessage,
 } from "../../app/[locale]/components/ui/form";
 import { LoadingIcon } from "../../app/[locale]/components/ui/loading";
-import { phoneZod } from "../../lib/zod";
+import { emailZod } from "../../lib/zod";
 import { currentUserAtom } from "../../store/auth.store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtomValue } from "jotai";
-import { InfoIcon, CheckCircle2Icon } from "lucide-react";
+import { InfoIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import BackButton from "./back-button";
 import {
   InputOTP,
   InputOTPGroup,
@@ -26,7 +28,7 @@ import {
 import { useTranslations } from "next-intl";
 import React from "react";
 const formSchema = z.object({
-  phone: phoneZod,
+  email: emailZod,
 });
 
 const PhoneDetail = ({
@@ -38,7 +40,7 @@ const PhoneDetail = ({
 }: {
   kind?: string;
   loading: boolean;
-  handleCreate: (values: { phone: string }) => void;
+  handleCreate: (values: { email: string }) => void;
   errorDescription?: string;
   data: {
     apiResponse: {
@@ -47,13 +49,13 @@ const PhoneDetail = ({
     };
   };
 }) => {
-  const { phone } = useAtomValue(currentUserAtom) || {};
+  const { email } = useAtomValue(currentUserAtom) || {};
   const { error, text } = data?.apiResponse || {};
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     values: {
-      phone: phone || "",
+      email: email || "",
     },
   });
 
@@ -67,7 +69,7 @@ const PhoneDetail = ({
         <div className="py-12 flex justify-center">
           <FormField
             control={form.control}
-            name="phone"
+            name="email"
             render={({ field }) => (
               <FormItem>
                 <FormControl>

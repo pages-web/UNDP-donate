@@ -1,6 +1,4 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { Inter as FontSans } from "next/font/google";
 import { cn, getSimilarColorWithOpacity, hexToHsl } from "../../lib/utils";
 import DefaultLayout from "./components/layouts";
 import Providers from "../../store";
@@ -12,14 +10,24 @@ import { Metadata } from "next/types";
 import { getMessages } from "next-intl/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import React from "react";
-export const fontSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
 }
+import localFont from "next/font/local";
+
+const geistSans = localFont({
+  src: "../../public/fonts/GeistVF.woff", // Шрифт файлын замыг зөв зааж өгнө
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+
+const geistMono = localFont({
+  src: "../../public/fonts/GeistMonoVF.woff", // Шрифт файлын замыг зөв заана уу
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
 
 export const revalidate = 300;
 
@@ -92,8 +100,7 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-inherit antialiased",
-          fontSans.variable
+          `min-h-screen bg-background font-inherit ${geistSans.variable} ${geistMono.variable} antialiased`
         )}
       >
         <NextIntlClientProvider messages={messages}>

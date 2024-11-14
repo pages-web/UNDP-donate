@@ -2,7 +2,7 @@ import Image from "../ui/image";
 import { motion } from "framer-motion";
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
-
+import React from "react";
 const PartnerOrganization = ({ hamtarjAjiljbuiBaiguullaga }: any) => {
   const slider = useRef(null);
 

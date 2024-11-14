@@ -61,6 +61,7 @@
 html {
   scroll-behavior: smooth;
 }
+/* globals.css */
 body {
-  font-family: var(--font-sans, sans-serif);
+  font-family: var(--font-geist-sans), sans-serif;
 }

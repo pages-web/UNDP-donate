@@ -58,7 +58,7 @@ const useCreateInvoice = ({
         }`,
         data: { posToken: process.env.NEXT_PUBLIC_POS_TOKEN },
         paymentIds,
-        phone: deliveryInfo?.phone,
+        email: deliveryInfo?.email,
         ...variables,
       },
     });
