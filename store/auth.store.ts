@@ -1,6 +1,6 @@
-import { Customer } from '@/types/auth.types';
+import { Customer } from '../types/auth.types';
 import { atom } from 'jotai';
-import { IConfig } from '@/types/auth.types';
+import { IConfig } from '../types/auth.types';
 
 export const currentUserAtom = atom<Customer | null>(null);
 

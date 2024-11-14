@@ -1,8 +1,8 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Donate from "@/containers/donate/donate";
-import { getConfig } from "@/sdk/queries/auth";
-import { getProducts } from "@/sdk/queries/products";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
+import Donate from "../../containers/donate/donate";
+import { getConfig } from "../../sdk/queries/auth";
+import { getProducts } from "../../sdk/queries/products";
+import React from "react";
 import { Metadata } from "next";
 
 import Copy from "./copy";

@@ -1,21 +1,21 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn, getSimilarColorWithOpacity, hexToHsl } from "@/lib/utils";
-import DefaultLayout from "@/components/layouts";
-import Providers from "@/store";
+import { Inter as FontSans } from "next/font/google";
+import { cn, getSimilarColorWithOpacity, hexToHsl } from "../../lib/utils";
+import DefaultLayout from "./components/layouts";
+import Providers from "../../store";
 import { NextIntlClientProvider } from "next-intl";
-import { Toaster } from "@/components/ui/sonner";
-import { getConfig } from "@/sdk/queries/auth";
-import ConfigProvider from "@/components/layouts/config";
+import { Toaster } from "./components/ui/sonner";
+import { getConfig } from "../../sdk/queries/auth";
+import ConfigProvider from "./components/layouts/config";
 import { Metadata } from "next/types";
 import { getMessages } from "next-intl/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-// export const fontSans = Inter({
-//   subsets: ["latin"],
-//   variable: "--font-sans", // Ensure this is defined correctly
-// });
-
+import React from "react";
+export const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
@@ -92,20 +92,19 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased"
-          // fontSans.variable // Correctly use the CSS variable here
+          "min-h-screen bg-background font-inherit antialiased",
+          fontSans.variable
         )}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider messages={messages}>
           <Providers>
             <ConfigProvider config={config}>
               <DefaultLayout>{children}</DefaultLayout>
             </ConfigProvider>
           </Providers>
           <Toaster richColors closeButton />
-          <SpeedInsights /> {/* Ensure this is correctly placed */}
-        </NextIntlClientProvider>{" "}
-        {/* Make sure this tag is properly closed */}
+          <SpeedInsights />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

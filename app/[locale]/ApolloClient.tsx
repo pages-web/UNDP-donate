@@ -7,6 +7,7 @@ import {
   split,
   ApolloProvider
 } from '@apollo/client';
+import React from 'react';
 import { setContext } from '@apollo/client/link/context';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';

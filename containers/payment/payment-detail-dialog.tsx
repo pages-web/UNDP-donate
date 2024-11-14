@@ -1,10 +1,10 @@
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Drawer, DrawerContent } from "@/components/ui/drawer";
-import { openDetailAtom } from "@/store/payment.store";
+import { useMediaQuery } from "../../hooks/use-media-query";
+import { Dialog, DialogContent } from "../../app/[locale]/components/ui/dialog";
+import { Drawer, DrawerContent } from "../../app/[locale]/components/ui/drawer";
+import { openDetailAtom } from "../../store/payment.store";
 import { useAtom } from "jotai";
 import PaymentDetail from "./payment-detail";
-
+import React from "react";
 const PaymentDetailDialog = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [open, setOpen] = useAtom(openDetailAtom);

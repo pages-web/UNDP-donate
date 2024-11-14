@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
 import { queries } from '../graphql/payment';
-import { IPayment } from '@/types/payment.types';
+import { IPayment } from '../../types/payment.types';
 import { useAtomValue } from 'jotai';
-import { configAtom } from '@/store/auth.store';
+import { configAtom } from '../../store/auth.store';
 
 const usePaymentConfig = () => {
   const config = useAtomValue(configAtom);

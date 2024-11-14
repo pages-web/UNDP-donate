@@ -1,6 +1,6 @@
-import { checkRemainderAtom } from '@/store/auth.store';
-import { cartAtom } from '@/store/cart.store';
-import { IProduct } from '@/types/product.types';
+import { checkRemainderAtom } from '../../store/auth.store';
+import { cartAtom } from '../../store/cart.store';
+import { IProduct } from '../../types/product.types';
 import { useAtomValue } from 'jotai';
 
 export const usePossibleQuantity = (product: IProduct) => {

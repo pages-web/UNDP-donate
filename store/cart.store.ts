@@ -1,5 +1,5 @@
-import { OrderItem, OrderItemInput } from '@/types/order.types';
-import { IProduct } from '@/types/product.types';
+import { OrderItem, OrderItemInput } from '../types/order.types';
+import { IProduct } from '../types/product.types';
 import { atom } from 'jotai';
 import { currentUserAtom } from './auth.store';
 import {

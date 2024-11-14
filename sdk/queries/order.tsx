@@ -5,18 +5,18 @@ import {
 } from '@apollo/client';
 import { queries, subscriptions } from '../graphql/order';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { currentUserAtom } from '@/store/auth.store';
+import { currentUserAtom } from '../../store/auth.store';
 import {
   initialLoadingOrderAtom,
   loadingOrderAtom,
   activeOrderAtom
-} from '@/store/order.store';
-import { defaultOrderItem, cudOrderAtom } from '@/store/order.store';
-import { localCartAtom } from '@/store/cart.store';
-import { OrderItem } from '@/types/order.types';
+} from '../../store/order.store';
+import { defaultOrderItem, cudOrderAtom } from '../../store/order.store';
+import { localCartAtom } from '../../store/cart.store';
+import { OrderItem } from '../../types/order.types';
 import { useEffect, useMemo } from 'react';
-import { ORDER_SALE_STATUS, ORDER_STATUSES } from '@/lib/constants';
-import { onError } from '@/lib/utils';
+import { ORDER_SALE_STATUS, ORDER_STATUSES } from '../../lib/constants';
+import { onError } from '../../lib/utils';
 
 const useCurrentOrder = () => {
   const { erxesCustomerId } = useAtomValue(currentUserAtom) || {};

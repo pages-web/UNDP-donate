@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
-import { queries } from '@/sdk/graphql/auth';
+import { queries } from '../../sdk/graphql/auth';
 import { useSetAtom, useAtom, useAtomValue } from 'jotai';
 import {
   currentUserAtom,
   loadingUserAtom,
   refetchCurrentUserAtom
-} from '@/store/auth.store';
+} from '../../store/auth.store';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 

@@ -1,10 +1,10 @@
 import { memo } from "react";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import Image from "@/components/ui/image";
-import { RadioGroupItem } from "@/components/ui/radio-group";
-
+import { cn } from "../../lib/utils";
+import { Button } from "../../app/[locale]/components/ui/button";
+import Image from "../../app/[locale]/components/ui/image";
+import { RadioGroupItem } from "../../app/[locale]/components/ui/radio-group";
+import React from "react";
 export interface IPaymentOption {
   _id: string;
   name: string;
@@ -36,13 +36,6 @@ const PaymentType = ({
             )}
           />
 
-          <Image
-            src={`/images/payments/${kind}.png`}
-            alt={kind}
-            className="object-contain rounded-lg mb-0.5"
-            height={36}
-            width={36}
-          />
           <div className="flex-auto text-left">
             <div className={"font-medium capitalize text-black"}>{kind}</div>
           </div>

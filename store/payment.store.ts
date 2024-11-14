@@ -1,4 +1,4 @@
-import { IPayment } from '@/types/payment.types';
+import { IPayment } from '../types/payment.types';
 import { atom } from 'jotai';
 
 export const openMethodsAtom = atom<boolean>(true);

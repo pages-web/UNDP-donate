@@ -1,15 +1,15 @@
-import { getClient } from '@/sdk/ssClient';
+import { getClient } from '../../sdk/ssClient';
 import { queries } from '../graphql/products';
-import { IProduct } from '@/types/product.types';
+import { IProduct } from '../../types/product.types';
 import {
   GetCategories,
   IProductDetail,
   IGetParent,
   ICategory,
-} from '@/types/products.types';
+} from '../../types/products.types';
 import type { LinkProps } from 'next/link';
 import { cache } from 'react';
-import { CommonParams } from '@/types';
+import { CommonParams } from '../../types';
 
 export const getCategories: GetCategories = cache(async (params) => {
   const { data, error } = await getClient().query({

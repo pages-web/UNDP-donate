@@ -6,9 +6,9 @@ import {
   atom,
   useAtomValue,
 } from "jotai";
-import Apollo from "@/app/[locale]/ApolloClient";
+import Apollo from "../app/[locale]/ApolloClient";
 import { selectAtom } from "jotai/utils";
-
+import React from "react";
 export const categorySheetAtom = atom<boolean>(false);
 export const cartSheetAtom = atom<boolean>(false);
 

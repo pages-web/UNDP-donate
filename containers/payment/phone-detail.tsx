@@ -1,16 +1,16 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { DialogFooter } from "@/components/ui/dialog";
+import { Alert, AlertDescription, AlertTitle } from "../../app/[locale]/components/ui/alert";
+import { Button } from "../../app/[locale]/components/ui/button";
+import { DialogFooter } from "../../app/[locale]/components/ui/dialog";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { LoadingIcon } from "@/components/ui/loading";
-import { phoneZod } from "@/lib/zod";
-import { currentUserAtom } from "@/store/auth.store";
+} from "../../app/[locale]/components/ui/form";
+import { LoadingIcon } from "../../app/[locale]/components/ui/loading";
+import { phoneZod } from "../../lib/zod";
+import { currentUserAtom } from "../../store/auth.store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtomValue } from "jotai";
 import { InfoIcon, CheckCircle2Icon } from "lucide-react";
@@ -22,8 +22,9 @@ import {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@/components/ui/input-otp";
-
+} from "../../app/[locale]/components/ui/input-otp";
+import { useTranslations } from "next-intl";
+import React from "react";
 const formSchema = z.object({
   phone: phoneZod,
 });
@@ -59,7 +60,7 @@ const PhoneDetail = ({
   function onSubmit(values: z.infer<typeof formSchema>) {
     handleCreate(values);
   }
-
+  const t = useTranslations();
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -107,7 +108,7 @@ const PhoneDetail = ({
         {(error || errorDescription) && (
           <Alert variant="destructive">
             <InfoIcon className="h-4 w-4 rotate-180" />
-            <AlertTitle>Алдаа гарлаа</AlertTitle>
+            <AlertTitle> {t("Алдааарлаа")} </AlertTitle>
             <AlertDescription className="text-xs">
               {error || errorDescription}
             </AlertDescription>
@@ -115,7 +116,7 @@ const PhoneDetail = ({
         )}
         <div className="pt-4">
           <Button size="lg" className="flex-1 w-full" disabled={loading}>
-            {loading && <LoadingIcon />} Хүсэлт илгээх
+            {loading && <LoadingIcon />} {t("Хүсэлтээх")}
           </Button>
         </div>
       </form>

@@ -3,31 +3,29 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CardContent } from "@/components/ui/card";
+import { CardContent } from "../../app/[locale]/components/ui/card";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../../app/[locale]/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { phoneZod } from "@/lib/zod";
+} from "../../app/[locale]/components/ui/form";
+import { Input } from "../../app/[locale]/components/ui/input";
+import { emailZod } from "../../lib/zod";
 import { useAtom, useSetAtom } from "jotai";
-import { deliveryInfoAtom, donateViewAtom } from "@/store/donate.store";
+import { deliveryInfoAtom, donateViewAtom } from "../../store/donate.store";
 import { useDonate } from "./donate";
-import { LoadingIcon } from "@/components/ui/loading";
+import { LoadingIcon } from "../../app/[locale]/components/ui/loading";
 import { ArrowLeftIcon } from "lucide-react";
-
+import { useTranslations } from "next-intl";
+import React from "react";
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Нэрээ бүтнээр нь оруулана уу",
-  }),
-  phone: phoneZod,
+  name: z.string().min(2, { message: "Нэрээ бүтнээр нь оруулана уу" }),
+  email: emailZod,
 });
 
 const DonateInfo = () => {
@@ -43,8 +41,7 @@ const DonateInfo = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const description = `${values.name} ${values.phone}`;
-
+    const description = `${values.name} ${values.email}`;
     setDeliveryInfo({ ...values, description });
 
     action({
@@ -59,6 +56,7 @@ const DonateInfo = () => {
     });
   }
 
+  const t = useTranslations();
   return (
     <CardContent className="md:pt-0 ">
       <Form {...form}>
@@ -71,7 +69,7 @@ const DonateInfo = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Таны нэр</FormLabel>
+                <FormLabel> {t("Таныр")} </FormLabel>
                 <FormControl>
                   <Input placeholder="Бат" {...field} />
                 </FormControl>
@@ -81,10 +79,10 @@ const DonateInfo = () => {
           />
           <FormField
             control={form.control}
-            name="phone"
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Таны имэйл</FormLabel>
+                <FormLabel> {t("Танэйл")} </FormLabel>
                 <FormControl>
                   <Input placeholder="..." {...field} />
                 </FormControl>
@@ -100,7 +98,7 @@ const DonateInfo = () => {
             disabled={loading}
           >
             {loading && <LoadingIcon />}
-            Үргэлжлүүлэх
+            {t("Үргэлжлүүлэх")}
           </Button>
           <Button
             type="button"
@@ -111,7 +109,7 @@ const DonateInfo = () => {
             onClick={() => setView("")}
           >
             <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
-            Буцах
+            {t("Буцах")}
           </Button>
         </form>
       </Form>

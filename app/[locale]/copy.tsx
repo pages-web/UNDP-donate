@@ -2,15 +2,17 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "sonner";
 import { CopyIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-
+import { Button } from "./components/ui/button";
+import { Input } from "./components/ui/input";
+import { Label } from "./components/ui/label";
+import { useTranslations } from "next-intl";
+import React from "react";
 const Copy = () => {
+  const t = useTranslations();
   return (
     <>
       <div className="space-y-1">
-        <Label>Дансны дугаар</Label>
+        <Label> {t("Данснугаар")} </Label>
         <div className="relative">
           <Input
             className="px-12 font-bold disabled:opacity-80"
@@ -38,11 +40,11 @@ const Copy = () => {
         </div>
       </div>
       <div className="space-y-1">
-        <Label>Дансны эзэмшигчийн нэр</Label>
+        <Label> {t("Данснынэр")} </Label>
         <div className="relative">
           <Input
             className="px-12 font-bold disabled:opacity-80 "
-            value="Боловсролын санаачилгууд ТББ"
+            value={t("БоловсролынсанаачилгуудТББ")}
             disabled
           />
           <div className="absolute top-[1px] left-[1px] bottom-[1px] h-[38px] w-[38px] text-black z-10 rounded flex items-center justify-center">
@@ -63,7 +65,7 @@ const Copy = () => {
             </svg>
           </div>
           <CopyToClipboard
-            text="Боловсролын санаачилгууд ТББ"
+            text={t("БоловсролынсанаачилгуудТББ")}
             onCopy={() => toast.success("Дансны эзэмшигчийн нэр хуулагдлаа.")}
           >
             <Button

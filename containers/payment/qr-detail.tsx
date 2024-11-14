@@ -1,10 +1,10 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "../../app/[locale]/components/ui/alert";
 import { BanIcon, InfoIcon } from "lucide-react";
-import Image from "@/components/ui/image";
-import { DialogFooter } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import Image from "../../app/[locale]/components/ui/image";
+import { DialogFooter } from "../../app/[locale]/components/ui/dialog";
+import { Button } from "../../app/[locale]/components/ui/button";
 import { useSetAtom } from "jotai";
-import { handleMethodAtom } from "@/store/payment.store";
+import { handleMethodAtom } from "../../store/payment.store";
 import BackButton from "./back-button";
 import CheckPayment from "./check-payment";
 import Link from "next/link";

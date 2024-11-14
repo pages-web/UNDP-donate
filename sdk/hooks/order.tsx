@@ -11,12 +11,12 @@ import {
   cudOrderAtom,
   loadingOrderAtom,
   orderParamsAtom
-} from '@/store/order.store';
+} from '../../store/order.store';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
-import { IOrder } from '@/types/order.types';
-import { ORDER_SALE_STATUS } from '@/lib/constants';
-import { onError } from '@/lib/utils';
+import { IOrder } from '../../types/order.types';
+import { ORDER_SALE_STATUS } from '../../lib/constants';
+import { onError } from '../../lib/utils';
 
 const refetchQueries = ['CurrentOrder'];
 

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "../../app/[locale]/components/ui/button";
 import PaymentMethods from "./payment-methods-dialog";
 import PaymentDetail from "./payment-detail-dialog";
 import { useAtomValue, useSetAtom } from "jotai";
@@ -6,13 +6,15 @@ import {
   openDetailAtom,
   openMethodsAtom,
   selectedMethodAtom,
-} from "@/store/payment.store";
+} from "../../store/payment.store";
 
+import React from "react";
+import { useTranslations } from "next-intl";
 const BuyButton = () => {
   const setOpenMethods = useSetAtom(openMethodsAtom);
   const setOpenDetails = useSetAtom(openDetailAtom);
   const selectedMethod = useAtomValue(selectedMethodAtom);
-
+  const t = useTranslations();
   const handlePay = () => {
     if (selectedMethod) return setOpenDetails(true);
     setOpenMethods(true);
@@ -21,7 +23,7 @@ const BuyButton = () => {
   return (
     <>
       <Button size="lg" className="md:h-12 md:px-8" onClick={handlePay}>
-        Төлбөр төлөх
+        {t("Төлбөртөлөх")}
       </Button>
       <PaymentMethods />
       <PaymentDetail />

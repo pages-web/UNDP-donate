@@ -1,6 +1,6 @@
-import { CommonParams } from "@/types";
+import { CommonParams } from "../../types";
 import { cache } from "react";
-import { IArticle, IKBCategoryDetail } from "@/types/kb.types";
+import { IArticle, IKBCategoryDetail } from "../../types/kb.types";
 import { getClient } from "../ssClient";
 import { queries } from "../graphql/kb";
 import { getConfig } from "./auth";

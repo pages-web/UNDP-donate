@@ -1,15 +1,15 @@
 "use client";
-
-import ChooseProducts from "@/components/choose-products/choose-products";
-import { onError } from "@/lib/utils";
-import { mutations, queries } from "@/sdk/graphql/order";
+import React from "react";
+import ChooseProducts from "../../app/[locale]/components/choose-products/choose-products";
+import { onError } from "../../lib/utils";
+import { mutations, queries } from "../../sdk/graphql/order";
 import {
   donateItemAtom,
   donateOrderIdAtom,
   donateViewAtom,
   deliveryInfoAtom,
-} from "@/store/donate.store";
-import { IProduct } from "@/types/product.types";
+} from "../../store/donate.store";
+import { IProduct } from "../../types/product.types";
 import {
   ApolloCache,
   DefaultContext,
@@ -26,14 +26,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Loading } from "@/components/ui/loading";
+} from "../../app/[locale]/components/ui/card";
+import { Loading } from "../../app/[locale]/components/ui/loading";
 import PaymentMethods from "../payment/payment-methods";
 import PaymentDetail from "../payment/payment-detail";
-import Steps from "@/components/choose-products/steps";
+import Steps from "../../app/[locale]/components/choose-products/steps";
 import { toast } from "sonner";
 import { ArrowLeftIcon, CheckIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../app/[locale]/components/ui/button";
+import { useTranslations } from "next-intl";
 
 type DonateProps = React.PropsWithChildren & {
   loading: boolean;
@@ -149,12 +150,13 @@ const Donate = ({ products }: { products: IProduct[] }) => {
     setDonateItem(null);
     setDeliveryInfo({
       name: "",
-      phone: "",
+      email: "",
       description: "",
     });
   };
 
   const { orderDetail } = data || {};
+  const t = useTranslations();
 
   return (
     <DonateContext.Provider
@@ -167,7 +169,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
       }}
     >
       <CardHeader className="flex items-center justify-between flex-row ">
-        <CardTitle className="text-black">Хандив өгөх</CardTitle>
+        <CardTitle className="text-black">{t("Хандивөгөх")}</CardTitle>
         <Steps validateProduct={validateProduct} />
       </CardHeader>
       {loading ? (
@@ -203,7 +205,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
                   onClick={() => setView("info")}
                 >
                   <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
-                  Буцах
+                  {t("Буцах")}
                 </Button>
               </CardFooter>
             </>
@@ -216,16 +218,17 @@ const Donate = ({ products }: { products: IProduct[] }) => {
                     <CheckIcon className="h-10 w-10 stroke-green-700 " />
                   </div>
                   <div className="text-xl font-semibold pt-6 text-center">
-                    Таны хандивыг амжилттай <br /> хүлээн авлаа.
+                    {t("Танамжилттай")}
+                    <span className="block"> {t("хүлээн авлаа")} </span>
                   </div>
                   <div className="text-neutral-500 pt-2">
-                    Биднийг дэмжиж хандив өгсөн танд баярлалаа
+                    {t("Биднярлалаа")}
                   </div>
                 </div>
               </CardContent>
               <CardFooter>
                 <Button size="lg" className="w-full" onClick={reset}>
-                  Эхлэл рүү буцах
+                  {t("Эхлах")}
                 </Button>
               </CardFooter>
             </>

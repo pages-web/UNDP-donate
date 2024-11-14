@@ -1,4 +1,4 @@
-import { IDeliveryInfo, IOrder, IBillType } from '@/types/order.types';
+import { IDeliveryInfo, IOrder, IBillType } from '../types/order.types';
 import { atom } from 'jotai';
 import { focusAtom } from 'jotai-optics';
 import { splitAtom } from 'jotai/utils';

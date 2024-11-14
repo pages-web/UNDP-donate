@@ -1,23 +1,23 @@
-import { type OperationVariables, useMutation } from '@apollo/client';
-import { mutations } from '../graphql/payment';
-import { useAtomValue } from 'jotai';
-import { selectedMethodAtom } from '@/store/payment.store';
-import { onError } from '@/lib/utils';
-import { useDonate } from '@/containers/donate/donate';
-import { deliveryInfoAtom } from '@/store/donate.store';
-import { configAtom } from '@/store/auth.store';
+import { type OperationVariables, useMutation } from "@apollo/client";
+import { mutations } from "../graphql/payment";
+import { useAtomValue } from "jotai";
+import { selectedMethodAtom } from "../../store/payment.store";
+import { onError } from "../../lib/utils";
+import { useDonate } from "../../containers/donate/donate";
+import { deliveryInfoAtom } from "../../store/donate.store";
+import { configAtom } from "../../store/auth.store";
 
 const useCreateInvoice = ({
   appToken,
-  posName
+  posName,
 }: {
   appToken: string;
   posName: string;
 }) => {
   const context = {
     headers: {
-      'erxes-app-token': appToken
-    }
+      "erxes-app-token": appToken,
+    },
   };
 
   const deliveryInfo = useAtomValue(deliveryInfoAtom);
@@ -26,7 +26,7 @@ const useCreateInvoice = ({
   const { detail } = useDonate();
   const [
     addTransaction,
-    { loading: addingTransaction, reset: resetTransaction, data }
+    { loading: addingTransaction, reset: resetTransaction, data },
   ] = useMutation(mutations.addTransaction);
 
   const [createInvoice, { reset, loading }] = useMutation(
@@ -39,10 +39,10 @@ const useCreateInvoice = ({
           variables: {
             invoiceId: invoiceCreate._id,
             paymentId: selectedPaymentId,
-            amount: detail?.totalAmount
-          }
+            amount: detail?.totalAmount,
+          },
         });
-      }
+      },
     }
   );
 
@@ -50,17 +50,17 @@ const useCreateInvoice = ({
     createInvoice({
       variables: {
         amount: detail?.totalAmount,
-        contentType: 'pos:orders',
+        contentType: "pos:orders",
         contentTypeId: detail?._id,
-        customerType: 'customer',
+        customerType: "customer",
         description: `${detail?.number} - ${posName.toUpperCase()} - ${
           detail?._id
         }`,
         data: { posToken: process.env.NEXT_PUBLIC_POS_TOKEN },
         paymentIds,
         phone: deliveryInfo?.phone,
-        ...variables
-      }
+        ...variables,
+      },
     });
 
   const { paymentTransactionsAdd } = data || {};
@@ -72,7 +72,7 @@ const useCreateInvoice = ({
       resetTransaction();
     },
     data: paymentTransactionsAdd,
-    handleCreateInvoice
+    handleCreateInvoice,
   };
 };
 

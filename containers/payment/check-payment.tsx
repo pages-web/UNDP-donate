@@ -1,13 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { LoadingIcon } from "@/components/ui/loading";
-import { useCheckInvoice } from "@/sdk/hooks/payment";
+import { Button } from "../../app/[locale]/components/ui/button";
+import { LoadingIcon } from "../../app/[locale]/components/ui/loading";
+import { useCheckInvoice } from "../../sdk/hooks/payment";
 import { toast } from "sonner";
-import { getLabel } from "@/lib/utils";
+import { getLabel } from "../../lib/utils";
 import { useDonate } from "../donate/donate";
-
+import { useTranslations } from "next-intl";
+import React from "react";
 const CheckPayment = ({ id, disabled }: { id: string; disabled?: boolean }) => {
   const { checkInvoice, loading } = useCheckInvoice();
   const { refetch } = useDonate();
+  const t = useTranslations();
   return (
     <Button
       size="lg"
@@ -24,7 +26,7 @@ const CheckPayment = ({ id, disabled }: { id: string; disabled?: boolean }) => {
       }
     >
       {loading && <LoadingIcon />}
-      Төлбөр шалгах
+      {t("Төлбөршалгах")}
     </Button>
   );
 };

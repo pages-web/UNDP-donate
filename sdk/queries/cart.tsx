@@ -1,6 +1,6 @@
-import { cartItemAtomAtoms } from '@/store/cart.store';
-import { itemAtomsAtom, loadingOrderAtom } from '@/store/order.store';
-import { currentUserAtom } from '@/store/auth.store';
+import { cartItemAtomAtoms } from '../../store/cart.store';
+import { itemAtomsAtom, loadingOrderAtom } from '../../store/order.store';
+import { currentUserAtom } from '../../store/auth.store';
 import { useAtomValue } from 'jotai';
 
 const useCart = () => {

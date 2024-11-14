@@ -1,15 +1,15 @@
-import { handleMethodAtom } from "@/store/payment.store";
+import { handleMethodAtom } from "../../store/payment.store";
 import { useAtomValue } from "jotai";
-import { usePaymentConfig } from "@/sdk/queries/payment";
-import useCreateInvoice from "@/sdk/hooks/payment";
-import { IPayment } from "@/types/payment.types";
-import { Loading } from "@/components/ui/loading";
+import { usePaymentConfig } from "../../sdk/queries/payment";
+import useCreateInvoice from "../../sdk/hooks/payment";
+import { IPayment } from "../../types/payment.types";
+import { Loading } from "../../app/[locale]/components/ui/loading";
 import { useEffect } from "react";
 import QrDetail from "./qr-detail";
 import PhoneDetail from "./phone-detail";
 import { gql, useSubscription } from "@apollo/client";
 import { useDonate } from "../donate/donate";
-
+import React from "react";
 const QR_PAYMENTS = ["qpay", "monpay", "pocket", "qpayQuickqr"];
 const PHONE_PAYMENTS = ["socialpay", "storepay"];
 
