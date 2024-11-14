@@ -9,9 +9,10 @@ import Requirement from "../requirement/requirement";
 import Solution from "../solution/Solution";
 import YourParticipation from "../your-participation/YourParticipation";
 import Cooperation from "../cooperation/Cooperation";
-import React from "react";
 import PartnerOrganization from "../cooperation/PartnerOrganization";
 import CooperationPart from "../cooperation/Cooperation-part";
+import React from "react";
+
 export const revalidate = 300;
 
 interface DefaultLayoutProps {
@@ -19,31 +20,40 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
-  const { articles } = await getKbArticlesByCode("heregtsee-mn");
-  const { articles: hamtragchBaiguullaga } = await getKbArticlesByCode(
-    "hamtarch-ajilj-bui-baiguullaga"
-  );
-  const { articles: heregtseeEn } = await getKbArticlesByCode("heregtsee-en");
-  const { articles: hamtiinAjillagaa } = await getKbArticlesByCode(
-    "hamtiin-ajillagaa-mn"
-  );
-  const { articles: hamtiinAjillagaaEn } = await getKbArticlesByCode(
-    "hamtiin-ajillagaa-en"
+  const articleCodes = [
+    "heregtsee-mn",
+    "hamtarch-ajilj-bui-baiguullaga",
+    "heregtsee-en",
+    "hamtiin-ajillagaa-mn",
+    "hamtiin-ajillagaa-en",
+    "tanii-oroltsoo-bichver-mn",
+    "tanii-oroltsoo-bichver-en",
+    "shiidel-mn",
+    "shiidel-en",
+    "tanii-oroltsoo-carousel-image",
+    "main-banner",
+  ];
+
+  const articles = await Promise.all(
+    articleCodes.map((code) =>
+      getKbArticlesByCode(code).then((res) => res.articles)
+    )
   );
 
-  const { articles: participationArticles } = await getKbArticlesByCode(
-    "tanii-oroltsoo-bichver-mn"
-  );
-  const { articles: participationArticlesEn } = await getKbArticlesByCode(
-    "tanii-oroltsoo-bichver-en"
-  );
-  const { articles: shiidel } = await getKbArticlesByCode("shiidel-mn");
-  const { articles: shiidelEn } = await getKbArticlesByCode("shiidel-en");
-  const { articles: carouselArticles } = await getKbArticlesByCode(
-    "tanii-oroltsoo-carousel-image"
-  );
+  const [
+    heregtsee,
+    hamtragchBaiguullaga,
+    heregtseeEn,
+    hamtiinAjillagaa,
+    hamtiinAjillagaaEn,
+    participationArticles,
+    participationArticlesEn,
+    shiidel,
+    shiidelEn,
+    carouselArticles,
+    bannerArticles,
+  ] = articles;
 
-  const { articles: bannerArticles } = await getKbArticlesByCode("main-banner");
   const { config } = await getConfig();
   const logo = config?.uiOptions?.logo || "/images/default-logo.png";
 
@@ -58,11 +68,11 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
               <CardContent className="pt-2">
                 <Tabs defaultValue="account">
                   <TabsContent value="account">
-                    {articles[0]?.content ? (
+                    {heregtsee[0]?.content ? (
                       <div>
                         <section id="requirement">
                           <Requirement
-                            articles={articles}
+                            articles={heregtsee}
                             heregtseeEn={heregtseeEn}
                           />
                         </section>
@@ -93,7 +103,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
               </CardContent>
             </Card>
             <div>
-              <Card className=" xl:w-[500px] bg-background flex-none top-[88px] sticky shadow-lg">
+              <Card className="xl:w-[500px] bg-background flex-none top-[88px] sticky shadow-lg">
                 {children}
               </Card>
             </div>
