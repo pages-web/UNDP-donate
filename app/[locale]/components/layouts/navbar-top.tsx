@@ -1,35 +1,34 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
-import React from "react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+
 interface NavbarTopProps {
   logo: string | undefined;
 }
 
 const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
-  const [isEnglish, setIsEnglish] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const t = useTranslations("");
-  const { locale } = useParams();
+  const params = useParams();
   const router = useRouter();
 
   const logoSrc = logo || "";
 
   useEffect(() => {
-    setIsClient(true);
-    setIsEnglish(locale === "en");
-  }, [locale]);
-
-  const toggleLanguage = async () => {
-    const newLocale = isEnglish ? "mn" : "en";
-    setIsEnglish(!isEnglish);
-    if (isClient) {
-      await router.replace(`/${newLocale}`);
+    if (typeof window !== "undefined") {
+      setIsClient(true);
     }
-  };
+  }, []);
+
+  const toggleLanguage = useCallback(async () => {
+    const newLocale = params.locale === "en" ? "mn" : "en";
+    if (isClient) {
+      router.replace(`/${newLocale}`);
+    }
+  }, [params.locale, isClient, router]);
 
   if (!isClient) return null;
 
@@ -44,7 +43,6 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
             height={80}
             className="object-cover w-20 h-8 sm:w-24 sm:h-10 md:w-32 md:h-12 lg:w-36 lg:h-14 xl:w-72 xl:h-14"
           />
-
           <div className="flex gap-3 sm:gap-6 md:gap-10 items-center text-white font-semibold text-[8px] sm:text-xs md:text-md lg:text-base xl:text-lg">
             <a href="#requirement">
               <h1 className="cursor-pointer hover:text-gray-300 transition-colors">
@@ -70,7 +68,11 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
               alt="Language Icon"
               width={35}
               height={35}
-              src={isEnglish ? "/images/mongolia.png" : "/images/english.png"}
+              src={
+                params.locale === "en"
+                  ? "/images/mongolia.png"
+                  : "/images/english.png"
+              }
               onClick={toggleLanguage}
               className="cursor-pointer object-cover w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 transition-transform duration-300 ease-in-out transform hover:scale-110"
               priority

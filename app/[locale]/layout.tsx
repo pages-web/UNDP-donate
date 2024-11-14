@@ -68,6 +68,18 @@ export default async function RootLayout({
   return (
     <html lang={locale || "mn"} suppressHydrationWarning>
       <head>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
+
         <link rel="icon" href={uiOptions?.favIcon || "/default-favicon.ico"} />
         {!!colors && (
           <style>{`
@@ -103,7 +115,7 @@ export default async function RootLayout({
           `min-h-screen bg-background font-inherit ${geistSans.variable} ${geistMono.variable} antialiased`
         )}
       >
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <ConfigProvider config={config}>
               <DefaultLayout>{children}</DefaultLayout>

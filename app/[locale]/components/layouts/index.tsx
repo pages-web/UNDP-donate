@@ -10,6 +10,8 @@ import Solution from "../solution/Solution";
 import YourParticipation from "../your-participation/YourParticipation";
 import Cooperation from "../cooperation/Cooperation";
 import React from "react";
+import PartnerOrganization from "../cooperation/PartnerOrganization";
+import CooperationPart from "../cooperation/Cooperation-part";
 export const revalidate = 300;
 
 interface DefaultLayoutProps {
@@ -18,6 +20,9 @@ interface DefaultLayoutProps {
 
 const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
   const { articles } = await getKbArticlesByCode("heregtsee-mn");
+  const { articles: hamtragchBaiguullaga } = await getKbArticlesByCode(
+    "hamtarch-ajilj-bui-baiguullaga"
+  );
   const { articles: heregtseeEn } = await getKbArticlesByCode("heregtsee-en");
   const { articles: hamtiinAjillagaa } = await getKbArticlesByCode(
     "hamtiin-ajillagaa-mn"
@@ -25,9 +30,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
   const { articles: hamtiinAjillagaaEn } = await getKbArticlesByCode(
     "hamtiin-ajillagaa-en"
   );
-  const { articles: hamtarjAjiljbuiBaiguullaga } = await getKbArticlesByCode(
-    "Хамтарч-ажилж-буй-байгууллага"
-  );
+
   const { articles: participationArticles } = await getKbArticlesByCode(
     "tanii-oroltsoo-bichver-mn"
   );
@@ -75,9 +78,10 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
                           <Cooperation
                             hamtiinAjillagaaEn={hamtiinAjillagaaEn}
                             hamtiinAjillagaa={hamtiinAjillagaa}
-                            hamtarjAjiljbuiBaiguullaga={
-                              hamtarjAjiljbuiBaiguullaga
-                            }
+                          />
+                          <CooperationPart />
+                          <PartnerOrganization
+                            hamtragchBaiguullaga={hamtragchBaiguullaga}
                           />
                         </section>
                       </div>

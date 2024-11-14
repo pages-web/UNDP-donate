@@ -1,53 +1,85 @@
+"use client";
+
 import Image from "../ui/image";
-import { motion } from "framer-motion";
-import { useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
-import React from "react";
-const PartnerOrganization = ({ hamtarjAjiljbuiBaiguullaga }: any) => {
-  const slider = useRef(null);
+import Slider from "react-slick";
+import React, { useEffect, useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(slider.current, {
-        xPercent: -100,
-        duration: 20,
-        repeat: -1,
-        ease: "linear",
-      });
-    }, slider);
+const PartnerOrganization = ({
+  hamtragchBaiguullaga,
+}: {
+  hamtragchBaiguullaga: any[];
+}) => {
+  const [articles, setArticles] = useState<any[]>([]);
 
-    return () => ctx.revert();
-  }, []);
+  useEffect(() => {
+    if (hamtragchBaiguullaga && hamtragchBaiguullaga.length > 0) {
+      setArticles(hamtragchBaiguullaga);
+    }
+  }, [hamtragchBaiguullaga]);
+
+  const settings = {
+    infinite: true,
+    speed: 2000,
+    slidesToShow: Math.min(6, articles.length),
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1,
+    cssEase: "linear",
+    pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: { slidesToShow: Math.min(4, articles.length) },
+      },
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: Math.min(4, articles.length) },
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: Math.min(5, articles.length) },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: Math.min(4, articles.length) },
+      },
+      {
+        breakpoint: 360,
+        settings: { slidesToShow: Math.min(6, articles.length) },
+      },
+    ],
+  };
 
   return (
-    <motion.main className="w-full">
-      <div className="overflow-hidden py-6 sm:py-8 lg:py-10 mt-10 relative">
-        <div
-          ref={slider}
-          className="flex items-center gap-6 sm:gap-10 md:gap-12 lg:gap-14 whitespace-nowrap"
-          style={{ width: "200%" }}
+    <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px]  xl:max-w-[550px] 2xl:max-w-[900px] mx-auto py-6 sm:py-8 lg:py-10 mt-10">
+      {articles.length > 0 ? (
+        <Slider
+          {...settings}
+          className="flex items-center gap-4 sm:gap-6 md:gap-8"
         >
-          <div className="flex gap-6 sm:gap-10 md:gap-12 lg:gap-14">
-            {hamtarjAjiljbuiBaiguullaga[0]?.content && (
-              <div>
-                {hamtarjAjiljbuiBaiguullaga.map(({ article, index }: any) => (
-                  <div>
-                    <Image
-                      key={index}
-                      src={article.image?.url}
-                      width={70}
-                      height={70}
-                      className="object-contain sm:w-[80px] sm:h-[80px] md:w-[89px] md:h-[89px]"
-                      alt="CU Logo"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.main>
+          {articles.map((article, index) => (
+            <div
+              key={article._id || index}
+              className="px-[1px] sm:px-3 md:px-4 transition-transform duration-500 ease-out transform hover:scale-105"
+            >
+              <Image
+                src={article.image?.url || "/images/default-image.jpg"}
+                width={50}
+                height={50}
+                className="object-contain sm:w-[60px] sm:h-[60px] md:w-[70px] md:h-[70px] lg:w-[80px] lg:h-[80px] xl:w-[80px] xl:h-[80px] 2xl:w-[89px] 2xl:h-[89px] w-[50px] h-[50px]"
+                alt={`Partner logo ${index + 1}`}
+              />
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <p className="text-center text-gray-500">
+          No partner organizations available
+        </p>
+      )}
+    </div>
   );
 };
 

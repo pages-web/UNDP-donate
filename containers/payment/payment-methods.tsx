@@ -21,32 +21,16 @@ const PaymentMethods = () => {
 
   return (
     <>
-      <h2 className="font-medium text-foreground mb-4 flex justify-between items-center">
+      <h2 className="font-medium mb-4 flex justify-between items-center text-black">
         {t("Төлбө")}
-        <span className="font-bold">
+        <span className="font-bold text-black">
           {detail?.totalAmount.toLocaleString()}₮
         </span>
       </h2>
       {loading ? (
-        <Loading className="pt-32 pb-24" />
+        <Loading className="pt-32 pb-20" />
       ) : payments.length === 1 ? null : (
-        <RadioGroup
-          value={selectedPayment}
-          onValueChange={(value) => setSelectedPayment(value)}
-        >
-          <div className="space-y-3">
-            <div className="grid gap-4">
-              {payments.map(({ kind, _id, name }) => (
-                <PaymentType
-                  selected={selectedPayment === kind}
-                  kind={kind}
-                  _id={_id}
-                  name={name}
-                />
-              ))}
-            </div>
-          </div>
-        </RadioGroup>
+        <div></div>
       )}
     </>
   );

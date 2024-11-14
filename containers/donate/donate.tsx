@@ -219,7 +219,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
                   </div>
                   <div className="text-xl font-semibold pt-6 text-center">
                     {t("Танамжилттай")}
-                    <span className="block"> {t("хүлээн авлаа")} </span>
+                    <span className="block"> {t("хүлээнавлаа")} </span>
                   </div>
                   <div className="text-neutral-500 pt-2">
                     {t("Биднярлалаа")}

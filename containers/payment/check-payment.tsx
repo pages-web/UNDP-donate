@@ -13,7 +13,7 @@ const CheckPayment = ({ id, disabled }: { id: string; disabled?: boolean }) => {
   return (
     <Button
       size="lg"
-      className="flex-1 w-full absolute bottom-1 left-0"
+      className="flex-1 w-full absolute bottom-1 left-0 text-white"
       disabled={disabled || loading}
       onClick={() =>
         checkInvoice({

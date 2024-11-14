@@ -37,8 +37,8 @@ const Footer = () => {
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
               "https://educated.mn/"
             )}`}
-            target="_blank" // Opens the link in a new tab
-            rel="noopener noreferrer" // Security measure for external links
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <h1 className="text-white text-sm sm:text-base md:text-lg font-bold underline cursor-pointer">
               Share to Facebook

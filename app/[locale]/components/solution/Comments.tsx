@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
+
 const Comments = () => {
   const t = useTranslations();
   const data = [
@@ -29,7 +30,6 @@ const Comments = () => {
           {t("МонголОюусургуулийн2ангийнсурагчОюунсувд")}
         </span>
       ),
-
       icon: "/images/a.png",
     },
     {
@@ -38,7 +38,7 @@ const Comments = () => {
         <span>
           {t("ХөтөлбөрийгавсанЕБСийнангийн")}
           <span className="text-[#F1672D] px-1">{t("багшийн")}</span>
-          {t("сэтгэгдэл")}
+          <span> {t("сэтгэгдэл")}</span>
         </span>
       ),
       description: (
@@ -64,7 +64,7 @@ const Comments = () => {
         <span>
           {t("Хөтөлбөртхамрагдсан")}
           <span className="text-[#F1672D] px-1">{t("сурагчийн")}</span>
-          {t("сэтгэгдэл")}
+          <span className=""> {t("сэтгэгдэл")}</span>
         </span>
       ),
       description: (
@@ -85,6 +85,7 @@ const Comments = () => {
       icon: "/images/a.png",
     },
   ];
+
   return (
     <div className="flex flex-wrap gap-3 justify-start p-4">
       {data.map((e, index) => {
@@ -101,7 +102,7 @@ const Comments = () => {
                 src={e.avatar}
                 className="object-cover rounded-full"
               />
-              <h1 className="font-bold text-[17px] text-[#333] leading-5">
+              <h1 className="font-bold text-[17px] text-[#333] leading-5 sm:text-[14px] md:text-[16px] lg:text-[17px] break-words">
                 {e.title}
               </h1>
             </div>

@@ -1,10 +1,10 @@
 import { createContext, forwardRef, useContext } from "react";
 import { Button, ButtonProps } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "../../../../lib/utils";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { cva } from "class-variance-authority";
-
+import React from "react";
 type CounterProps = React.PropsWithChildren & {
   size?: "sm" | "default" | "lg";
   disabled?: boolean;

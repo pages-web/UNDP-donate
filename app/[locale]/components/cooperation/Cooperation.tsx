@@ -2,14 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "../ui/button";
-import CooperationPart from "./Cooperation-part";
-import PartnerOrganization from "./PartnerOrganization";
 import { useParams } from "next/navigation";
-const Cooperation = ({
-  hamtiinAjillagaa,
-  hamtarjAjiljbuiBaiguullaga,
-  hamtiinAjillagaaEn,
-}: any) => {
+import React from "react";
+const Cooperation = ({ hamtiinAjillagaa, hamtiinAjillagaaEn }: any) => {
   const { locale } = useParams();
   const t = useTranslations();
   const articlesToShow =
@@ -34,10 +29,6 @@ const Cooperation = ({
           </div>
         )}
       </div>
-      <CooperationPart />
-      {/* <PartnerOrganization
-        hamtarjAjiljbuiBaiguullaga={hamtarjAjiljbuiBaiguullaga}
-      /> */}
     </div>
   );
 };
