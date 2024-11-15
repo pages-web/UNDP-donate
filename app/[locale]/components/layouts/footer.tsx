@@ -35,7 +35,7 @@ const Footer = () => {
           <ShareIcon />
           <Link
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-              "https://educated.mn/"
+              "https://fund.educated.mn/"
             )}`}
             target="_blank"
             rel="noopener noreferrer"
