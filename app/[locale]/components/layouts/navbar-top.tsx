@@ -27,7 +27,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
       setLoading(false); // Set loading to false when the component is mounted
       // Set default locale to 'mn' if not set
       if (!params.locale) {
-        router.replace("/mn");
+        router.replace("/en");
       }
     }
   }, [params.locale, router]);
@@ -85,7 +85,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
           <div className="pr-0 sm:pr-6 md:pr-10 lg:pr-20">
             {isSwitching ? (
               <div className="flex justify-center items-center animate-pulse">
-                <Loading /> {/* Loading spinner while switching */}
+                <Loading />
               </div>
             ) : (
               <div
