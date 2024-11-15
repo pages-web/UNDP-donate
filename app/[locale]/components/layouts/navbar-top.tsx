@@ -11,6 +11,7 @@ interface NavbarTopProps {
 }
 
 const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
+  const [isClient, setIsClient] = useState(false);
   const [loading, setLoading] = useState(true); // State for component loading
   const [isSwitching, setIsSwitching] = useState(false); // State for language switching
   const [isAnimating, setIsAnimating] = useState(false); // State for language icon animation
@@ -21,9 +22,13 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   const logoSrc = logo || "";
 
   useEffect(() => {
-    setLoading(false); // Set loading to false when the component is mounted
-    if (!params.locale) {
-      router.replace("/mn");
+    if (typeof window !== "undefined") {
+      setIsClient(true);
+      setLoading(false); // Set loading to false when the component is mounted
+      // Set default locale to 'mn' if not set
+      if (!params.locale) {
+        router.replace("/mn");
+      }
     }
   }, [params.locale, router]);
 
@@ -31,12 +36,16 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
     setIsSwitching(true); // Show loading spinner when language is switching
     setIsAnimating(true); // Start the animation
     const newLocale = params.locale === "en" ? "mn" : "en";
-    router.replace(`/${newLocale}`);
-    setIsSwitching(false); // Hide spinner after language switch
-    setIsAnimating(false); // End the animation after the switch
-  }, [params.locale, router]);
+    if (isClient) {
+      setTimeout(() => {
+        router.replace(`/${newLocale}`);
+        setIsSwitching(false); // Hide spinner after language switch
+        setIsAnimating(false); // End the animation after the switch
+      }, 500); // Reduced delay for smoother transition
+    }
+  }, [params.locale, isClient, router]);
 
-  if (loading) return null; // Skip rendering if loading
+  if (!isClient) return null;
 
   return (
     <header className="z-50 sticky w-full top-0">
@@ -76,7 +85,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
           <div className="pr-0 sm:pr-6 md:pr-10 lg:pr-20">
             {isSwitching ? (
               <div className="flex justify-center items-center animate-pulse">
-                <Loading />
+                <Loading /> {/* Loading spinner while switching */}
               </div>
             ) : (
               <div
