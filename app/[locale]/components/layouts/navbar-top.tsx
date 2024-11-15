@@ -4,13 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Loading } from "../ui/loading"; // Importing the Loading component
 
 interface NavbarTopProps {
   logo: string | undefined;
 }
 
 const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
-  const [isClient, setIsClient] = useState(false);
+  const [loading, setLoading] = useState(true); // State for component loading
+  const [isSwitching, setIsSwitching] = useState(false); // State for language switching
+  const [isAnimating, setIsAnimating] = useState(false); // State for language icon animation
   const t = useTranslations("");
   const params = useParams();
   const router = useRouter();
@@ -18,24 +21,31 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   const logoSrc = logo || "";
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsClient(true);
+    setLoading(false); // Set loading to false when the component is mounted
+    if (!params.locale) {
+      router.replace("/mn");
     }
-  }, []);
+  }, [params.locale, router]);
 
   const toggleLanguage = useCallback(async () => {
+    setIsSwitching(true); // Show loading spinner when language is switching
+    setIsAnimating(true); // Start the animation
     const newLocale = params.locale === "en" ? "mn" : "en";
-    if (isClient) {
-      router.replace(`/${newLocale}`);
-    }
-  }, [params.locale, isClient, router]);
+    router.replace(`/${newLocale}`);
+    setIsSwitching(false); // Hide spinner after language switch
+    setIsAnimating(false); // End the animation after the switch
+  }, [params.locale, router]);
 
-  if (!isClient) return null;
+  if (loading) return null; // Skip rendering if loading
 
   return (
     <header className="z-50 sticky w-full top-0">
       <div className="bg-[rgb(55,58,60)] px-4 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center py-4">
+        <div
+          className={`flex justify-between items-center py-4 transition-all duration-500 ${
+            loading ? "opacity-0" : "opacity-100"
+          }`}
+        >
           <Image
             src={logoSrc}
             alt="Logo"
@@ -64,19 +74,31 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
           </div>
 
           <div className="pr-0 sm:pr-6 md:pr-10 lg:pr-20">
-            <Image
-              alt="Language Icon"
-              width={35}
-              height={35}
-              src={
-                params.locale === "en"
-                  ? "/images/mongolia.png"
-                  : "/images/english.png"
-              }
-              onClick={toggleLanguage}
-              className="cursor-pointer object-cover w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 transition-transform duration-300 ease-in-out transform hover:scale-110"
-              priority
-            />
+            {isSwitching ? (
+              <div className="flex justify-center items-center animate-pulse">
+                <Loading />
+              </div>
+            ) : (
+              <div
+                className={`transition-all duration-300 ease-in-out ${
+                  isAnimating ? "opacity-0 scale-90" : "opacity-100 scale-100"
+                }`}
+              >
+                <Image
+                  alt="Language Icon"
+                  width={35}
+                  height={35}
+                  src={
+                    params.locale === "en"
+                      ? "/images/mongolia.png"
+                      : "/images/english.png"
+                  }
+                  onClick={toggleLanguage}
+                  className="cursor-pointer object-cover w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 transition-transform duration-300 ease-in-out transform hover:scale-110"
+                  priority
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

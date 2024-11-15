@@ -1,5 +1,5 @@
 import { cn } from "../../../../lib/utils";
-import { Loader2Icon, type LucideProps } from 'lucide-react';
+import { Loader2Icon, type LucideProps } from "lucide-react";
 import React from "react";
 const LoadingOverlay = () => (
   <div className="fixed inset-0 z-50 bg-black/20 " />
@@ -7,7 +7,7 @@ const LoadingOverlay = () => (
 
 const Loading = ({
   className,
-  style
+  style,
 }: {
   className?: string;
   style?: object;
@@ -15,7 +15,6 @@ const Loading = ({
   return (
     <LoadingWrapper className={className} style={style}>
       <LoadingIcon />
-      <LoadingText />
     </LoadingWrapper>
   );
 };
@@ -23,7 +22,7 @@ const Loading = ({
 export const LoadingIcon = ({ className, ...rest }: LucideProps) => {
   return (
     <Loader2Icon
-      className={cn('animate-spin h-5 w-5 mr-2', className)}
+      className={cn("animate-spin h-5 w-5 mr-2", className)}
       {...rest}
     />
   );
@@ -32,7 +31,7 @@ export const LoadingIcon = ({ className, ...rest }: LucideProps) => {
 export const LoadingWrapper = ({
   className,
   children,
-  style
+  style,
 }: {
   className?: string;
   children: React.ReactNode;
@@ -41,15 +40,11 @@ export const LoadingWrapper = ({
   return (
     <div
       style={style}
-      className={cn('flex items-center justify-center flex-auto', className)}
+      className={cn("flex items-center justify-center flex-auto", className)}
     >
       {children}
     </div>
   );
-};
-
-export const LoadingText = () => {
-  return <span className="text-sm">Уншиж байна...</span>;
 };
 
 export { Loading, LoadingOverlay };

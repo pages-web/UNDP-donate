@@ -9,22 +9,22 @@ import ConfigProvider from "./components/layouts/config";
 import { Metadata } from "next/types";
 import { getMessages } from "next-intl/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import React from "react";
 
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
 }
+
 import localFont from "next/font/local";
 
 const geistSans = localFont({
-  src: "../../public/fonts/GeistVF.woff", // Шрифт файлын замыг зөв зааж өгнө
+  src: "../../public/fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 
 const geistMono = localFont({
-  src: "../../public/fonts/GeistMonoVF.woff", // Шрифт файлын замыг зөв заана уу
+  src: "../../public/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -79,7 +79,6 @@ export default async function RootLayout({
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-
         <link rel="icon" href={uiOptions?.favIcon || "/default-favicon.ico"} />
         {!!colors && (
           <style>{`

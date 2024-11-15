@@ -19,7 +19,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"] // Fixed path pattern
+      "@/*": ["./*"],
+      "*": ["types/*"]
     },
     "target": "ES2017"
   },
