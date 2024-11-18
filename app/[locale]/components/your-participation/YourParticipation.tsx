@@ -43,7 +43,6 @@ const YourParticipation = ({
             />
           </div>
         )}
-
         {carouselArticles.length > 0 && (
           <Carousel articles={carouselArticles} />
         )}

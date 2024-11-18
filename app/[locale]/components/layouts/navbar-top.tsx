@@ -5,7 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Loading } from "../ui/loading"; // Importing the Loading component
-
+import React from "react";
+import { Link, usePathname } from "@/i18n/routing";
 interface NavbarTopProps {
   logo: string | undefined;
 }
@@ -35,7 +36,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   const toggleLanguage = useCallback(async () => {
     setIsSwitching(true); // Show loading spinner when language is switching
     setIsAnimating(true); // Start the animation
-    const newLocale = params.locale === "en" ? "mn" : "en";
+    const newLocale = params.locale === "mn" ? "en" : "mn";
     if (isClient) {
       setTimeout(() => {
         router.replace(`/${newLocale}`);

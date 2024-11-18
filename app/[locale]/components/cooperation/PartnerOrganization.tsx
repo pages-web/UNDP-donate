@@ -31,11 +31,11 @@ const PartnerOrganization = ({
     responsive: [
       {
         breakpoint: 1280,
-        settings: { slidesToShow: Math.min(4, articles.length) },
+        settings: { slidesToShow: Math.min(5, articles.length) },
       },
       {
         breakpoint: 1024,
-        settings: { slidesToShow: Math.min(4, articles.length) },
+        settings: { slidesToShow: Math.min(5, articles.length) },
       },
       {
         breakpoint: 768,
@@ -53,7 +53,7 @@ const PartnerOrganization = ({
   };
 
   return (
-    <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px]  xl:max-w-[550px] 2xl:max-w-[900px] mx-auto py-6 sm:py-8 lg:py-10 mt-10">
+    <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px]  xl:max-w-[600px] 2xl:max-w-[800px] mx-auto py-6 sm:py-8 lg:py-10 mt-10">
       {articles.length > 0 ? (
         <Slider
           {...settings}

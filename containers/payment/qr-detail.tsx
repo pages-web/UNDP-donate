@@ -1,4 +1,8 @@
-import { Alert, AlertDescription, AlertTitle } from "../../app/[locale]/components/ui/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../app/[locale]/components/ui/alert";
 import { BanIcon, InfoIcon } from "lucide-react";
 import Image from "../../app/[locale]/components/ui/image";
 import { DialogFooter } from "../../app/[locale]/components/ui/dialog";

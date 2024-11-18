@@ -21,7 +21,7 @@ const ChooseProducts = ({
   validateProduct: ValidateProduct;
 }) => {
   const { loading, action } = useDonate();
-
+  const t = useTranslations();
   const [item, setItem] = useAtom(donateItemAtom);
 
   const radioValue =
@@ -87,12 +87,12 @@ const ChooseProducts = ({
         </RadioGroup>
         {!!unitProduct && (
           <div className="mt-6">
-            <Label className="pb-2 block">Өөр дүн</Label>
+            <Label className="pb-2 block">{t("Өөрдүн₮")}</Label>
             <Input
               type="number"
               value={unitProduct._id === item?.productId ? item.count : ""}
               className="font-bold text-black"
-              placeholder="Өөр дүн ₮"
+              placeholder={t("Өөрдүн₮")}
               min={1}
               onChange={(e) => handleCustomValueChange(e.target.value)}
             />
@@ -106,7 +106,7 @@ const ChooseProducts = ({
           onClick={handleSubmit}
           disabled={loading}
         >
-          {loading && <LoadingIcon />} Хандив өгөх
+          {loading && <LoadingIcon />} {t("Хандивөгөх")}
         </Button>
       </CardFooter>
     </>

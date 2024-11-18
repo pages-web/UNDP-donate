@@ -3,8 +3,8 @@ import { Dialog, DialogContent } from "../../app/[locale]/components/ui/dialog";
 import { Drawer, DrawerContent } from "../../app/[locale]/components/ui/drawer";
 import { openDetailAtom } from "../../store/payment.store";
 import { useAtom } from "jotai";
-import PaymentDetail from "./payment-detail";
 import React from "react";
+import PaymentDetail from "./payment-detail";
 const PaymentDetailDialog = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [open, setOpen] = useAtom(openDetailAtom);

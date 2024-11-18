@@ -84,7 +84,7 @@ const DonateInfo = () => {
               <FormItem>
                 <FormLabel> {t("Танэйл")} </FormLabel>
                 <FormControl>
-                  <Input placeholder="..." {...field} />
+                  <Input placeholder={t("Танэйл")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

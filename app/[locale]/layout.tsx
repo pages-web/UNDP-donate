@@ -9,7 +9,8 @@ import ConfigProvider from "./components/layouts/config";
 import { Metadata } from "next/types";
 import { getMessages } from "next-intl/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
+import React from "react";
+import NextTopLoader from "nextjs-toploader";
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
@@ -115,6 +116,7 @@ export default async function RootLayout({
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <NextTopLoader color="#c66342" shadow={false} height={2} />
           <Providers>
             <ConfigProvider config={config}>
               <DefaultLayout>{children}</DefaultLayout>
