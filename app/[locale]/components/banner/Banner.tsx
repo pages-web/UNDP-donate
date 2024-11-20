@@ -2,8 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import Image from "../ui/image";
-
-const Banner = async ({ bannerArticles }: any) => {
+import React from "react";
+const Banner = ({ bannerArticles }: any) => {
   const t = useTranslations("");
   return (
     <div className="relative w-full aspect-[14/6] md:aspect-[16/7] max-h-[700px]">

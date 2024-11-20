@@ -5,12 +5,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  EffectCoverflow,
-  Pagination,
-  Autoplay,
-  Navigation,
-} from "swiper/modules";
+import { EffectCoverflow, Pagination, Autoplay, Navigation } from "swiper";
 import Image from "../ui/image";
 import React, { useEffect, useRef, useState } from "react";
 

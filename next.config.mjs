@@ -27,6 +27,8 @@ const nextConfig = {
       "https://educated-space-donate.app.erxes.io/gateway",
     NEXT_PUBLIC_WS_DOMAIN: "educated-space-donate.app.erxes.io/api/graphql",
     NEXT_PUBLIC_POS_TOKEN: "fd8rErKbZVcL2eCRVRgEVSTHZsUTeIUT",
+    EMAIL_USER: "hvslenhvslen566@gmail.com",
+    EMAIL_PASS: "85250765",
   },
 };
 export default withNextIntl(nextConfig);

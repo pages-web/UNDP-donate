@@ -25,7 +25,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", "sans-serif"], // Use the CSS variable here
+        sans: ["var(--font-geist-sans)", "Montserrat"],
       },
       fontWeight: {
         inherit: "inherit",

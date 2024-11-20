@@ -53,9 +53,7 @@ const useCreateInvoice = ({
         contentType: "pos:orders",
         contentTypeId: detail?._id,
         customerType: "customer",
-        description: `${detail?.number} - ${posName.toUpperCase()} - ${
-          detail?._id
-        }`,
+        description: "-",
         data: { posToken: process.env.NEXT_PUBLIC_POS_TOKEN },
         paymentIds,
         email: deliveryInfo?.email,

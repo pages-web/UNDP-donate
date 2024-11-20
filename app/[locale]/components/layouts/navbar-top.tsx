@@ -6,16 +6,16 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Loading } from "../ui/loading"; // Importing the Loading component
 import React from "react";
-import { Link, usePathname } from "@/i18n/routing";
+
 interface NavbarTopProps {
   logo: string | undefined;
 }
 
 const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   const [isClient, setIsClient] = useState(false);
-  const [loading, setLoading] = useState(true); // State for component loading
-  const [isSwitching, setIsSwitching] = useState(false); // State for language switching
-  const [isAnimating, setIsAnimating] = useState(false); // State for language icon animation
+  const [loading, setLoading] = useState(true);
+  const [isSwitching, setIsSwitching] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const t = useTranslations("");
   const params = useParams();
   const router = useRouter();
@@ -25,8 +25,8 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setIsClient(true);
-      setLoading(false); // Set loading to false when the component is mounted
-      // Set default locale to 'mn' if not set
+      setLoading(false);
+
       if (!params.locale) {
         router.replace("/en");
       }
@@ -34,15 +34,17 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   }, [params.locale, router]);
 
   const toggleLanguage = useCallback(async () => {
-    setIsSwitching(true); // Show loading spinner when language is switching
-    setIsAnimating(true); // Start the animation
+    setIsSwitching(true);
+    setIsAnimating(true);
+
     const newLocale = params.locale === "mn" ? "en" : "mn";
+
     if (isClient) {
       setTimeout(() => {
         router.replace(`/${newLocale}`);
-        setIsSwitching(false); // Hide spinner after language switch
-        setIsAnimating(false); // End the animation after the switch
-      }, 500); // Reduced delay for smoother transition
+        setIsSwitching(false);
+        setIsAnimating(false);
+      }, 250);
     }
   }, [params.locale, isClient, router]);
 
@@ -52,7 +54,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
     <header className="z-50 sticky w-full top-0">
       <div className="bg-[rgb(55,58,60)] px-4 sm:px-8 lg:px-12">
         <div
-          className={`flex justify-between items-center py-4 transition-all duration-500 ${
+          className={`flex justify-between items-center py-4 transition-opacity duration-500 ${
             loading ? "opacity-0" : "opacity-100"
           }`}
         >

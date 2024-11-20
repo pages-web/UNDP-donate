@@ -47,13 +47,13 @@ const PartnerOrganization = ({
       },
       {
         breakpoint: 360,
-        settings: { slidesToShow: Math.min(6, articles.length) },
+        settings: { slidesToShow: Math.min(3, articles.length) },
       },
     ],
   };
 
   return (
-    <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px]  xl:max-w-[600px] 2xl:max-w-[800px] mx-auto py-6 sm:py-8 lg:py-10 mt-10">
+    <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[600px] 2xl:max-w-[800px] mx-auto py-6 sm:py-8 lg:py-10 mt-10">
       {articles.length > 0 ? (
         <Slider
           {...settings}

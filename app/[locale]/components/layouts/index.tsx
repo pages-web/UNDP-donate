@@ -1,7 +1,11 @@
 import NavbarTop from "./navbar-top";
 import { Tabs, TabsContent } from "../../components/ui/tabs";
 import { Card, CardContent } from "../../components/ui/card";
-import { getKbArticlesByCode } from "../../../../sdk/queries/kb";
+import {
+  getKbArticleDetail,
+  getKbArticlesByCode,
+  kbCategoryDetail,
+} from "../../../../sdk/queries/kb";
 import { getConfig } from "../../../../sdk/queries/auth";
 import Footer from "./footer";
 import Banner from "../banner/Banner";
@@ -32,6 +36,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
     "shiidel-en",
     "tanii-oroltsoo-carousel-image",
     "main-banner",
+    "comment-mn",
   ];
 
   const articles = await Promise.all(
@@ -52,6 +57,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
     shiidelEn,
     carouselArticles,
     bannerArticles,
+    CommentMn,
   ] = articles;
 
   const { config } = await getConfig();
@@ -62,7 +68,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
       <NavbarTop logo={logo} />
       <div className="min-h-screen">
         <Banner bannerArticles={bannerArticles} />
-        <div className="container max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col-reverse xl:flex-row gap-6 -mt-16 pb-12">
             <Card className="flex-auto bg-background relative shadow-lg">
               <CardContent className="pt-2">
@@ -76,7 +82,11 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
                             heregtseeEn={heregtseeEn}
                           />
                         </section>
-                        <Solution shiidel={shiidel} shiidelEn={shiidelEn} />
+                        <Solution
+                          shiidel={shiidel}
+                          shiidelEn={shiidelEn}
+                          CommentMn={CommentMn}
+                        />
                         <section id="yourParticipation">
                           <YourParticipation
                             carouselArticles={carouselArticles}

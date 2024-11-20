@@ -30,6 +30,7 @@ const articles = gql`
       codes: $codes
       categoryIds: $categoryIds
     ) {
+      title
       _id
       summary
       content

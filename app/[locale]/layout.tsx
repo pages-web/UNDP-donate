@@ -11,22 +11,16 @@ import { getMessages } from "next-intl/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import React from "react";
 import NextTopLoader from "nextjs-toploader";
+import Montserrat from "next/font/local";
+
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
 }
 
-import localFont from "next/font/local";
-
-const geistSans = localFont({
+const montserrat = Montserrat({
   src: "../../public/fonts/GeistVF.woff",
   variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const geistMono = localFont({
-  src: "../../public/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
   weight: "100 900",
 });
 
@@ -56,11 +50,12 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: RootLayoutProps) {
+  const { locale } = await params;
+
   const messages = await getMessages();
   const { config } = await getConfig();
   const { uiOptions } = config || {};
@@ -112,7 +107,7 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          `min-h-screen bg-background font-inherit ${geistSans.variable} ${geistMono.variable} antialiased`
+          `min-h-screen bg-background font-sans ${montserrat.variable} antialiased`
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>

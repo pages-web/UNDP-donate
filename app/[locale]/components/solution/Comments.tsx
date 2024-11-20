@@ -1,120 +1,97 @@
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import React from "react";
+"use client";
 
-const Comments = () => {
+import { useTranslations } from "next-intl";
+import React, { useEffect, useState } from "react";
+import { EffectCoverflow } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/autoplay";
+import Image from "../ui/image";
+
+interface CommentProps {
+  CommentMn: Array<{
+    image: { url: string };
+    title: string;
+    content: string;
+    summary: string;
+  }>;
+}
+
+const Comments = ({ CommentMn }: CommentProps) => {
+  console.log(CommentMn, "cooment");
+
   const t = useTranslations();
-  const data = [
-    {
-      avatar: "/images/women.png",
-      title: (
-        <span>
-          {t("Хөтөлбөртхамрагдсан")}
-          <span className="text-[#F1672D] px-1">{t("сурагчийн")} </span>
-          {t("сэтгэгдэл")}
-        </span>
-      ),
-      description: (
-        <span className="text-black">
-          {t("Энтерпрайзхөтөлбөрийн")}
-          <span className="font-bold px-1">{t("онцлог")}</span> {t("нь")}
-          <span className="font-bold px-1">
-            {t("лекцсонсоодтүүнийгээбичижтэмдэглэхбиш")}
-          </span>
-          {t("aa")}
-        </span>
-      ),
-      summary: (
-        <span className="text-gray-800">
-          <span className="font-bold px-1">{t("ДарханУулаймгийн")}</span>
-          {t("МонголОюусургуулийн2ангийнсурагчОюунсувд")}
-        </span>
-      ),
-      icon: "/images/a.png",
-    },
-    {
-      avatar: "/images/women2.png",
-      title: (
-        <span>
-          {t("ХөтөлбөрийгавсанЕБСийнангийн")}
-          <span className="text-[#F1672D] px-1">{t("багшийн")}</span>
-          <span> {t("сэтгэгдэл")}</span>
-        </span>
-      ),
-      description: (
-        <span className="text-black">
-          {t("Энэхөтөлбөрөөрдамжууланманайсурагчидөөрсдөдтулгамдажбуй")}
-          <span className="font-bold px-1">{t("a")}</span>
-          {t("aaa")}
-        </span>
-      ),
-      summary: (
-        <span className="text-gray-800">
-          <span className="font-bold px-1">
-            {t("ХэнтийаймгийнЖаргалтхаансумын")}
-          </span>
-          {t("ЕБбагшСумъяа")}
-        </span>
-      ),
-      icon: "/images/a.png",
-    },
-    {
-      avatar: "/images/women3.png",
-      title: (
-        <span>
-          {t("Хөтөлбөртхамрагдсан")}
-          <span className="text-[#F1672D] px-1">{t("сурагчийн")}</span>
-          <span className=""> {t("сэтгэгдэл")}</span>
-        </span>
-      ),
-      description: (
-        <span className="text-black">
-          {t("Хүүхдүүдбид")}
-          <span className="font-bold px-1">{t("зөөлөсуралцан")}</span>
-          {t("aaaa")}
-          <span className="font-bold px-1">{t("багааррилцах")}</span>
-          {t("чадваруудадуралцлаа")}
-        </span>
-      ),
-      summary: (
-        <span className="text-gray-800">
-          <span className="font-bold px-1">{t("Хэнтийсумын")}</span>
-          {t("БСоминдарь")}
-        </span>
-      ),
-      icon: "/images/a.png",
-    },
-  ];
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
-    <div className="flex flex-wrap gap-3 justify-start p-4">
-      {data.map((e, index) => {
-        return (
-          <div
-            key={index}
-            className="flex flex-col w-full sm:w-[418px] bg-white shadow-lg rounded-[25px] p-6 border border-[#F1672D] hover:shadow-xl transition-shadow"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Image
-                alt=""
-                width={50}
-                height={50}
-                src={e.avatar}
-                className="object-cover rounded-full"
-              />
-              <h1 className="font-bold text-[17px] text-[#333] leading-5 sm:text-[14px] md:text-[16px] lg:text-[17px] break-words">
-                {e.title}
-              </h1>
-            </div>
+    <div className="w-full flex justify-center mt-10">
+      {CommentMn && CommentMn.length > 2 && (
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={2}
+          spaceBetween={20}
+          initialSlide={1}
+          coverflowEffect={{
+            rotate: 30,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={{ clickable: true }}
+          modules={[EffectCoverflow]}
+          breakpoints={{
+            0: { slidesPerView: 1, spaceBetween: 10 },
+            640: { slidesPerView: 1.5, spaceBetween: 15 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 2, spaceBetween: 20 },
+            1280: { slidesPerView: 2, spaceBetween: 25 },
+          }}
+          className="w-full xl:max-w-[670px] 2xl:max-w-[850px] mx-auto"
+        >
+          {CommentMn.map((item, index) => (
+            <SwiperSlide
+              key={index}
+              className="flex flex-col bg-white rounded-[25px] overflow-hidden px-6 py-8 border border-[#F1672D] shadow-none"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <Image
+                  alt={`Partner logo ${index + 1}`}
+                  width={50}
+                  height={50}
+                  src={item.image?.url || "/images/default-image.jpg"}
+                  className="object-cover rounded-full"
+                />
 
-            <div className="rounded-[25px] p-4 border-4 border-[#F1672D] mb-4 font-light">
-              <p>{e.description}</p>
-            </div>
+                <h1 className="font-bold text-[17px] text-[#333] leading-5 sm:text-[14px] md:text-[16px] lg:text-[15px] break-words">
+                  {item?.title}
+                </h1>
+              </div>
 
-            <p className="text-sm text-gray-500">{e.summary}</p>
-          </div>
-        );
-      })}
+              <div className="rounded-[20px] p-4 border-4 border-[#F1672D] mb-4 leading-[22px] font-light text-base text-black">
+                <div
+                  className=""
+                  dangerouslySetInnerHTML={{
+                    __html: item.content,
+                  }}
+                />
+              </div>
+
+              <p className="text-xs text-gray-500">{item.summary}</p>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };
