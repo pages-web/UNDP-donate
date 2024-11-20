@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useDonate, ValidateProduct } from "@/containers/donate/donate";
 import { useEffect } from "react";
 
+
 const Steps = ({
   validateProduct,
 }: {
@@ -30,6 +31,7 @@ const Steps = ({
         onClick={() => setView("")}
         disabled={!!detail?.paidDate}
       />
+
       <Button
         size="sm"
         variant={view === "info" ? "default" : "outline"}
