@@ -8,7 +8,7 @@ import Image from "../../app/[locale]/components/ui/image";
 import { Button } from "../../app/[locale]/components/ui/button";
 import CheckPayment from "./check-payment";
 import Link from "next/link";
-
+import React from "react";
 const getName = (name: string) => {
   if (name === "Trade and Development bank") return "TDB";
   if (name === "National investment bank") return "NIB";

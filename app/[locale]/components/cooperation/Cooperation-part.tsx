@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-
+import React from "react";
 const CooperationPart = () => {
   const t = useTranslations();
   const data = [

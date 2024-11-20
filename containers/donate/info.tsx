@@ -1,26 +1,19 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { CardContent } from "../../app/[locale]/components/ui/card";
-import { Button } from "../../app/[locale]/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../../app/[locale]/components/ui/form";
-import { Input } from "../../app/[locale]/components/ui/input";
-import { emailZod } from "../../lib/zod";
-import { useAtom, useSetAtom } from "jotai";
-import { deliveryInfoAtom, donateViewAtom } from "../../store/donate.store";
-import { useDonate } from "./donate";
-import { LoadingIcon } from "../../app/[locale]/components/ui/loading";
+import ErxesForm from "../../app/[locale]/components/modals/WebModal";
+import React from "react";
+import { Button } from "@/app/[locale]/components/ui/button";
+import { LoadingIcon } from "@/app/[locale]/components/ui/loading";
 import { ArrowLeftIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import React from "react";
+import { useDonate } from "./donate";
+import { deliveryInfoAtom, donateViewAtom } from "../../store/donate.store";
+import { useAtom, useSetAtom } from "jotai";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { emailZod } from "@/lib/zod";
+import { z } from "zod";
+import { Form } from "@/app/[locale]/components/ui/form";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Нэрээ бүтнээр нь оруулана уу" }),
@@ -28,9 +21,10 @@ const formSchema = z.object({
 });
 
 const DonateInfo = () => {
-  const { loading, action, variables } = useDonate();
   const [deliveryInfo, setDeliveryInfo] = useAtom(deliveryInfoAtom);
+  const { loading, action, variables } = useDonate();
   const setView = useSetAtom(donateViewAtom);
+  const t = useTranslations();
   const { description, ...defaultValues } = deliveryInfo;
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,8 +32,9 @@ const DonateInfo = () => {
     defaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     const description = `${values.name} ${values.email}`;
+
     setDeliveryInfo({ ...values, description });
 
     action({
@@ -52,55 +47,25 @@ const DonateInfo = () => {
         },
       },
     });
-  }
-
-  const t = useTranslations();
+  };
 
   return (
-    <CardContent className="md:pt-0 ">
+    <CardContent className="md:pt-0">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6 text-black"
         >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("Таныр")}</FormLabel>
-                <FormControl>
-                  <Input placeholder="Бат" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("Танэйл")}</FormLabel>
-                <FormControl>
-                  <Input placeholder={t("Танэйл")} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
+          <ErxesForm className="w-full" formId="eUpBMW" brandId="94ZGAG" />
           <Button
             type="submit"
             size="lg"
-            className="w-full text-white"
+            className="w-full text-white mt-4"
             disabled={loading}
           >
             {loading && <LoadingIcon />}
             {t("Үргэлжлүүлэх")}
           </Button>
-
           <Button
             type="button"
             variant="secondary"

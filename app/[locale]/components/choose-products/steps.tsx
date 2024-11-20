@@ -1,11 +1,14 @@
 "use client";
 import { useAtom, useAtomValue } from "jotai";
 import { Button } from "../ui/button";
-import { donateItemAtom, donateViewAtom } from "@/store/donate.store";
+import { donateItemAtom, donateViewAtom } from "../../../../store/donate.store";
 import { toast } from "sonner";
-import { useDonate, ValidateProduct } from "@/containers/donate/donate";
+import {
+  useDonate,
+  ValidateProduct,
+} from "../../../../containers/donate/donate";
 import { useEffect } from "react";
-
+import React from "react";
 
 const Steps = ({
   validateProduct,
