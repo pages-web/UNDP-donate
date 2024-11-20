@@ -20,11 +20,13 @@ const QrDetail = ({
   errorDescription,
   qrCode,
   id,
+  status,
   urls,
 }: {
   errorDescription?: string;
   qrCode: string;
   id: string;
+  status: string;
   urls: { name: string; logo: string; link: string }[];
 }) => {
   return (

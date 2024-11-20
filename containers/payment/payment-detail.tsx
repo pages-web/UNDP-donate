@@ -76,6 +76,7 @@ const PaymentDetail = () => {
             (isQr && (errorDescription || response?.error))) && (
             <QrDetail
               errorDescription={errorDescription || response?.error}
+              status={status}
               qrCode={response?.qrData}
               urls={response?.urls}
               id={_id}
