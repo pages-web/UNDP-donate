@@ -25,6 +25,9 @@ const DonateInfo = () => {
   const { loading, action, variables } = useDonate();
   const setView = useSetAtom(donateViewAtom);
   const t = useTranslations();
+
+  const [isFormCompleted, setIsFormCompleted] = React.useState(false); // Төлөв нэмэх
+
   const { description, ...defaultValues } = deliveryInfo;
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -34,9 +37,7 @@ const DonateInfo = () => {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const description = `${values.name} ${values.email}`;
-
     setDeliveryInfo({ ...values, description });
-
     action({
       variables: {
         ...variables,
@@ -56,12 +57,17 @@ const DonateInfo = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6 text-black"
         >
-          <ErxesForm className="w-full" formId="eUpBMW" brandId="94ZGAG" />
+          <ErxesForm
+            className="w-full"
+            formId="eUpBMW"
+            brandId="94ZGAG"
+            onCompleted={() => setIsFormCompleted(true)} // Амжилттай бөглөх үед төлөв шинэчлэх
+          />
           <Button
             type="submit"
             size="lg"
             className="w-full text-white mt-4"
-            disabled={loading}
+            disabled={loading || !isFormCompleted} // Төлөв шалгах
           >
             {loading && <LoadingIcon />}
             {t("Үргэлжлүүлэх")}

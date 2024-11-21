@@ -43,6 +43,17 @@ export const WebModal = ({}) => {
     </DialogPrimitive.Root>
   );
 };
+declare global {
+  interface Window {
+    erxesSettings: {
+      forms: Array<{
+        brand_id: string;
+        form_id: string;
+        onAction?: (data: any) => void;
+      }>;
+    };
+  }
+}
 
 const ErxesForm = ({
   brandId,
@@ -57,47 +68,39 @@ const ErxesForm = ({
   onCompleted?: (event: any) => void;
 }) => {
   useEffect(() => {
-    // @ts-ignore
     window.erxesSettings = { forms: [] };
-    // @ts-ignore
     window.erxesSettings.forms.push({
       brand_id: brandId,
       form_id: formId,
       onAction: (data: any) => {
-        onCompleted && onCompleted(data);
+        onCompleted && onCompleted(data); // Амжилттай бөглөсний дараа дуудах
       },
     });
-
     const id = "erxes-script-" + formId;
-
     var script = document.createElement("script");
     script.src =
       "https://educated-space-donate.app.erxes.io/widgets/build/formWidget.bundle.js";
     script.async = true;
-    https: script.async = true;
-
     const entry = document.getElementsByTagName("script")[0];
-    // @ts-ignore
-    entry.parentNode.insertBefore(script, entry);
+
+    if (entry.parentNode) {
+      entry.parentNode.insertBefore(script, entry);
+    } else {
+      console.error("parentNode is null");
+    }
 
     return () => {
-      // @ts-ignore
       window.erxesSettings.forms = window.erxesSettings.forms.filter(
         (form: any) => form.form_id !== formId
       );
-
       const script = document.getElementById(id);
-
       if (script) {
         script.remove();
       }
-
       const container = document.getElementById("erxes-container-" + formId);
-
       if (container) {
         container.remove();
       }
-
       return;
     };
   }, [brandId, formId, onCompleted]);
