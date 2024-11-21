@@ -37,6 +37,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
     "tanii-oroltsoo-carousel-image",
     "main-banner",
     "comment-mn",
+    "comment-en",
   ];
 
   const articles = await Promise.all(
@@ -58,6 +59,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
     carouselArticles,
     bannerArticles,
     CommentMn,
+    CommentEn,
   ] = articles;
 
   const { config } = await getConfig();
@@ -86,6 +88,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
                           shiidel={shiidel}
                           shiidelEn={shiidelEn}
                           CommentMn={CommentMn}
+                          CommentEn={CommentEn}
                         />
                         <section id="yourParticipation">
                           <YourParticipation

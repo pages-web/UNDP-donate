@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Image from "../ui/image";
+import { useParams } from "next/navigation";
 
 interface CommentProps {
   CommentMn: Array<{
@@ -15,11 +16,19 @@ interface CommentProps {
     content: string;
     summary: string;
   }>;
+  CommentEn: Array<{
+    image: { url: string };
+    title: string;
+    content: string;
+    summary: string;
+  }>;
 }
 
-const Comments = ({ CommentMn }: CommentProps) => {
+const Comments = ({ CommentMn, CommentEn }: CommentProps) => {
   const t = useTranslations();
   const swiperRef = useRef<any>(null);
+  const { locale } = useParams();
+  const articleToShow = locale == "en" ? CommentEn : CommentMn;
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -32,7 +41,7 @@ const Comments = ({ CommentMn }: CommentProps) => {
 
   return (
     <div className="w-full flex justify-center mt-10 relative">
-      {CommentMn && CommentMn.length > 2 && (
+      {articleToShow && articleToShow.length > 2 && (
         <Swiper
           ref={swiperRef}
           effect={"coverflow"}
@@ -59,7 +68,7 @@ const Comments = ({ CommentMn }: CommentProps) => {
           }}
           className="w-full xl:max-w-[670px] 2xl:max-w-[850px] mx-auto"
         >
-          {CommentMn.map((item, index) => (
+          {articleToShow.map((item, index) => (
             <SwiperSlide
               key={index}
               className="flex flex-col bg-white rounded-[25px] overflow-hidden px-6 py-8 border border-[#F1672D] shadow-none"

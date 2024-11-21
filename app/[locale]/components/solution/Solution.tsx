@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
-const Solution = ({ shiidel, shiidelEn, CommentMn }: any) => {
+const Solution = ({ shiidel, shiidelEn, CommentMn, CommentEn }: any) => {
   const t = useTranslations();
   const { locale } = useParams();
   const articleToShow = locale == "en" ? shiidelEn : shiidel;
@@ -35,7 +35,7 @@ const Solution = ({ shiidel, shiidelEn, CommentMn }: any) => {
           <p className="text-gray-500">No articles available.</p>
         )}
       </div>
-      <Comments CommentMn={CommentMn} />
+      <Comments CommentMn={CommentMn} CommentEn={CommentEn} />
     </div>
   );
 };
