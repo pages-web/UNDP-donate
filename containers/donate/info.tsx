@@ -32,9 +32,17 @@ const DonateInfo = () => {
     defaultValues,
   });
 
+  const onErxesFormCompleted = (data: any) => {
+    // Handle the data from ErxesForm (e.g., update deliveryInfo)
+    const description = `${data.name} ${data.email}`;
+    setDeliveryInfo({ ...data, description });
+
+    // Proceed to the next step after Erxes form completion
+    setView("payment");
+  };
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const description = `${values.name} ${values.email}`;
-
     setDeliveryInfo({ ...values, description });
 
     action({
@@ -56,7 +64,12 @@ const DonateInfo = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6 text-black"
         >
-          <ErxesForm className="w-full" formId="eUpBMW" brandId="94ZGAG" />
+          <ErxesForm
+            className="w-full"
+            formId="eUpBMW"
+            brandId="94ZGAG"
+            onCompleted={onErxesFormCompleted} // Pass the handler to ErxesForm
+          />
           <Button
             type="submit"
             size="lg"

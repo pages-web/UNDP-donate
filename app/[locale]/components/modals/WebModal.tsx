@@ -73,7 +73,8 @@ const ErxesForm = ({
       brand_id: brandId,
       form_id: formId,
       onAction: (data: any) => {
-        onCompleted && onCompleted(data); // Амжилттай бөглөсний дараа дуудах
+        // Pass form submission data back to the parent
+        onCompleted && onCompleted(data);
       },
     });
     const id = "erxes-script-" + formId;
