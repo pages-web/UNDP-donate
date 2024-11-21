@@ -18,8 +18,6 @@ interface CommentProps {
 }
 
 const Comments = ({ CommentMn }: CommentProps) => {
-  console.log(CommentMn, "cooment");
-
   const t = useTranslations();
   const [isClient, setIsClient] = useState(false);
 
