@@ -1,7 +1,6 @@
-"use client";
+import React from "react";
 import { CardContent } from "../../app/[locale]/components/ui/card";
 import ErxesForm from "../../app/[locale]/components/modals/WebModal";
-import React from "react";
 import { Button } from "@/app/[locale]/components/ui/button";
 import { LoadingIcon } from "@/app/[locale]/components/ui/loading";
 import { ArrowLeftIcon } from "lucide-react";
@@ -9,18 +8,20 @@ import { useTranslations } from "next-intl";
 import { useDonate } from "./donate";
 import { deliveryInfoAtom, donateViewAtom } from "../../store/donate.store";
 import { useAtom, useSetAtom } from "jotai";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form"; // Import FormProvider
 import { zodResolver } from "@hookform/resolvers/zod";
 import { emailZod } from "@/lib/zod";
 import { z } from "zod";
 import { Form } from "@/app/[locale]/components/ui/form";
 
+// Define the form schema using Zod
 const formSchema = z.object({
   name: z.string().min(2, { message: "Нэрээ бүтнээр нь оруулана уу" }),
   email: emailZod,
 });
 
-const DonateInfo = () => {
+// Main component
+const DonateInfo: React.FC = () => {
   const [deliveryInfo, setDeliveryInfo] = useAtom(deliveryInfoAtom);
   const { loading, action, variables } = useDonate();
   const setView = useSetAtom(donateViewAtom);
@@ -33,33 +34,27 @@ const DonateInfo = () => {
   });
 
   const onErxesFormCompleted = (data: any) => {
-    // Handle the data from ErxesForm (e.g., update deliveryInfo)
-    const description = `${data.name} ${data.email}`;
-    setDeliveryInfo({ ...data, description });
-
-    // Proceed to the next step after Erxes form completion
+    const newDescription = `${data.name} ${data.email}`;
+    setDeliveryInfo({ ...data, description: newDescription });
     setView("payment");
   };
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const description = `${values.name} ${values.email}`;
-    setDeliveryInfo({ ...values, description });
+    const newDescription = `${values.name} ${values.email}`;
+    setDeliveryInfo({ ...values, description: newDescription });
 
     action({
       variables: {
         ...variables,
-        description,
-        deliveryInfo: {
-          ...values,
-          description,
-        },
+        description: newDescription,
+        deliveryInfo: { ...values, description: newDescription },
       },
     });
   };
 
   return (
     <CardContent className="md:pt-0">
-      <Form {...form}>
+      <FormProvider {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6 text-black"
@@ -68,7 +63,7 @@ const DonateInfo = () => {
             className="w-full"
             formId="eUpBMW"
             brandId="94ZGAG"
-            onCompleted={onErxesFormCompleted} // Pass the handler to ErxesForm
+            onCompleted={onErxesFormCompleted}
           />
           <Button
             type="submit"
@@ -91,7 +86,8 @@ const DonateInfo = () => {
             {t("Буцах")}
           </Button>
         </form>
-      </Form>
+      </FormProvider>{" "}
+      {/* End of FormProvider */}
     </CardContent>
   );
 };
