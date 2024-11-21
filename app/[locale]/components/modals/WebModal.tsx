@@ -101,7 +101,6 @@ const ErxesForm = ({
       if (container) {
         container.remove();
       }
-      return;
     };
   }, [brandId, formId, onCompleted]);
 
