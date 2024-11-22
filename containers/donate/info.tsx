@@ -55,6 +55,8 @@ const DonateInfo: React.FC = () => {
   return (
     <CardContent className="md:pt-0">
       <FormProvider {...form}>
+        {" "}
+        {/* Wrap with FormProvider */}
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6 text-black"
@@ -65,15 +67,7 @@ const DonateInfo: React.FC = () => {
             brandId="94ZGAG"
             onCompleted={onErxesFormCompleted}
           />
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full text-white mt-4"
-            disabled={loading}
-          >
-            {loading && <LoadingIcon />}
-            {t("Үргэлжлүүлэх")}
-          </Button>
+
           <Button
             type="button"
             variant="secondary"

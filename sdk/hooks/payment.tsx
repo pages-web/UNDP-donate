@@ -29,7 +29,7 @@ const useCreateInvoice = ({
     { loading: addingTransaction, reset: resetTransaction, data },
   ] = useMutation(mutations.addTransaction);
 
-  const [createInvoice, { reset, loading }] = useMutation(
+  const [createInvoice, { reset, loading, data: invoiceData }] = useMutation(
     mutations.createInvoice,
     {
       context,
@@ -70,6 +70,7 @@ const useCreateInvoice = ({
       resetTransaction();
     },
     data: paymentTransactionsAdd,
+    invoiceData: invoiceData,
     handleCreateInvoice,
   };
 };

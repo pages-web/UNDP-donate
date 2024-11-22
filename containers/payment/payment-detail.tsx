@@ -23,6 +23,7 @@ const PaymentDetail = () => {
     loading: loadingAction,
     reset,
     data,
+    invoiceData,
   } = useCreateInvoice({
     posName: name || "",
     appToken: erxesAppToken || "",
@@ -79,7 +80,7 @@ const PaymentDetail = () => {
               status={status}
               qrCode={response?.qrData}
               urls={response?.urls}
-              id={_id}
+              id={invoiceData?.invoiceCreate._id}
             />
           )
         ))}
