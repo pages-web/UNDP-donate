@@ -4,11 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Loading } from "../ui/loading"; // Importing the Loading component
+import { Loading } from "../ui/loading";
 import React from "react";
 
 interface NavbarTopProps {
-  logo: string | undefined;
+  logo?: string;
 }
 
 const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
@@ -17,36 +17,34 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   const [isSwitching, setIsSwitching] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const t = useTranslations("");
-  const params = useParams();
+  const { locale } = useParams();
   const router = useRouter();
 
   const logoSrc = logo || "";
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsClient(true);
-      setLoading(false);
+    setIsClient(typeof window !== "undefined");
+    setLoading(false);
 
-      if (!params.locale) {
-        router.replace("/en");
-      }
+    if (!locale) {
+      router.replace("/en");
     }
-  }, [params.locale, router]);
+  }, [locale, router]);
 
-  const toggleLanguage = useCallback(async () => {
+  const toggleLanguage = useCallback(() => {
     setIsSwitching(true);
     setIsAnimating(true);
 
-    const newLocale = params.locale === "mn" ? "en" : "mn";
+    const newLocale = locale === "mn" ? "en" : "mn";
 
     if (isClient) {
       setTimeout(() => {
         router.replace(`/${newLocale}`);
         setIsSwitching(false);
         setIsAnimating(false);
-      }, 250);
+      }, 1500);
     }
-  }, [params.locale, isClient, router]);
+  }, [locale, isClient, router]);
 
   if (!isClient) return null;
 
@@ -65,25 +63,23 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
             height={80}
             className="object-cover w-20 h-8 sm:w-24 sm:h-10 md:w-32 md:h-12 lg:w-36 lg:h-14 xl:w-72 xl:h-14"
           />
-          <div className="flex gap-3 sm:gap-6 md:gap-10 items-center text-white font-semibold text-[8px] sm:text-xs md:text-md lg:text-base xl:text-lg">
+          <nav className="flex gap-3 sm:gap-6 md:gap-10 items-center text-white font-semibold text-[8px] sm:text-xs md:text-md lg:text-base xl:text-lg">
             <a href="#requirement">
               <h1 className="cursor-pointer hover:text-gray-300 transition-colors">
                 {t("aboutProgram")}
               </h1>
             </a>
-
             <a href="#yourParticipation">
               <h1 className="cursor-pointer hover:text-gray-300 transition-colors">
                 {t("yourParticipation")}
               </h1>
             </a>
-
             <a href="#cooperation">
               <h1 className="cursor-pointer hover:text-gray-300 transition-colors">
                 {t("cooperation")}
               </h1>
             </a>
-          </div>
+          </nav>
 
           <div className="pr-0 sm:pr-6 md:pr-10 lg:pr-20">
             {isSwitching ? (
@@ -101,7 +97,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
                   width={35}
                   height={35}
                   src={
-                    params.locale === "en"
+                    locale === "en"
                       ? "/images/mongolia.png"
                       : "/images/english.png"
                   }

@@ -32,9 +32,10 @@ import PaymentMethods from "../payment/payment-methods";
 import PaymentDetail from "../payment/payment-detail";
 import Steps from "../../app/[locale]/components/choose-products/steps";
 import { toast } from "sonner";
-import { ArrowLeftIcon, CheckIcon } from "lucide-react";
+import { ArrowLeftIcon, CheckIcon, ShareIcon } from "lucide-react";
 import { Button } from "../../app/[locale]/components/ui/button";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 type DonateProps = React.PropsWithChildren & {
   loading: boolean;
@@ -226,8 +227,20 @@ const Donate = ({ products }: { products: IProduct[] }) => {
                   </div>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button size="lg" className="w-full" onClick={reset}>
+              <CardFooter className="flex flex-col gap-5">
+                <Link
+                  className="w-full"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                    "https://fund.educated.mn/"
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="lg" className="w-full text-white">
+                    {t("Тау")}
+                  </Button>
+                </Link>
+                <Button size="lg" className="w-full text-white" onClick={reset}>
                   {t("Эхлах")}
                 </Button>
               </CardFooter>

@@ -31,7 +31,6 @@ const Image = ({
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const isTablet = useMediaQuery("(min-width: 480px)");
 
-  //  TODO: use srcSet etc.
   const getWidth = () => {
     if (isDesktop) return width?.toString();
 

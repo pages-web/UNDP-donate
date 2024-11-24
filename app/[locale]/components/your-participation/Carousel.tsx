@@ -68,7 +68,7 @@ const Carousel = ({ articles }: { articles: any[] }) => {
 
       <div
         className="absolute right-5 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer p-3 rounded-full bg-white hover:bg-gray-200 transition duration-300"
-        onClick={() => swiperRef.current?.swiper.slideNext()} // Custom next button
+        onClick={() => swiperRef.current?.swiper.slideNext()}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ const Carousel = ({ articles }: { articles: any[] }) => {
 
       <div
         className="absolute left-5 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer p-3 rounded-full bg-white hover:bg-gray-200 transition duration-300"
-        onClick={() => swiperRef.current?.swiper.slidePrev()} // Custom previous button
+        onClick={() => swiperRef.current?.swiper.slidePrev()}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

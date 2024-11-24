@@ -1,26 +1,26 @@
 import { cn } from "../../../../lib/utils";
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import React from "react";
 import { X } from "lucide-react";
 
-export const WebModal = ({}) => {
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-
+export const WebModal = () => {
+  const [isMounted, setIsMounted] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) {
+  if (!isMounted || isFormSubmitted) {
     return null;
   }
 
-  const onClick = () => {
-    window.location.href = pathname;
+  const handleFormCompletion = () => {
+    setIsFormSubmitted(true);
   };
 
   return (
@@ -31,18 +31,24 @@ export const WebModal = ({}) => {
 
         <div className="fixed inset-0 left-0 top-0 z-[50] h-screen w-screen">
           <div className="w-[12vw]">
-            <ErxesForm brandId="94ZGAG" formId="eUpBMW" />
+            <ErxesForm
+              brandId="94ZGAG"
+              formId="eUpBMW"
+              onCompleted={handleFormCompletion}
+            />
           </div>
 
-          <DialogPrimitive.Close
-            asChild
-            onClick={onClick}
-          ></DialogPrimitive.Close>
+          <DialogPrimitive.Close asChild>
+            <button className="absolute top-4 right-4 p-2 text-white bg-red-600 rounded-full">
+              <X />
+            </button>
+          </DialogPrimitive.Close>
         </div>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
   );
 };
+
 declare global {
   interface Window {
     erxesSettings: {
@@ -73,12 +79,12 @@ const ErxesForm = ({
       brand_id: brandId,
       form_id: formId,
       onAction: (data: any) => {
-        // Pass form submission data back to the parent
         onCompleted && onCompleted(data);
       },
     });
+
     const id = "erxes-script-" + formId;
-    var script = document.createElement("script");
+    const script = document.createElement("script");
     script.src =
       "https://educated-space-donate.app.erxes.io/widgets/build/formWidget.bundle.js";
     script.async = true;
@@ -94,10 +100,11 @@ const ErxesForm = ({
       window.erxesSettings.forms = window.erxesSettings.forms.filter(
         (form: any) => form.form_id !== formId
       );
-      const script = document.getElementById(id);
-      if (script) {
-        script.remove();
+      const existingScript = document.getElementById(id);
+      if (existingScript) {
+        existingScript.remove();
       }
+
       const container = document.getElementById("erxes-container-" + formId);
       if (container) {
         container.remove();

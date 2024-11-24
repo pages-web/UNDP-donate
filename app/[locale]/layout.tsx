@@ -12,7 +12,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import React from "react";
 import NextTopLoader from "nextjs-toploader";
 import Montserrat from "next/font/local";
-
+import SmoothScroll from "../[locale]/components/layouts/SmoothScroll";
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
@@ -62,7 +62,7 @@ export default async function RootLayout({
   const { colors } = uiOptions || {};
 
   return (
-    <html lang={locale || "mn"} suppressHydrationWarning>
+    <html lang={params.locale || "mn"} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"

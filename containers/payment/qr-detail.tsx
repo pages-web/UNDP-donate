@@ -29,7 +29,6 @@ const QrDetail = ({
   status: string;
   urls: { name: string; logo: string; link: string }[];
 }) => {
-  console.log(id);
   return (
     <div className="relative w-full">
       <div className="max-h-[51vh] overflow-auto pb-14">

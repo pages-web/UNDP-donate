@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject } from 'react';
+import { useState, useEffect, RefObject } from "react";
 
 interface IntersectionOptions {
   threshold?: number | number[];
@@ -14,7 +14,7 @@ const useIntersection = (
     useState<IntersectionObserverEntry | null>(null);
 
   useEffect(() => {
-    if (ref.current && typeof IntersectionObserver === 'function') {
+    if (ref.current && typeof IntersectionObserver === "function") {
       const handler: IntersectionObserverCallback = (entries) => {
         setIntersectionObserverEntry(entries[0]);
       };
@@ -29,7 +29,6 @@ const useIntersection = (
     }
 
     return () => {};
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref.current, options.threshold, options.root, options.rootMargin]);
 
   return intersectionObserverEntry;

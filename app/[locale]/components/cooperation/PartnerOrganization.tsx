@@ -66,8 +66,8 @@ const PartnerOrganization = ({
             >
               <Image
                 src={article.image?.url || "/images/default-image.jpg"}
-                width={50}
-                height={50}
+                width={89}
+                height={89}
                 className="object-contain sm:w-[60px] sm:h-[60px] md:w-[70px] md:h-[70px] lg:w-[80px] lg:h-[80px] xl:w-[80px] xl:h-[80px] 2xl:w-[89px] 2xl:h-[89px] w-[50px] h-[50px]"
                 alt={`Partner logo ${index + 1}`}
               />
