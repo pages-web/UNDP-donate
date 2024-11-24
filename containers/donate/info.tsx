@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { emailZod } from "../../lib/zod";
 import { z } from "zod";
 import Lottie from "lottie-react";
-import LoadingAnimation from "../../public/loadingAnimation.json";
+import loading from "../../public/loading.json";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Нэрээ бүтнээр нь оруулана уу" }),
@@ -65,12 +65,7 @@ const DonateInfo: React.FC = () => {
     <CardContent className="md:pt-0">
       {isLoading ? (
         <div className="flex justify-center items-center h-64">
-          <Lottie
-            animationData={LoadingAnimation}
-            loop
-            autoplay
-            className="w-48 h-48"
-          />
+          <Lottie animationData={loading} loop autoplay className="w-48 h-48" />
         </div>
       ) : (
         <FormProvider {...form}>
