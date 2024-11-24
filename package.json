@@ -44,6 +44,7 @@
     "input-otp": "^1.1.0",
     "jotai": "^2.6.1",
     "jotai-optics": "^0.3.1",
+    "jquery": "^3.7.1",
     "lottie": "^0.0.1",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.307.0",
@@ -74,6 +75,7 @@
     "typewriter-effect": "^2.21.0",
     "v": "^0.3.0",
     "vaul": "^0.9.0",
+    "webpack": "^5.96.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {

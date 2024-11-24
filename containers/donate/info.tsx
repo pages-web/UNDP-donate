@@ -41,6 +41,7 @@ const DonateInfo: React.FC = () => {
   };
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values); // Log the form data
     const newDescription = `${values.name} ${values.email}`;
     setDeliveryInfo({ ...values, description: newDescription });
 
