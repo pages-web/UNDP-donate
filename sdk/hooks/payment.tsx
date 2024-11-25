@@ -53,7 +53,8 @@ const useCreateInvoice = ({
         contentType: "pos:orders",
         contentTypeId: detail?._id,
         customerType: "customer",
-        description: "-",
+        description:
+          "Та гүйлгээний утга дээр өөрийн нэр, утасны дугаараа бичнэ үү.",
         data: { posToken: process.env.NEXT_PUBLIC_POS_TOKEN },
         paymentIds,
         email: deliveryInfo?.email,
