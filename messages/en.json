@@ -1,9 +1,9 @@
 {
-  "aboutProgram": "About the program",
-  "yourParticipation": "Your Participation",
-  "cooperation": "Cooperation",
+  "aboutProgram": "ABOUT THE PROGRAM",
+  "yourParticipation": "YOUR PARTICIPATION",
+  "cooperation": "COLLABORATE",
   "bannerText": "Let's finance our future!",
-  "Хэрэгцээ": "Requirement",
+  "Хэрэгцээ": "THE NEED",
   "Ерөнхийчадамж": "General competence",
   "Бүтээлчээршүүнтунгаахсэтгэлгээ": "Creative and critical thinking",
   "Суралцахаргабарил": "Learning styles",
@@ -16,7 +16,7 @@
   "ажилгүйдлийнтүвшин": "unemployment rate",
   "Дэлхийн": "World",
   "дунджаасөндөр": "higher than average",
-  "ШИЙДЭЛ": "Solution",
+  "ШИЙДЭЛ": "SOLUTION",
   "Хөтөлбөртхамрагдсан": "Participated in the program",
   "сурагчийн": "of the student",
   "сэтгэгдэл": "comments",
@@ -42,7 +42,7 @@
   "Хэнтийсумын": "Jargalthaan village of Khentii province",
   "БСоминдарь": "Nomindar, a 9th grade student at the elementary school",
   "ТАНЫОРОЛЦЛОО": "YOUR PARTICIPATION",
-  "ХАМТЫНАЖИЛЛАГАА": "COOPERATION",
+  "ХАМТЫНАЖИЛЛАГАА": "COLLABORATE",
   "Санхүүжилт": "Funding",
   "баломж": "and opportunity",
   "Сошиалхуудсуудаараа": "Through social media",
@@ -89,5 +89,7 @@
   "Данснынэр": "Name of the account holder",
   "БоловсролынсанаачилгуудТББ": "Educational Initiatives NGO",
   "Өөрдүн₮": "Another amount is ₮",
-  "Тау": "Would you like to share on Facebook?"
+  "Тау": "Would you like to share on Facebook?",
+  "Видеосэтгэгдэл": "Video comments",
+  "Reelүзэх": "Watch Reel"
 }

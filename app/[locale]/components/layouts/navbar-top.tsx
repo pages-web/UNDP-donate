@@ -63,7 +63,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
             height={80}
             className="object-cover w-20 h-8 sm:w-24 sm:h-10 md:w-32 md:h-12 lg:w-36 lg:h-14 xl:w-72 xl:h-14"
           />
-          <nav className="flex gap-3 sm:gap-6 md:gap-10 items-center text-white font-semibold text-[8px] sm:text-xs md:text-md lg:text-base xl:text-lg">
+          <nav className="flex gap-3 sm:gap-6 md:gap-10 items-center text-white font-semibold text-[8px] sm:text-xs md:text-md lg:text-base xl:text-base">
             <a href="#requirement">
               <h1 className="cursor-pointer hover:text-gray-300 transition-colors">
                 {t("aboutProgram")}

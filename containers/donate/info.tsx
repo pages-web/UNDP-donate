@@ -34,14 +34,15 @@ const DonateInfo: React.FC = () => {
   });
 
   const onErxesFormCompleted = (data: any) => {
-    const newDescription = `${data.name} ${data.email}`;
-    setDeliveryInfo({ ...data, description: newDescription });
-    setIsLoading(false);
-    setView("payment");
+    if (data?.status !== "ERROR") {
+      const newDescription = `${data.name} ${data.email}`;
+      setDeliveryInfo({ ...data, description: newDescription });
+      setIsLoading(false);
+      setView("payment");
+    }
   };
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values); // Log the form data
     const newDescription = `${values.name} ${values.email}`;
     setDeliveryInfo({ ...values, description: newDescription });
 
@@ -65,33 +66,41 @@ const DonateInfo: React.FC = () => {
     <CardContent className="md:pt-0">
       {isLoading ? (
         <div className="flex justify-center items-center h-64">
-          <Lottie animationData={loadingA} loop autoplay className="w-48 h-48" />
+          <Lottie
+            animationData={loadingA}
+            loop
+            autoplay
+            className="w-48 h-48"
+          />
         </div>
       ) : (
-        <FormProvider {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 text-black"
+        // <FormProvider {...form}>
+        //   <form
+        //     onSubmit={form.handleSubmit(onSubmit)}
+        //     className="space-y-6 text-black"
+        //   >
+        <>
+          <ErxesForm
+            className="w-full"
+            formId="eUpBMW"
+            brandId="94ZGAG"
+            onCompleted={onErxesFormCompleted}
+          />
+          <Button
+            type="button"
+            variant="secondary"
+            size="lg"
+            className="w-full !mt-4"
+            disabled={loading}
+            onClick={() => setView("")}
           >
-            <ErxesForm
-              className="w-full"
-              formId="eUpBMW"
-              brandId="94ZGAG"
-              onCompleted={onErxesFormCompleted}
-            />
-            <Button
-              type="button"
-              variant="secondary"
-              size="lg"
-              className="w-full !mt-4"
-              disabled={loading}
-              onClick={() => setView("")}
-            >
-              <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
-              {t("Буцах")}
-            </Button>
-          </form>
-        </FormProvider>
+            <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
+            {t("Буцах")}
+          </Button>
+        </>
+
+        //   </form>
+        // </FormProvider>
       )}
     </CardContent>
   );

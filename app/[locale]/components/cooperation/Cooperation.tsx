@@ -11,8 +11,8 @@ const Cooperation = ({ hamtiinAjillagaa, hamtiinAjillagaaEn }: any) => {
     locale === "en" ? hamtiinAjillagaaEn : hamtiinAjillagaa;
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col items-center py-20 bg-gradient-to-b">
-        <Button className="text-white text-lg lg:text-xl bg-gradient-to-r from-[#F1672D] to-[#F7844D] font-semibold rounded-[15px] px-16 lg:px-24 py-3 lg:py-6 mt-16 lg:mt-20 focus:ring-4 focus:ring-orange-200 focus:outline-none">
+      <div className="flex flex-col items-center py-10 bg-gradient-to-b">
+        <Button className="text-white text-lg lg:text-xl bg-gradient-to-r from-[#F1672D] to-[#F7844D] font-semibold rounded-[15px] px-16 lg:px-24 py-3 lg:py-6 mt-16 lg:mt-20">
           {t("ХАМТЫНАЖИЛЛАГАА")}
         </Button>
 

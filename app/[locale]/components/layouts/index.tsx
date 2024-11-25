@@ -16,7 +16,7 @@ import Cooperation from "../cooperation/Cooperation";
 import PartnerOrganization from "../cooperation/PartnerOrganization";
 import CooperationPart from "../cooperation/Cooperation-part";
 import React from "react";
-
+import Videos from "../videos/Videos";
 export const revalidate = 300;
 
 interface DefaultLayoutProps {
@@ -38,6 +38,8 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
     "main-banner",
     "comment-mn",
     "comment-en",
+    "videos-mn",
+    "videos-en",
   ];
 
   const articles = await Promise.all(
@@ -60,6 +62,8 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
     bannerArticles,
     CommentMn,
     CommentEn,
+    videosMn,
+    videosEn,
   ] = articles;
 
   const { config } = await getConfig();
@@ -90,6 +94,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
                           CommentMn={CommentMn}
                           CommentEn={CommentEn}
                         />
+                        <Videos videosMn={videosMn} videosEn={videosEn} />
                         <section id="yourParticipation">
                           <YourParticipation
                             carouselArticles={carouselArticles}

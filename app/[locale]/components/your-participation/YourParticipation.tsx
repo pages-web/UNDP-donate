@@ -16,7 +16,7 @@ const YourParticipation = ({
     locale === "en" ? participationArticlesEn : participationArticles;
   return (
     <div>
-      <div className="flex flex-col items-center py-20 bg-gradient-to-b relative">
+      <div className="flex flex-col items-center sm:pb-20 sm:pt-10 bg-gradient-to-b relative">
         <Button className="text-white text-lg lg:text-xl bg-gradient-to-r from-[#F1672D] to-[#F7844D] font-semibold rounded-[15px] px-16 lg:px-24 py-3 lg:py-6 mt-16 lg:mt-20">
           {t("ТАНЫОРОЛЦЛОО")}
         </Button>
