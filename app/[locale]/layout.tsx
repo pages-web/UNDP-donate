@@ -62,8 +62,9 @@ export default async function RootLayout({
   const { colors } = uiOptions || {};
 
   return (
-    <html lang={params.locale || "mn"} suppressHydrationWarning>
+    <html lang={params.locale || "en"} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/images/logo.png" />
         <link
           rel="stylesheet"
           type="text/css"
