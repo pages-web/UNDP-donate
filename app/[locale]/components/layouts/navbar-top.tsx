@@ -27,7 +27,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
     setLoading(false);
 
     if (!locale) {
-      router.replace("/mn");
+      router.replace("/en");
     }
   }, [locale, router]);
 
