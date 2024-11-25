@@ -35,7 +35,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
     setIsSwitching(true);
     setIsAnimating(true);
 
-    const newLocale = locale === "mn" ? "en" : "mn";
+    const newLocale = locale === "en" ? "mn" : "en";
 
     if (isClient) {
       setTimeout(() => {

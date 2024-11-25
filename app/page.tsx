@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 const DefaultPage = () => {
-  redirect("/en");
+  redirect("/mn");
 };
 
 export default DefaultPage;
