@@ -17,17 +17,18 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   const [isSwitching, setIsSwitching] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const t = useTranslations("");
-  const { locale } = useParams();
+  const { locale } = useParams(); // Fetching the current locale from params
   const router = useRouter();
 
   const logoSrc = logo || "";
 
   useEffect(() => {
-    setIsClient(typeof window !== "undefined");
+    setIsClient(typeof window !== "undefined"); // Ensure client-side execution
     setLoading(false);
 
+    // If locale is not set, redirect to '/mn' (Mongolian) by default
     if (!locale) {
-      router.replace("/en");
+      router.replace("/mn");
     }
   }, [locale, router]);
 
@@ -35,6 +36,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
     setIsSwitching(true);
     setIsAnimating(true);
 
+    // Toggle between Mongolian (mn) and English (en)
     const newLocale = locale === "mn" ? "en" : "mn";
 
     if (isClient) {
@@ -42,7 +44,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
         router.replace(`/${newLocale}`);
         setIsSwitching(false);
         setIsAnimating(false);
-      }, 1500);
+      }, 1500); // Set delay for animation
     }
   }, [locale, isClient, router]);
 

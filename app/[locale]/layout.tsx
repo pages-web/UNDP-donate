@@ -1,18 +1,16 @@
-import "./globals.css";
-import { cn, getSimilarColorWithOpacity, hexToHsl } from "../../lib/utils";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { getConfig } from "../../sdk/queries/auth";
+import { Metadata } from "next/types";
+import { Toaster } from "./components/ui/sonner";
 import DefaultLayout from "./components/layouts";
 import Providers from "../../store";
-import { NextIntlClientProvider } from "next-intl";
-import { Toaster } from "./components/ui/sonner";
-import { getConfig } from "../../sdk/queries/auth";
-import ConfigProvider from "./components/layouts/config";
-import { Metadata } from "next/types";
-import { getMessages } from "next-intl/server";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import React from "react";
 import NextTopLoader from "nextjs-toploader";
 import Montserrat from "next/font/local";
+import Psda from "../../app/[locale]/components/Psda";
 import SmoothScroll from "../[locale]/components/layouts/SmoothScroll";
+import { cn, getSimilarColorWithOpacity, hexToHsl } from "../../lib/utils";
+import "./globals.css";
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
@@ -50,12 +48,12 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+
 export default async function RootLayout({
   children,
   params,
 }: RootLayoutProps) {
   const { locale } = await params;
-
   const messages = await getMessages();
   const { config } = await getConfig();
   const { uiOptions } = config || {};
@@ -114,12 +112,10 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextTopLoader color="#c66342" shadow={false} height={2} />
           <Providers>
-            <ConfigProvider config={config}>
-              <DefaultLayout>{children}</DefaultLayout>
-            </ConfigProvider>
+            <DefaultLayout>{children}</DefaultLayout>
           </Providers>
           <Toaster richColors closeButton />
-          <SpeedInsights />
+          <Psda />
         </NextIntlClientProvider>
       </body>
     </html>
