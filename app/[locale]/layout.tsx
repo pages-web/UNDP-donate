@@ -8,7 +8,7 @@ import Providers from "../../store";
 import NextTopLoader from "nextjs-toploader";
 import Montserrat from "next/font/local";
 import Psda from "../../app/[locale]/components/Psda";
-import SmoothScroll from "../[locale]/components/layouts/SmoothScroll";
+import React from "react";
 import { cn, getSimilarColorWithOpacity, hexToHsl } from "../../lib/utils";
 import "./globals.css";
 interface RootLayoutProps {
