@@ -26,7 +26,6 @@ const CooperationPart = () => {
         <span>
           {t("Хөтөлбөрийгтухай")}
           <span className="text-[#F1672D] px-1">{t("ТОДОРХОЙЛОЛТ")}</span>
-          {t("Англээр")}
         </span>
       ),
       description3: (
@@ -59,14 +58,12 @@ const CooperationPart = () => {
         <span>
           {t("Хөтөлбөрий")}
           <span className="text-[#F1672D] px-1">{t("ТУРШЛАГРГАЛТ")}</span>
-          {t("орох")}
         </span>
       ),
       description2: (
         <span>
           {t("Хөтөлбөриад")}
           <span className="text-[#F1672D] px-1"> {t("МЕНТОР")} </span>
-          {t("хийх")}
         </span>
       ),
       description3: <span> {t("Хүүхдүүдийнжиллах")}</span>,

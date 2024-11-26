@@ -23,10 +23,9 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
   const logoSrc = logo || "";
 
   useEffect(() => {
-    setIsClient(typeof window !== "undefined"); // Ensure client-side execution
+    setIsClient(typeof window !== "undefined");
     setLoading(false);
 
-    // If locale is not set, redirect to '/mn' (Mongolian) by default
     if (!locale) {
       router.replace("/mn");
     }
@@ -36,7 +35,6 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
     setIsSwitching(true);
     setIsAnimating(true);
 
-    // Toggle between Mongolian (mn) and English (en)
     const newLocale = locale === "mn" ? "en" : "mn";
 
     if (isClient) {
@@ -44,7 +42,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
         router.replace(`/${newLocale}`);
         setIsSwitching(false);
         setIsAnimating(false);
-      }, 1500); // Set delay for animation
+      }, 1500);
     }
   }, [locale, isClient, router]);
 
@@ -65,7 +63,7 @@ const NavbarTop: React.FC<NavbarTopProps> = ({ logo }) => {
             height={80}
             className="object-cover w-20 h-8 sm:w-24 sm:h-10 md:w-32 md:h-12 lg:w-36 lg:h-14 xl:w-72 xl:h-14"
           />
-          <nav className="flex gap-2 sm:gap-6 md:gap-10 items-center text-white font-semibold text-[6px] sm:text-xs md:text-md lg:text-base xl:text-base">
+          <nav className="flex gap-2 sm:gap-6 md:gap-10 items-center text-white font-semibold text-[6px] sm:text-xs md:text-md lg:text-[15px] xl:text-[15px]">
             <a href="#requirement">
               <h1 className="cursor-pointer hover:text-gray-300 transition-colors">
                 {t("aboutProgram")}
