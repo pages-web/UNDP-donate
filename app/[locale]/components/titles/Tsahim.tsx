@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Tabs,
@@ -15,14 +13,7 @@ const Tsahim = ({ products }: any) => {
   const t = useTranslations();
 
   return (
-    <Tabs defaultValue="qpay">
-      <TabsList className="grid grid-cols-2 mx-4 mt-4">
-        <TabsTrigger value="qpay">{t("Цахимаар")}</TabsTrigger>
-        <TabsTrigger value="account">{t("Хандивынданс")}</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account" className="p-4 space-y-4 pb-8">
-        <Copy />
-      </TabsContent>
+    <Tabs defaultValue="qpay" className="rounded-[24px]">
       <TabsContent value="qpay">
         <Donate products={products} />
       </TabsContent>

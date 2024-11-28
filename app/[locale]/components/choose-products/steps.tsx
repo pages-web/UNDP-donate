@@ -1,7 +1,7 @@
 "use client";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue, useAtom } from "jotai";
 import { Button } from "../ui/button";
-import { donateItemAtom, donateViewAtom } from "@/store/donate.store";
+import { donateViewAtom } from "@/store/donate.store";
 import { toast } from "sonner";
 import { useDonate, ValidateProduct } from "@/containers/donate/donate";
 import { useEffect } from "react";
@@ -22,41 +22,38 @@ const Steps = ({
   }, [detail?.paidDate]);
 
   return (
-    <div className="flex gap-2">
-      <Button
-        size="sm"
-        variant={view === "" ? "default" : "outline"}
-        className="h-4 w-4 px-0 rounded-full"
-        onClick={() => setView("")}
-        disabled={!!detail?.paidDate}
-      />
-      <Button
-        size="sm"
-        variant={view === "info" ? "default" : "outline"}
-        className="h-4 w-4 px-0 rounded-full"
-        onClick={() => validateProduct(() => setView("info"))}
-        disabled={!!detail?.paidDate}
-      />
-      <Button
-        size="sm"
-        variant={view === "payment" ? "default" : "outline"}
-        className="h-4 w-4 px-0 rounded-full"
-        onClick={() => {
-          validateProduct(() => {
-            if (!detail?.description) {
-              toast.error("Мэдээлэлээ оруулана уу");
-              return setView("info");
-            }
-            setView("payment");
-          });
-        }}
-        disabled={!!detail?.paidDate}
-      />
-      <Button
-        size="sm"
-        variant={view === "success" ? "default" : "outline"}
-        className="h-4 w-4 px-0 rounded-full"
-      />
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex justify-between px-4 w-full">
+        <Button
+          size="sm"
+          variant={view === "" ? "default" : "outline"}
+          className="w-[170px] h-[8px] px-0 rounded-full "
+          onClick={() => setView("")}
+          disabled={!!detail?.paidDate}
+        />
+        <Button
+          size="sm"
+          variant={view === "info" ? "default" : "outline"}
+          className="w-[170px] h-[8px] px-0 rounded-full "
+          onClick={() => validateProduct(() => setView("info"))}
+          disabled={!!detail?.paidDate}
+        />
+        <Button
+          size="sm"
+          variant={view === "payment" ? "default" : "outline"}
+          className="w-[170px] h-[8px] px-0 rounded-full "
+          onClick={() => {
+            validateProduct(() => {
+              if (!detail?.description) {
+                toast.error("Мэдээлэлээ оруулана уу");
+                return setView("info");
+              }
+              setView("payment");
+            });
+          }}
+          disabled={!!detail?.paidDate}
+        />
+      </div>
     </div>
   );
 };

@@ -6,7 +6,9 @@ import { Toaster } from "./components/ui/sonner";
 import DefaultLayout from "./components/layouts";
 import Providers from "../../store";
 import NextTopLoader from "nextjs-toploader";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Montserrat from "next/font/local";
+import ConfigProvider from "./components/layouts/config";
 import Psda from "../../app/[locale]/components/Psda";
 import React from "react";
 import { cn, getSimilarColorWithOpacity, hexToHsl } from "../../lib/utils";
@@ -60,7 +62,7 @@ export default async function RootLayout({
   const { colors } = uiOptions || {};
 
   return (
-    <html lang={params.locale || "mn"} suppressHydrationWarning>
+    <html lang={params.locale || "en"} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/logo.png" />
         <link
@@ -112,10 +114,12 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextTopLoader color="#c66342" shadow={false} height={2} />
           <Providers>
-            <DefaultLayout>{children}</DefaultLayout>
+            <ConfigProvider config={config}>
+              <DefaultLayout>{children}</DefaultLayout>
+            </ConfigProvider>
           </Providers>
           <Toaster richColors closeButton />
-          <Psda />
+          <SpeedInsights />
         </NextIntlClientProvider>
       </body>
     </html>

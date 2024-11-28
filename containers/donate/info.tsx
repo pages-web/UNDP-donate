@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CardContent } from "../../app/[locale]/components/ui/card";
-import ErxesForm from "../../app/[locale]/components/modals/WebModal";
+import ErxesFormMn from "../../app/[locale]/components/modals/WebModal";
+
 import { Button } from "../../app/[locale]/components/ui/button";
 import { ArrowLeftIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -11,8 +12,8 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { emailZod } from "../../lib/zod";
 import { z } from "zod";
-import Lottie from "lottie-react";
-import loadingA from "../../public/loadingA.json";
+import { Form } from "@/app/[locale]/components/ui/form";
+import { LoadingIcon } from "@/app/[locale]/components/ui/loading";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Нэрээ бүтнээр нь оруулана уу" }),
@@ -55,53 +56,40 @@ const DonateInfo: React.FC = () => {
     });
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <CardContent className="md:pt-0">
-      {isLoading ? (
-        <div className="flex justify-center items-center h-64">
-          <Lottie
-            animationData={loadingA}
-            loop
-            autoplay
-            className="w-48 h-48"
-          />
-        </div>
-      ) : (
-        // <FormProvider {...form}>
-        //   <form
-        //     onSubmit={form.handleSubmit(onSubmit)}
-        //     className="space-y-6 text-black"
-        //   >
-        <>
-          <ErxesForm
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* <ErxesFormMn
             className="w-full"
             formId="eUpBMW"
             brandId="94ZGAG"
             onCompleted={onErxesFormCompleted}
-          />
-          <Button
-            type="button"
-            variant="secondary"
-            size="lg"
-            className="w-full !mt-4"
-            disabled={loading}
-            onClick={() => setView("")}
-          >
-            <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
-            {t("Буцах")}
-          </Button>
-        </>
+          /> */}
+          <div className="flex items-center gap-5">
+            <Button
+              type="button"
+              size="lg"
+              className="w-full  bg-white hover:bg-white"
+              disabled={loading}
+              onClick={() => setView("")}
+            >
+              <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2 " />
+              {t("Буцах")}
+            </Button>
 
-        //   </form>
-        // </FormProvider>
-      )}
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full rounded-[100px] text-white font-normal"
+              disabled={loading}
+            >
+              {loading && <LoadingIcon />}
+              Continue
+            </Button>
+          </div>
+        </form>
+      </Form>
     </CardContent>
   );
 };

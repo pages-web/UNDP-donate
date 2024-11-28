@@ -21,8 +21,7 @@ const PaymentMethods = () => {
 
   return (
     <>
-      <h2 className="font-medium mb-4 flex justify-between items-center text-white">
-        {t("Төлбө")}
+      <h2 className="font-medium m-4 flex  items-start text-white">
         <span className="font-bold text-black">
           {detail?.totalAmount.toLocaleString()}₮
         </span>
