@@ -1,10 +1,11 @@
-"use client";
 import { useAtomValue, useAtom } from "jotai";
 import { Button } from "../ui/button";
 import { donateViewAtom } from "@/store/donate.store";
 import { toast } from "sonner";
 import { useDonate, ValidateProduct } from "@/containers/donate/donate";
 import { useEffect } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { CopyIcon } from "lucide-react";
 
 const Steps = ({
   validateProduct,

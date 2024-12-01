@@ -15,7 +15,7 @@ const Gratitude = ({ gratitudeMn, gratitudeEn }: any) => {
       </h1>
 
       <div
-        className="text-center text-[18px] font-normal text-[#000] font-sfpro max-w-[958px]"
+        className="text-center text-base font-normal text-[#000] font-sfpro max-w-[958px]"
         dangerouslySetInnerHTML={{
           __html: ArticleShow[0]?.content || "",
         }}

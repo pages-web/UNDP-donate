@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CardContent } from "../../app/[locale]/components/ui/card";
-import ErxesFormMn from "../../app/[locale]/components/modals/WebModal";
-
+import ErxesForm from "../../app/[locale]/components/modals/WebModal";
 import { Button } from "../../app/[locale]/components/ui/button";
 import { ArrowLeftIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -12,7 +11,9 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { emailZod } from "../../lib/zod";
 import { z } from "zod";
-import { Form } from "@/app/[locale]/components/ui/form";
+import Lottie from "lottie-react";
+import loadingA from "../../public/loadingA.json";
+import { useParams } from "next/navigation"; // For locale checking
 import { LoadingIcon } from "@/app/[locale]/components/ui/loading";
 
 const formSchema = z.object({
@@ -56,40 +57,45 @@ const DonateInfo: React.FC = () => {
     });
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <CardContent className="md:pt-0">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* <ErxesFormMn
-            className="w-full"
-            formId="eUpBMW"
-            brandId="94ZGAG"
-            onCompleted={onErxesFormCompleted}
-          /> */}
-          <div className="flex items-center gap-5">
-            <Button
-              type="button"
-              size="lg"
-              className="w-full  bg-white hover:bg-white"
-              disabled={loading}
-              onClick={() => setView("")}
-            >
-              <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2 " />
-              {t("Буцах")}
-            </Button>
+      <ErxesForm
+        className="w-full"
+        formId="hXGkjK"
+        brandId="g_CB_U"
+        onCompleted={onErxesFormCompleted}
+      />
 
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full rounded-[100px] text-white font-normal"
-              disabled={loading}
-            >
-              {loading && <LoadingIcon />}
-              Continue
-            </Button>
-          </div>
-        </form>
-      </Form>
+      <div className="flex items-center gap-5">
+        <Button
+          type="button"
+          variant="secondary"
+          size="lg"
+          className="w-full  bg-white hover:bg-white text-black"
+          disabled={loading}
+          onClick={() => setView("")}
+        >
+          <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
+          Back
+        </Button>
+
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full rounded-[100px] text-white font-normal"
+          disabled={loading}
+        >
+          {loading && <LoadingIcon />}
+          Continue
+        </Button>
+      </div>
     </CardContent>
   );
 };

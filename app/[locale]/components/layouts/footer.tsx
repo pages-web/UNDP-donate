@@ -30,7 +30,7 @@ const Footer = () => {
           <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42] font-inter opacity-[0.6]">
             {t("Хаяг:")}
           </h1>
-          <h1 className="text-sm font-normal tracking-[-0.4px]  text-[#383A42] font-inter">
+          <h1 className="text-sm font-normal tracking-[-0.4px]  text-[#858689] font-inter">
             {t("НҮБын")}
           </h1>
         </div>

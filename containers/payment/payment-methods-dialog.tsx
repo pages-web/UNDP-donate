@@ -1,13 +1,13 @@
 import { Button } from "../../app/[locale]/components/ui/button";
-import React from "react";
+
 import { Sheet, SheetContent } from "../../app/[locale]/components/ui/sheet";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 import Payment from "./payment-methods";
-import { useMediaQuery } from "../../hooks/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { Drawer, DrawerContent } from "../../app/[locale]/components/ui/drawer";
 import { useAtom } from "jotai";
-import { openMethodsAtom } from "../../store/payment.store";
+import { openMethodsAtom } from "@/store/payment.store";
 
 const PaymentMethods = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");

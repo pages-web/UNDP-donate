@@ -13,8 +13,8 @@ import {
   FormMessage,
 } from "../../app/[locale]/components/ui/form";
 import { LoadingIcon } from "../../app/[locale]/components/ui/loading";
-import { emailZod } from "../../lib/zod";
-import { currentUserAtom } from "../../store/auth.store";
+import { phoneZod } from "@/lib/zod";
+import { currentUserAtom } from "@/store/auth.store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtomValue } from "jotai";
 import { InfoIcon, CheckCircle2Icon } from "lucide-react";
@@ -27,10 +27,9 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "../../app/[locale]/components/ui/input-otp";
-import { useTranslations } from "next-intl";
-import React from "react";
+
 const formSchema = z.object({
-  phone: emailZod,
+  phone: phoneZod,
 });
 
 const PhoneDetail = ({
@@ -64,7 +63,7 @@ const PhoneDetail = ({
   function onSubmit(values: z.infer<typeof formSchema>) {
     handleCreate(values);
   }
-  const t = useTranslations();
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -112,7 +111,7 @@ const PhoneDetail = ({
         {(error || errorDescription) && (
           <Alert variant="destructive">
             <InfoIcon className="h-4 w-4 rotate-180" />
-            <AlertTitle> {t("Алдааарлаа")} </AlertTitle>
+            <AlertTitle>Алдаа гарлаа</AlertTitle>
             <AlertDescription className="text-xs">
               {error || errorDescription}
             </AlertDescription>
@@ -120,7 +119,7 @@ const PhoneDetail = ({
         )}
         <div className="pt-4">
           <Button size="lg" className="flex-1 w-full" disabled={loading}>
-            {loading && <LoadingIcon />} {t("Хүсэлтээх")}
+            {loading && <LoadingIcon />} Хүсэлт илгээх
           </Button>
         </div>
       </form>

@@ -5,10 +5,14 @@ import {
 } from "../../app/[locale]/components/ui/alert";
 import { BanIcon, InfoIcon } from "lucide-react";
 import Image from "../../app/[locale]/components/ui/image";
+import { DialogFooter } from "../../app/[locale]/components/ui/dialog";
 import { Button } from "../../app/[locale]/components/ui/button";
+import { useSetAtom } from "jotai";
+import { handleMethodAtom } from "@/store/payment.store";
+import BackButton from "./back-button";
 import CheckPayment from "./check-payment";
 import Link from "next/link";
-import React from "react";
+
 const getName = (name: string) => {
   if (name === "Trade and Development bank") return "TDB";
   if (name === "National investment bank") return "NIB";
@@ -18,43 +22,42 @@ const getName = (name: string) => {
 
 const QrDetail = ({
   errorDescription,
+  status,
   qrCode,
   id,
-  status,
   urls,
 }: {
   errorDescription?: string;
+  status: string;
   qrCode: string;
   id: string;
-  status: string;
   urls: { name: string; logo: string; link: string }[];
 }) => {
   return (
     <div className="relative w-full">
-      <div className="max-h-[51vh] overflow-auto pb-14">
+      <div className="max-h-[60vh] overflow-auto pb-14">
         <QrContainer error={errorDescription}>
           {qrCode ? (
             <img
               src={qrCode}
               className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-              height={240}
-              width={240}
+              height={256}
+              width={256}
               alt=""
             />
           ) : (
             <BanIcon
-              className="h-16 w-16 text-input absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+              className="h-20 w-20 text-input absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 "
               strokeWidth={1}
             />
           )}
         </QrContainer>
-        {urls?.length > 0 && (
+        {!!urls?.length && (
           <div className="pt-4 grid grid-cols-3 gap-4 md:hidden">
             {urls.map((url) => (
               <Button
-                key={url.link}
                 className="text-xs flex flex-col gap-1 items-center justify-center px-2 py-3 shadow border border-border/10 h-auto rounded-md"
-                variant="ghost"
+                variant={"ghost"}
                 size="sm"
                 asChild
               >
@@ -90,10 +93,8 @@ export const QrContainer = ({
   <>
     <div className="">
       <div className="relative aspect-square mx-auto max-w-80">
-        <div className="rounded-lg absolute inset-0"></div>
-        <div className="w-full h-full bg-background rounded-3xl absolute inset-0">
-          {children}
-        </div>
+        <div className=" rounded-lg absolute inset-0"></div>
+        <div className="">{children}</div>
       </div>
     </div>
     {error && (
@@ -105,6 +106,7 @@ export const QrContainer = ({
     )}
     {loading && (
       <div className="pt-4">
+        {/* <BackButton disabled /> */}
         <Button size="lg" className="flex-1 w-full" disabled>
           Төлбөр шалгах
         </Button>

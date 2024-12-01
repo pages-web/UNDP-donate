@@ -1,15 +1,15 @@
 "use client";
-import React from "react";
+
 import ChooseProducts from "../../app/[locale]/components/choose-products/choose-products";
-import { onError } from "../../lib/utils";
-import { mutations, queries } from "../../sdk/graphql/order";
+import { onError } from "@/lib/utils";
+import { mutations, queries } from "@/sdk/graphql/order";
 import {
   donateItemAtom,
   donateOrderIdAtom,
   donateViewAtom,
   deliveryInfoAtom,
-} from "../../store/donate.store";
-import { IProduct } from "../../types/product.types";
+} from "@/store/donate.store";
+import { IProduct } from "@/types/product.types";
 import {
   ApolloCache,
   DefaultContext,
@@ -32,11 +32,10 @@ import PaymentMethods from "../payment/payment-methods";
 import PaymentDetail from "../payment/payment-detail";
 import Steps from "../../app/[locale]/components/choose-products/steps";
 import { toast } from "sonner";
-import { ArrowLeftIcon, CheckIcon, ShareIcon } from "lucide-react";
+import { ArrowLeftIcon, CheckIcon } from "lucide-react";
 import { Button } from "../../app/[locale]/components/ui/button";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { selectedPriceAtom } from "@/store/donate.store";
 import CopyToClipboard from "react-copy-to-clipboard";
 import CopyIcon from "@/app/[locale]/components/svg/CopyIcon";
 type DonateProps = React.PropsWithChildren & {
@@ -74,7 +73,6 @@ export type ValidateProduct = (
   func: (params: any) => void,
   params?: any
 ) => void;
-
 const Donate = ({ products }: { products: IProduct[] }) => {
   const [view, setView] = useAtom(donateViewAtom);
   const [donateOrderId, setDonateOrderId] = useAtom(donateOrderIdAtom);
@@ -160,7 +158,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
 
   const { orderDetail } = data || {};
   const t = useTranslations();
-  const selectedPrice = useAtomValue(selectedPriceAtom);
+
   return (
     <DonateContext.Provider
       value={{
@@ -176,33 +174,32 @@ const Donate = ({ products }: { products: IProduct[] }) => {
         <CardTitle className="text-black font-medium text-sm">
           Collected donations
         </CardTitle>
+
         <div className="flex items-center justify-between w-full">
-          {selectedPrice && (
-            <div className="text-primary text-[40px] font-semibold">
-              {selectedPrice}
+          <PaymentMethods />
+          {view === "" && (
+            <div className="flex items-center justify-between p-1 gap-12 rounded-[8px] border border-[#EFEFEF]">
+              <div className="flex items-center gap-2.5 ">
+                <img
+                  src="/tbd.png"
+                  height={24}
+                  width={24}
+                  className=" top-[1px] left-[1px] bottom-[1px] h-[24px] w-[24px] z-10 rounded-[7px] "
+                />
+                <h1 className="text-[#000] font-inter text-sm font-medium leading-normal">
+                  5011237899 - UNDP Mongolia
+                </h1>
+              </div>
+              <CopyToClipboard
+                text="5011237899"
+                onCopy={() => toast.success("Данс хуулагдлаа.")}
+              >
+                <button className="">
+                  <CopyIcon />
+                </button>
+              </CopyToClipboard>
             </div>
           )}
-          <div className="flex items-center justify-between p-1 gap-12  rounded-[8px] border border-[#EFEFEF]">
-            <div className="flex items-center gap-2.5 ">
-              <img
-                src="/tbd.png"
-                height={24}
-                width={24}
-                className=" top-[1px] left-[1px] bottom-[1px] h-[24px] w-[24px] z-10 rounded-[7px] "
-              />
-              <h1 className="text-[#000] font-inter text-sm font-medium leading-normal">
-                5011237899 - UNDP Mongolia
-              </h1>
-            </div>
-            <CopyToClipboard
-              text="5011237899"
-              onCopy={() => toast.success("Данс хуулагдлаа.")}
-            >
-              <button className="">
-                <CopyIcon />
-              </button>
-            </CopyToClipboard>
-          </div>
         </div>
       </CardHeader>
       {loading ? (

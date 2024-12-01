@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "../layouts/Modal";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
+import AnimatedCounter from "../common/AnimatedCounter";
 const About = ({ aboutMn, aboutEn }: any) => {
   const locale = useLocale();
   const articleShow = locale === "en" ? aboutEn : aboutMn;
@@ -32,13 +33,56 @@ const About = ({ aboutMn, aboutEn }: any) => {
         </div>
 
         <div
-          className="text-black font-sans text-base font-medium leading-normal self-stretch"
+          className="text-black font-sans text-[15px] font-medium leading-normal self-stretch"
           dangerouslySetInnerHTML={{
             __html: articleShow[0]?.content || "",
           }}
         />
       </div>
-      <div></div>
+      <div className="flex flex-col gap-2.5 items-start">
+        <div className="flex justify-between items-center w-[1300px]">
+          <div className="flex flex-col items-start gap-3">
+            <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
+              Цугласан дүн
+            </h1>
+            <div className="flex  flex-col items-start flex-shrink-0">
+              <div className="flex px-[4px] justify-end items-start flex-[1_0_0] self-stretch">
+                <AnimatedCounter
+                  stepValues={[
+                    0, 200000, 300000, 400000, 600000, 800000, 1100000,
+                    170000000, 200000000,
+                  ]}
+                  duration={6}
+                  prefix=""
+                  suffix="₮"
+                  color="#FFCE46"
+                  fontSize="80px"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-3">
+            <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
+              Зорилтот дүн
+            </h1>
+            <div className="flex  flex-col items-start flex-shrink-0">
+              <div className="flex px-[4px] justify-end items-start flex-[1_0_0] self-stretch">
+                <AnimatedCounter
+                  stepValues={[
+                    0, 200000, 300000, 400000, 600000, 800000, 1100000,
+                    170000000, 200000000,
+                  ]}
+                  duration={6}
+                  prefix=""
+                  suffix="₮"
+                  color="#FFCE46"
+                  fontSize="80px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* <Modal /> */}
     </div>
   );

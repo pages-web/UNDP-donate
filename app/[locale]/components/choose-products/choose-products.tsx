@@ -89,7 +89,7 @@ const ChooseProducts = ({
             <Input
               type="number"
               value={unitProduct._id === item?.productId ? item.count : ""}
-              className="flex py-2 px-3 items-center text-[24px] text-[#6C707E] gap-[10px] self-stretch rounded-[8px] border border-[#EFEFEF]"
+              className="flex py-2 px-3 items-center text-[26px] text-[#6C707E] gap-[10px] self-stretch rounded-[8px] border border-[#EFEFEF]"
               placeholder="0₮"
               min={1}
               onChange={(e) => handleCustomValueChange(e.target.value)}
