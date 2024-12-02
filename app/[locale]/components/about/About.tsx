@@ -10,7 +10,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
     <div className="flex flex-col items-start gap-10 self-stretch p-[42px] rounded-3xl bg-[#fff]">
       <div className="flex flex-col gap-3 self-stretch items-start ">
         <h1 className="text-[#FFCE46] font-sans text-[14px] font-normal leading-none uppercase">
-          About Project
+          About Project 1
         </h1>
         <div className="flex items-center gap-3">
           <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]">
