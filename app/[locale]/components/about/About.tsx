@@ -1,7 +1,5 @@
 import React from "react";
-import Modal from "../layouts/Modal";
 import { useLocale, useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
 import AnimatedCounter from "../common/AnimatedCounter";
 const About = ({ aboutMn, aboutEn }: any) => {
   const locale = useLocale();
@@ -10,7 +8,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
     <div className="flex flex-col items-start gap-10 self-stretch p-[42px] rounded-3xl bg-[#fff]">
       <div className="flex flex-col gap-3 self-stretch items-start ">
         <h1 className="text-[#FFCE46] font-sans text-[14px] font-normal leading-none uppercase">
-          About Project 1
+          About Project
         </h1>
         <div className="flex items-center gap-3">
           <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]">
@@ -33,7 +31,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
         </div>
 
         <div
-          className="text-black font-sans text-[15px] font-medium leading-normal self-stretch"
+          className="text-black font-sans text-base font-medium leading-normal self-stretch"
           dangerouslySetInnerHTML={{
             __html: articleShow[0]?.content || "",
           }}
@@ -83,7 +81,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
           </div>
         </div>
       </div>
-      {/* <Modal /> */}
+      {/* <Modal />  */}
     </div>
   );
 };

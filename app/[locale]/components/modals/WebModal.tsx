@@ -6,7 +6,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import React from "react";
 import { X } from "lucide-react";
 
-export const WebModal = () => {
+export const WebModalEn = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const pathname = usePathname();
@@ -33,7 +33,7 @@ export const WebModal = () => {
           <div className="w-[12vw]">
             <ErxesForm
               brandId="g_CB_U"
-              formId="hXGkjK"
+              formId="El15ya"
               onCompleted={handleFormCompletion}
             />
           </div>
@@ -93,7 +93,7 @@ const ErxesForm = ({
     if (entry.parentNode) {
       entry.parentNode.insertBefore(script, entry);
     } else {
-      console.error("parentNode is null");
+      ("");
     }
 
     return () => {

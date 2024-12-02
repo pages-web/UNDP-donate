@@ -8,7 +8,10 @@ import Carousel from "../[locale]/components/carousel/Carousel";
 import About from "../[locale]/components/about/About";
 import { getConfig } from "../../sdk/queries/auth";
 import Description from "../[locale]/components/common/Description";
-import AnimatedCounter from "./components/common/AnimatedCounter";
+import PartnerOrganization from "./components/partnerOrgazination/PartnerOrganization";
+
+import VideoPlayer from "./components/videos/Video";
+
 export async function generateMetadata(): Promise<Metadata> {
   const { config } = await getConfig();
 
@@ -22,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const articleCodes = [
-    "main-banner",
+    "banner-mn",
     "carousel",
     "about-mn",
     "about-en",
@@ -31,6 +34,9 @@ export default async function Home() {
     "faq-mn",
     "faq-en",
     "additional-explanation-mn",
+    "Partner-Organization",
+    "Сэргээгдэх",
+    "Positive",
   ];
 
   const articles = await Promise.all(
@@ -40,7 +46,7 @@ export default async function Home() {
   );
 
   const [
-    bannerArticles,
+    bannerMn,
     carousel,
     aboutMn,
     aboutEn,
@@ -49,20 +55,29 @@ export default async function Home() {
     faqMn,
     faqEn,
     additionalexplanationmn,
+    Partnerorganization,
+    Сэргээгдэх,
+    Positive,
   ] = articles;
 
   return (
-    <div className="px-[30px] py-5 flex flex-col gap-5 bg-[#EBEBEB]">
-      <Banner bannerArticles={bannerArticles} />
+    <div className="px-[30px]  flex flex-col gap-5 bg-[#EBEBEB]">
+      <Banner bannerMn={bannerMn} />
       <Description additionalexplanationmn={additionalexplanationmn} />
       <section id="about">
         <About aboutMn={aboutMn} aboutEn={aboutEn} />
       </section>
 
-      <Carousel carousel={carousel} />
+      <Carousel
+        carousel={carousel}
+        Сэргээгдэх={Сэргээгдэх}
+        Positive={Positive}
+      />
+      <VideoPlayer />
       <section id="faq">
         <Faq faqMn={faqMn} faqEn={faqEn} />
       </section>
+      <PartnerOrganization Partnerorganization={Partnerorganization} />
       <Gratitude gratitudeMn={gratitudeMn} gratitudeEn={gratitudeEn} />
     </div>
   );

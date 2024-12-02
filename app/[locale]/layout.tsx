@@ -76,7 +76,7 @@ export default async function RootLayout({
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        <link rel="icon" href={uiOptions?.favIcon || "/default-favicon.ico"} />
+        <link rel="icon" href={uiOptions?.favIcon || ""} />
         {!!colors && (
           <style>{`
             :root {
@@ -112,7 +112,7 @@ export default async function RootLayout({
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <NextTopLoader color="#c66342" shadow={false} height={2} />
+          <NextTopLoader color="#3165AC" shadow={false} height={2} />
           <Providers>
             <ConfigProvider config={config}>
               <DefaultLayout>{children}</DefaultLayout>

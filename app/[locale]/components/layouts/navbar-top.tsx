@@ -24,49 +24,47 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
   }, [locale, router]);
 
   return (
-    <header className="z-50 sticky w-full ">
-      <div className="bg-[#f6f6f6] p-[10px] flex justify-between items-center rounded-3xl max-h-[70px]">
-        <h1 className="text-[#3165AC] text-center text-[32px] font-medium">
-          #GoSolar ☀️
-        </h1>
-        <div className="flex justify-center items-center gap-5 text-[#000000B2]">
-          <a
-            className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
-            href="#about"
-          >
-            <SolarIcon />
-            <h1 className="cursor-pointer transition-colors">
-              {t("Төслийнтухай")}
-            </h1>
-          </a>
-          <a
-            className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
-            href="#faq"
-          >
-            <PaqIcon />
-            <h1 className="cursor-pointer transition-colors">
-              {t("Түгээмэласуулт")}
-            </h1>
-          </a>
-          <a className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]">
-            <PhoneIcon />
-            <h1 className="cursor-pointer transition-colors">
-              {t("Холбогдох")}
-            </h1>
-          </a>
-          <div
-            onClick={toggleLanguage}
-            className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] cursor-pointer"
-          >
-            <LanguageIcon />
-            <h1 className="cursor-pointer transition-colors">
-              {locale === "mn" ? "EN" : "MN"}
-            </h1>
-          </div>
-          <Modal />
-        </div>
+    <div className="bg-[#f6f6f6] p-2.5 flex justify-between items-center rounded-3xl max-h-[70px]">
+      <div className="flex flex-col items-start">
+        <h1 className="text-[#3165AC] text-[32px] font-medium">#GoSolar ☀️</h1>
+        <p className="text-xs font-normal">if only i could go solar</p>
       </div>
-    </header>
+
+      <div className="flex justify-center items-center gap-5 text-[#000000B2]">
+        <a
+          className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
+          href="#about"
+        >
+          <SolarIcon />
+          <h1 className="cursor-pointer transition-colors">
+            {t("Төслийнтухай")}
+          </h1>
+        </a>
+        <a
+          className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
+          href="#faq"
+        >
+          <PaqIcon />
+          <h1 className="cursor-pointer transition-colors">
+            {t("Түгээмэласуулт")}
+          </h1>
+        </a>
+        <a className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]">
+          <PhoneIcon />
+          <h1 className="cursor-pointer transition-colors">{t("Холбогдох")}</h1>
+        </a>
+        <div
+          onClick={toggleLanguage}
+          className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] cursor-pointer"
+        >
+          <LanguageIcon />
+          <h1 className="cursor-pointer transition-colors">
+            {locale === "mn" ? "EN" : "MN"}
+          </h1>
+        </div>
+        <Modal />
+      </div>
+    </div>
   );
 };
 
