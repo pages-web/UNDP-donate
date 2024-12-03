@@ -34,6 +34,7 @@ export const WebModalEn = () => {
             <ErxesForm
               brandId="g_CB_U"
               formId="El15ya"
+              className="w-full"
               onCompleted={handleFormCompletion}
             />
           </div>
@@ -86,7 +87,7 @@ const ErxesForm = ({
     const id = "erxes-script-" + formId;
     const script = document.createElement("script");
     script.src =
-      "https://educated-space-donate.app.erxes.io/widgets/build/formWidget.bundle.js";
+      "https://undp-donate.app.erxes.io/widgets/build/formWidget.bundle.js";
     script.async = true;
     const entry = document.getElementsByTagName("script")[0];
 

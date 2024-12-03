@@ -25,9 +25,11 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
 
   return (
     <div className="bg-[#f6f6f6] p-2.5 flex justify-between items-center rounded-3xl max-h-[70px]">
-      <div className="flex flex-col items-start">
-        <h1 className="text-[#3165AC] text-[32px] font-medium">#GoSolar ☀️</h1>
-        <p className="text-xs font-normal">if only i could go solar</p>
+      <div className="flex flex-col items-start text-[#3165AC] p-0">
+        <h1 className="text-[#3165AC] text-[24px] font-medium m-0">
+          If only i could go solar
+        </h1>
+        <span className="text-lg font-normal m-0">#GoSolar ☀️</span>
       </div>
 
       <div className="flex justify-center items-center gap-5 text-[#000000B2]">

@@ -224,17 +224,6 @@ const Donate = ({ products }: { products: IProduct[] }) => {
               <CardContent className="py-0 md:py-0"></CardContent>
               <CardFooter className="flex-col">
                 <PaymentDetail />
-                <Button
-                  type="button"
-                  variant="secondary"
-                  size="lg"
-                  className="w-full !mt-4"
-                  disabled={loading}
-                  onClick={() => setView("info")}
-                >
-                  <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
-                  {t("Буцах")}
-                </Button>
               </CardFooter>
             </>
           )}
@@ -242,32 +231,24 @@ const Donate = ({ products }: { products: IProduct[] }) => {
             <>
               <CardContent>
                 <div className="flex flex-col items-center">
-                  <div className="h-16 w-16 rounded-full bg-green-200 flex items-center justify-center">
-                    <CheckIcon className="h-10 w-10 stroke-green-700 " />
+                  <div className="h-16 w-16 rounded-full bg-[#3165AC] flex items-center justify-center">
+                    <CheckIcon className="h-10 w-10 text-white " />
                   </div>
                   <div className="text-xl font-semibold pt-6 text-center">
-                    {t("Танамжилттай")}
-                    <span className="block"> {t("хүлээнавлаа")} </span>
+                    Your donation has been successfully
+                    <span className="block"> received.</span>
                   </div>
                   <div className="text-neutral-500 pt-2">
-                    {t("Биднярлалаа")}
+                    Thank you for supporting us and donating
                   </div>
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col gap-5">
-                <Link
-                  className="w-full"
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                    "https://fund.educated.mn/"
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Button
+                  size="lg"
+                  className="w-full text-white rounded-[100px]"
+                  onClick={reset}
                 >
-                  <Button size="lg" className="w-full text-white">
-                    {t("Тау")}
-                  </Button>
-                </Link>
-                <Button size="lg" className="w-full text-white" onClick={reset}>
                   {t("Эхлах")}
                 </Button>
               </CardFooter>

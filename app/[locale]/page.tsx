@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const articleCodes = [
-    "banner-mn",
+    "banner",
     "carousel",
     "about-mn",
     "about-en",

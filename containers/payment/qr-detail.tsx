@@ -35,14 +35,14 @@ const QrDetail = ({
 }) => {
   return (
     <div className="relative w-full">
-      <div className="max-h-[60vh] overflow-auto pb-14">
+      <div className="max-h-[60vh]  pb-14">
         <QrContainer error={errorDescription}>
           {qrCode ? (
             <img
               src={qrCode}
               className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-              height={256}
-              width={256}
+              height={300}
+              width={300}
               alt=""
             />
           ) : (
@@ -108,7 +108,7 @@ export const QrContainer = ({
       <div className="pt-4">
         {/* <BackButton disabled /> */}
         <Button size="lg" className="flex-1 w-full" disabled>
-          Төлбөр шалгах
+          Check payment
         </Button>
       </div>
     )}

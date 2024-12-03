@@ -68,17 +68,17 @@ const DonateInfo: React.FC = () => {
     <CardContent className="md:pt-0">
       <ErxesForm
         className="w-full"
-        formId="hXGkjK"
+        formId="El15ya"
         brandId="g_CB_U"
         onCompleted={onErxesFormCompleted}
       />
 
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5 mt-10">
         <Button
           type="button"
           variant="secondary"
           size="lg"
-          className="w-full  bg-white hover:bg-white text-black"
+          className="w-full  bg-white hover:bg-white text-black  border border-[#EFEFEF]"
           disabled={loading}
           onClick={() => setView("")}
         >
