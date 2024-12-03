@@ -30,11 +30,11 @@ const AccordionDemo = ({
       {ArticleShow.map((item: FAQItem, index: number) => (
         <div
           key={index}
-          className={`flex max-w-[874px] flex-col items-start bg-white border-b border-[rgba(238,238,238,0.93)]`}
+          className={`flex max-w-[874px] flex-col items-start bg-white border-b border-[rgba(238,238,238,0.93)] w-full`}
         >
           <button
             onClick={() => toggleAccordion(index)}
-            className="flex py-4 px-3 self-stretch items-start gap-10 text-[#333333] font-medium "
+            className="flex py-4 px-3 self-stretch items-start gap-10 text-[#333333] font-medium text-base sm:text-lg md:text-xl"
           >
             {item.title}
             <span className="ml-auto w-6 h-6">
@@ -60,7 +60,7 @@ const AccordionDemo = ({
             className="overflow-hidden"
           >
             <div
-              className="px-3 pb-4 self-stretch text-[#000000] opacity-[0.8]  [&_*]:text-base [&_*]:leading-snug"
+              className="px-3 pb-4 self-stretch text-[#000000] opacity-[0.8] text-sm sm:text-base md:text-lg leading-snug"
               dangerouslySetInnerHTML={{
                 __html: item?.content || "",
               }}

@@ -24,16 +24,16 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.6,
-        delayChildren: 0.2,
-        staggerChildren: 0.1,
+        duration: 0.4, // Reduced duration for faster transition
+        delayChildren: 0.15, // Faster delay
+        staggerChildren: 0.05, // Faster stagger
       },
     },
     exit: {
       opacity: 0,
       scale: 1.05,
       transition: {
-        duration: 0.6,
+        duration: 0.4, // Reduced duration for exit
       },
     },
   };
@@ -59,7 +59,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
       y: -20,
       scale: 1.05,
       transition: {
-        duration: 0.3,
+        duration: 0.3, // Reduced duration for faster exit
       },
     },
   };
@@ -79,12 +79,12 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
         imageControls.start({
           opacity: 0,
           scale: 1.1,
-          transition: { duration: 0.4 },
+          transition: { duration: 0.3 }, // Faster transition
         }),
         textControls.start({
           opacity: 0,
           y: -20,
-          transition: { duration: 0.4 },
+          transition: { duration: 0.3 }, // Faster transition
         }),
       ]);
 
@@ -96,7 +96,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
         imageControls.start({
           opacity: 1,
           scale: 1,
-          transition: { duration: 0.6, delay: 0.2 },
+          transition: { duration: 0.4, delay: 0.1 }, // Reduced duration
         }),
         textControls.start({
           opacity: 1,
@@ -105,7 +105,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
             type: "spring",
             stiffness: 300,
             damping: 20,
-            delay: 0.2,
+            delay: 0.1, // Faster delay
           },
         }),
       ]);
@@ -198,7 +198,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }} // Reduced duration for faster transition
           className="flex flex-col items-center justify-center self-stretch h-[674px] w-full gap-2.5 rounded-3xl px-2.5 relative overflow-hidden"
         >
           <motion.div
@@ -206,7 +206,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }} // Reduced duration for faster transition
             className="absolute inset-0"
           >
             <Image

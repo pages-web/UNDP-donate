@@ -1,30 +1,30 @@
-import React from "react";
-import { useLocale, useTranslations } from "next-intl";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useLocale } from "next-intl";
 import AnimatedCounter from "../common/AnimatedCounter";
+import { useTotalAmount } from "@/sdk/queries/order";
+
 const About = ({ aboutMn, aboutEn }: any) => {
   const locale = useLocale();
   const articleShow = locale === "en" ? aboutEn : aboutMn;
+  const { sda } = useTotalAmount();
+  const [totalAmount, setTotalAmount] = useState<number>(0);
+
+  useEffect(() => {
+    if (sda && sda.amounts && sda.amounts[0]) {
+      setTotalAmount(sda.amounts[0].totalAmount);
+    }
+  }, [sda]);
+
   return (
     <div className="flex flex-col items-start gap-10 self-stretch p-[42px] rounded-3xl bg-[#fff]">
-      <div className="flex flex-col gap-3 self-stretch items-start ">
+      <div className="flex flex-col gap-3 self-stretch items-start">
         <h1 className="text-[#FFCE46] font-sans text-[14px] font-normal leading-none uppercase">
           About Project
         </h1>
         <div className="flex items-center gap-3">
-          <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M3.0001 9.75C3.0001 9.55109 3.07912 9.36032 3.21977 9.21967C3.36042 9.07902 3.55119 9 3.7501 9H5.2501C5.44902 9 5.63978 9.07902 5.78043 9.21967C5.92108 9.36032 6.0001 9.55109 6.0001 9.75C6.0001 9.94891 5.92108 10.1397 5.78043 10.2803C5.63978 10.421 5.44902 10.5 5.2501 10.5H3.7501C3.55119 10.5 3.36042 10.421 3.21977 10.2803C3.07912 10.1397 3.0001 9.94891 3.0001 9.75ZM6.69667 5.50781C6.8374 5.64854 7.02827 5.7276 7.22729 5.7276C7.42631 5.7276 7.61719 5.64854 7.75792 5.50781C7.89865 5.36708 7.97771 5.17621 7.97771 4.97719C7.97771 4.77816 7.89865 4.58729 7.75792 4.44656L6.69667 3.38625C6.55487 3.25153 6.36606 3.17754 6.17049 3.18005C5.97491 3.18255 5.78806 3.26135 5.64976 3.39965C5.51146 3.53795 5.43265 3.72481 5.43015 3.92038C5.42764 4.11595 5.50164 4.30477 5.63635 4.44656L6.69667 5.50781ZM12.0001 3.75C12.199 3.75 12.3898 3.67098 12.5304 3.53033C12.6711 3.38968 12.7501 3.19891 12.7501 3V1.5C12.7501 1.30109 12.6711 1.11032 12.5304 0.96967C12.3898 0.829018 12.199 0.75 12.0001 0.75C11.8012 0.75 11.6104 0.829018 11.4698 0.96967C11.3291 1.11032 11.2501 1.30109 11.2501 1.5V3C11.2501 3.19891 11.3291 3.38968 11.4698 3.53033C11.6104 3.67098 11.8012 3.75 12.0001 3.75ZM16.7729 5.72719C16.8714 5.72726 16.969 5.70793 17.0601 5.67029C17.1511 5.63265 17.2338 5.57744 17.3035 5.50781L18.3639 4.44656C18.4986 4.30477 18.5726 4.11595 18.5701 3.92038C18.5676 3.72481 18.4888 3.53795 18.3505 3.39965C18.2121 3.26135 18.0253 3.18255 17.8297 3.18005C17.6341 3.17754 17.4453 3.25153 17.3035 3.38625L16.2423 4.44656C16.1373 4.55145 16.0658 4.68514 16.0368 4.83071C16.0078 4.97627 16.0226 5.12716 16.0794 5.26428C16.1363 5.4014 16.2325 5.51857 16.3559 5.60098C16.4794 5.68338 16.6245 5.7273 16.7729 5.72719ZM18.0001 9.75C18.0001 9.94891 18.0791 10.1397 18.2198 10.2803C18.3604 10.421 18.5512 10.5 18.7501 10.5H20.2501C20.449 10.5 20.6398 10.421 20.7804 10.2803C20.9211 10.1397 21.0001 9.94891 21.0001 9.75C21.0001 9.55109 20.9211 9.36032 20.7804 9.21967C20.6398 9.07902 20.449 9 20.2501 9H18.7501C18.5512 9 18.3604 9.07902 18.2198 9.21967C18.0791 9.36032 18.0001 9.55109 18.0001 9.75ZM8.2501 10.5C8.44902 10.5 8.63978 10.421 8.78043 10.2803C8.92109 10.1397 9.0001 9.94891 9.0001 9.75C9.0001 8.95435 9.31617 8.19129 9.87878 7.62868C10.4414 7.06607 11.2045 6.75 12.0001 6.75C12.7958 6.75 13.5588 7.06607 14.1214 7.62868C14.684 8.19129 15.0001 8.95435 15.0001 9.75C15.0001 9.94891 15.0791 10.1397 15.2198 10.2803C15.3604 10.421 15.5512 10.5 15.7501 10.5C15.949 10.5 16.1398 10.421 16.2804 10.2803C16.4211 10.1397 16.5001 9.94891 16.5001 9.75C16.5001 8.55653 16.026 7.41193 15.1821 6.56802C14.3382 5.72411 13.1936 5.25 12.0001 5.25C10.8066 5.25 9.66204 5.72411 8.81812 6.56802C7.97421 7.41193 7.5001 8.55653 7.5001 9.75C7.5001 9.94891 7.57912 10.1397 7.71977 10.2803C7.86043 10.421 8.05119 10.5 8.2501 10.5ZM22.3979 20.625C22.3322 20.7388 22.2378 20.8333 22.1241 20.8991C22.0104 20.9649 21.8815 20.9997 21.7501 21H2.2501C2.1187 21.0006 1.98944 20.9667 1.87528 20.9016C1.76111 20.8366 1.66603 20.7427 1.59957 20.6293C1.53312 20.516 1.49761 20.3871 1.4966 20.2557C1.4956 20.1243 1.52914 19.995 1.59385 19.8806L5.40854 13.1306C5.47421 13.0146 5.56964 12.9181 5.68499 12.8512C5.80034 12.7843 5.93144 12.7494 6.06479 12.75H17.9345C18.0678 12.7494 18.1989 12.7843 18.3143 12.8512C18.4296 12.9181 18.5251 13.0146 18.5907 13.1306L22.4054 19.8806C22.4691 19.9946 22.5019 20.1233 22.5005 20.2538C22.4992 20.3844 22.4639 20.5123 22.3979 20.625ZM17.4976 14.25H15.2129L15.5392 15.75H18.3451L17.4976 14.25ZM14.0045 15.75L13.6782 14.25H10.322L9.99573 15.75H14.0045ZM9.66948 17.25L9.18104 19.5H14.8192L14.3307 17.25H9.66948ZM5.6551 15.75H8.46104L8.78729 14.25H6.5026L5.6551 15.75ZM3.53541 19.5H7.64542L8.13479 17.25H4.8076L3.53541 19.5ZM20.4648 19.5L19.1926 17.25H15.8654L16.3548 19.5H20.4648Z"
-                fill="white"
-              />
-            </svg>
-          </div>
+          <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]"></div>
           <h1 className="text-black font-sans text-[24px] font-semibold leading-none">
             {articleShow[0]?.title}
           </h1>
@@ -43,19 +43,20 @@ const About = ({ aboutMn, aboutEn }: any) => {
             <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
               Цугласан дүн
             </h1>
-            <div className="flex  flex-col items-start flex-shrink-0">
+            <div className="flex flex-col items-start flex-shrink-0">
               <div className="flex px-[4px] justify-end items-start flex-[1_0_0] self-stretch">
-                <AnimatedCounter
-                  stepValues={[
-                    0, 200000, 300000, 400000, 600000, 800000, 1100000,
-                    170000000, 200000000,
-                  ]}
-                  duration={6}
-                  prefix=""
-                  suffix="₮"
-                  color="#FFCE46"
-                  fontSize="80px"
-                />
+                {totalAmount ? (
+                  <AnimatedCounter
+                    stepValues={[0, totalAmount]}
+                    duration={6}
+                    prefix=""
+                    suffix="₮"
+                    color="#FFCE46"
+                    fontSize="80px"
+                  />
+                ) : (
+                  <span>Loading...</span>
+                )}
               </div>
             </div>
           </div>
@@ -63,7 +64,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
             <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
               Зорилтот дүн
             </h1>
-            <div className="flex  flex-col items-start flex-shrink-0">
+            <div className="flex flex-col items-start flex-shrink-0">
               <div className="flex px-[4px] justify-end items-start flex-[1_0_0] self-stretch">
                 <AnimatedCounter
                   stepValues={[
@@ -81,8 +82,8 @@ const About = ({ aboutMn, aboutEn }: any) => {
           </div>
         </div>
       </div>
-      {/* <Modal />  */}
     </div>
   );
 };
+
 export default About;

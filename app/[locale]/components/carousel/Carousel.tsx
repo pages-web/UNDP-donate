@@ -71,11 +71,11 @@ const Carousel: React.FC<CarouselProps> = ({
       <div className="flex flex-col items-start gap-2">
         {ShowArticles && ShowArticles.length > 0 ? (
           <>
-            <h1 className="text-xl font-semibold text-gray-800 leading-tight">
+            <h1 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 leading-tight">
               {ShowArticles[0]?.title || "Title not available"}
             </h1>
             <div
-              className=" text-[#000000] opacity-[0.8] [&_*]:text-base "
+              className=" text-[#000000] opacity-[0.8] lg:text-base sm:text-sm  text-xs"
               dangerouslySetInnerHTML={{
                 __html: ShowArticles[0]?.content || "Content not available",
               }}

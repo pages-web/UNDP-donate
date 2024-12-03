@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 const Faq = ({ faqMn, faqEn }: any) => {
   const t = useTranslations();
   return (
-    <div className="flex flex-col px-6 py-[42px] gap-[50px] self-stretch justify-center items-center rounded-3xl bg-[#fff]">
+    <div className="flex flex-col px-4 md:px-6 py-6 md:py-[42px] gap-[50px] self-stretch justify-center items-center rounded-3xl bg-[#fff]">
       <div className="flex flex-col justify-center items-center gap-[15px]">
         <h1 className="text-[#FFCE46] text-[14px] font-normal uppercase font-sfpro">
           Questions
@@ -24,7 +24,7 @@ const Faq = ({ faqMn, faqEn }: any) => {
               />
             </svg>
           </div>
-          <h1 className="text-[#000] text-[32px] font-medium font-sfpro">
+          <h1 className="text-[#000] text-[20px] sm:text-[22px] lg:text-[32px] font-medium font-sfpro">
             {t("Түгээриулт")}
           </h1>
         </div>

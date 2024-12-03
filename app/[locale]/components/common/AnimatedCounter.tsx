@@ -28,13 +28,16 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
     const tl = gsap.timeline();
 
     stepValues.forEach((value, index) => {
+      if (typeof value !== "number") return; // Skip if value is not a number
+
       tl.to(counterRef.current, {
         textContent: `${prefix}${value.toLocaleString()}${suffix}`,
         duration: stepDuration,
         ease: "power1.inOut",
         onUpdate: function () {
           if (counterRef.current) {
-            const formattedValue = value.toLocaleString();
+            const formattedValue =
+              typeof value === "number" ? value.toLocaleString() : "0";
             counterRef.current.textContent = `${prefix}${formattedValue}${suffix}`;
           }
         },
@@ -55,7 +58,9 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
         fontWeight: "400",
       }}
     >
-      <div ref={counterRef}>{`${prefix}${stepValues[0]}${suffix}`}</div>
+      <div ref={counterRef}>{`${prefix}${
+        stepValues[0]?.toLocaleString() || "0"
+      }${suffix}`}</div>
     </div>
   );
 };

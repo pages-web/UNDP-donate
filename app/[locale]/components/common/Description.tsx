@@ -8,7 +8,7 @@ const Description = ({ additionalexplanationmn }: any) => {
   return (
     <div className="flex flex-col gap-6 p-6 items-center bg-white  rounded-3xl">
       <div className="flex flex-col items-center gap-4">
-        <h1 className="text-3xl font-semibold text-gray-800 text-center">
+        <h1 className="text-xl md:text-3xl font-semibold text-gray-800 text-center">
           {additionalexplanationmn[0]?.title}
         </h1>
       </div>

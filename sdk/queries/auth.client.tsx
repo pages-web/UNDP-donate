@@ -1,13 +1,13 @@
-import { useQuery } from '@apollo/client';
-import { queries } from '../../sdk/graphql/auth';
-import { useSetAtom, useAtom, useAtomValue } from 'jotai';
+import { useQuery } from "@apollo/client";
+import { queries } from "../../sdk/graphql/auth";
+import { useSetAtom, useAtom, useAtomValue } from "jotai";
 import {
   currentUserAtom,
   loadingUserAtom,
-  refetchCurrentUserAtom
-} from '../../store/auth.store';
-import { useEffect } from 'react';
-import { toast } from 'sonner';
+  refetchCurrentUserAtom,
+} from "../../store/auth.store";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 export const useCurrentUser = (onCompleted?: (data: any) => void) => {
   const setCurrentUser = useSetAtom(currentUserAtom);
@@ -16,12 +16,12 @@ export const useCurrentUser = (onCompleted?: (data: any) => void) => {
 
   const { data, refetch } = useQuery(queries.currentUser, {
     onError(error) {
-      if (error.message === 'token expired') {
-        sessionStorage.removeItem('token');
+      if (error.message === "token expired") {
+        sessionStorage.removeItem("token");
       }
       toast.error(error.message);
       setLoading(false);
-    }
+    },
   });
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const useUserDetail = () => {
   const { loading, refetch } = useQuery(queries.userDetail, {
     onCompleted({ clientPortalCurrentUser }) {
       setCurrentUser({ ...currentUser, ...clientPortalCurrentUser });
-    }
+    },
   });
 
   useEffect(() => {

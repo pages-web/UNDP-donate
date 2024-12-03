@@ -171,4 +171,13 @@ export const useCheckRegister = (onCompleted?: (name: string) => void) => {
   return { checkRegister, loading };
 };
 
+export const useTotalAmount = () => {
+  const { data, loading } = useQuery(queries.ordersGroupSummary, {
+    variables: { page: 1, perPage: 100000, posId: "JTVq0fVtbinVnXDhaBhxV" },
+  });
+  const { posOrdersGroupSummary: sda } = data || {};
+
+  return { sda };
+};
+
 export default useCurrentOrder;

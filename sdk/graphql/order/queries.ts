@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const orderItemFields = `
     _id
@@ -200,6 +200,50 @@ const addresses = gql`
   }
 `;
 
+const ordersGroupSummary = gql`
+  query posOrdersGroupSummary(
+    $page: Int
+    $perPage: Int
+    $sortField: String
+    $sortDirection: Int
+    $search: String
+    $paidStartDate: Date
+    $paidEndDate: Date
+    $createdStartDate: Date
+    $createdEndDate: Date
+    $paidDate: String
+    $userId: String
+    $customerId: String
+    $customerType: String
+    $posId: String
+    $types: [String]
+    $statuses: [String]
+    $excludeStatuses: [String]
+    $groupField: String
+  ) {
+    posOrdersGroupSummary(
+      page: $page
+      perPage: $perPage
+      sortField: $sortField
+      sortDirection: $sortDirection
+      search: $search
+      paidStartDate: $paidStartDate
+      paidEndDate: $paidEndDate
+      createdStartDate: $createdStartDate
+      createdEndDate: $createdEndDate
+      paidDate: $paidDate
+      userId: $userId
+      customerId: $customerId
+      customerType: $customerType
+      posId: $posId
+      types: $types
+      statuses: $statuses
+      excludeStatuses: $excludeStatuses
+      groupField: $groupField
+    )
+  }
+`;
+
 const queries = {
   orderItemDetail,
   currentOrder,
@@ -209,6 +253,7 @@ const queries = {
   invoices,
   addresses,
   donateOrderDetail,
+  ordersGroupSummary,
 };
 
 export default queries;
