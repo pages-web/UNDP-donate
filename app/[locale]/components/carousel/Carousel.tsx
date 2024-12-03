@@ -35,7 +35,7 @@ const Carousel: React.FC<CarouselProps> = ({
 }) => {
   const t = useTranslations();
   const { locale } = useParams();
-  const ShowArticles = locale === "en" ? Positive : Сэргээгдэх;
+  const ShowArticles = locale === "mn" ? Сэргээгдэх : Positive;
   if (!carousel || carousel.length === 0) {
     return (
       <div className="flex items-center justify-center bg-gray-100 text-gray-500 p-6 rounded-3xl">
