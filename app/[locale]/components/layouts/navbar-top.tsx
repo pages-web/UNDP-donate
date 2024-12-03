@@ -1,9 +1,8 @@
-"use client";
+"use client"; // Mark this as a client component
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import React from "react";
 import SolarIcon from "../svg/header/SolarIcon";
 import PaqIcon from "../svg/header/PaqIcon";
 import LanguageIcon from "../svg/header/LanguageIcon";
@@ -14,59 +13,83 @@ interface NavbarTopProps {
   logo?: string;
 }
 
+const Psda: React.FC = () => {
+  const { locale } = useParams();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const isFirstVisit = localStorage.getItem("visited");
+
+      if (!isFirstVisit && locale !== "mn") {
+        localStorage.setItem("visited", "true");
+        router.replace("/mn");
+      }
+    }
+  }, [locale, router]);
+
+  return null;
+};
+
 const NavbarTop: React.FC<NavbarTopProps> = () => {
   const t = useTranslations("");
   const { locale } = useParams();
   const router = useRouter();
+
   const toggleLanguage = useCallback(() => {
     const newLocale = locale === "mn" ? "en" : "mn";
     router.push(`/${newLocale}`);
   }, [locale, router]);
 
   return (
-    <div className="bg-[#f6f6f6] p-2.5 flex justify-between items-center rounded-3xl max-h-[70px]">
-      <div className="flex flex-col items-start text-[#3165AC] p-0">
-        <h1 className="text-[#3165AC] text-[24px] font-medium m-0">
-          If only i could go solar
-        </h1>
-        <span className="text-lg font-normal m-0">#GoSolar ☀️</span>
-      </div>
-
-      <div className="flex justify-center items-center gap-5 text-[#000000B2]">
-        <a
-          className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
-          href="#about"
-        >
-          <SolarIcon />
-          <h1 className="cursor-pointer transition-colors">
-            {t("Төслийнтухай")}
+    <>
+      <Psda /> {/* Integrating Psda component to handle locale redirection */}
+      <div className="bg-[#f6f6f6] p-2.5 flex justify-between items-center rounded-3xl max-h-[70px]">
+        <div className="flex flex-col items-start text-[#3165AC] p-0">
+          <h1 className="text-[#3165AC] text-[24px] font-medium m-0">
+            If only i could go solar
           </h1>
-        </a>
-        <a
-          className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
-          href="#faq"
-        >
-          <PaqIcon />
-          <h1 className="cursor-pointer transition-colors">
-            {t("Түгээмэласуулт")}
-          </h1>
-        </a>
-        <a className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]">
-          <PhoneIcon />
-          <h1 className="cursor-pointer transition-colors">{t("Холбогдох")}</h1>
-        </a>
-        <div
-          onClick={toggleLanguage}
-          className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] cursor-pointer"
-        >
-          <LanguageIcon />
-          <h1 className="cursor-pointer transition-colors">
-            {locale === "mn" ? "EN" : "MN"}
-          </h1>
+          <span className="text-lg font-normal m-0">#GoSolar ☀️</span>
         </div>
-        <Modal />
+
+        <div className="flex justify-center items-center gap-5 text-[#000000B2]">
+          <a
+            className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
+            href="#about"
+          >
+            <SolarIcon />
+            <h1 className="cursor-pointer transition-colors">
+              {t("Төслийнтухай")}
+            </h1>
+          </a>
+          <a
+            className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
+            href="#faq"
+          >
+            <PaqIcon />
+            <h1 className="cursor-pointer transition-colors">
+              {t("Түгээмэласуулт")}
+            </h1>
+          </a>
+          <a className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]">
+            <PhoneIcon />
+            <h1 className="cursor-pointer transition-colors">
+              {t("Холбогдох")}
+            </h1>
+          </a>
+          <div
+            onClick={toggleLanguage}
+            className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] cursor-pointer"
+          >
+            <LanguageIcon />
+            <h1 className="cursor-pointer transition-colors">
+              {locale === "mn" ? "EN" : "MN"}
+            </h1>
+          </div>
+          <Modal />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
