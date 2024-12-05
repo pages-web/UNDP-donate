@@ -35,7 +35,7 @@ const QrDetail = ({
 }) => {
   return (
     <div className="relative w-full">
-      <div className="max-h-[60vh]  overflow-auto">
+      <div className="max-h-[65vh]  overflow-auto">
         <QrContainer error={errorDescription}>
           {qrCode ? (
             <img
@@ -77,9 +77,9 @@ const QrDetail = ({
             ))}
           </div>
         )}
-        <div className="pt-4">
-          <CheckPayment id={id} />
-        </div>
+      </div>
+      <div className="pt-4">
+        <CheckPayment id={id} />
       </div>
     </div>
   );

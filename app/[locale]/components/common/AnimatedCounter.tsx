@@ -63,7 +63,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
     >
       <div
         ref={counterRef}
-        className={`text-center text-[${fontSize}] sm:text-[50px] md:text-[60px] lg:text-[80px]`}
+        className={`text-center text-[${fontSize}] text-[40px] sm:text-[50px] md:text-[60px] lg:text-[80px]`}
       >
         {`${prefix}${stepValues[0]?.toLocaleString() || "0"}${suffix}`}
       </div>

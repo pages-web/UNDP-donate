@@ -13,6 +13,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
   const { sda } = useTotalAmount();
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const t = useTranslations();
+
   useEffect(() => {
     if (sda && sda.amounts && sda.amounts[0]) {
       setTotalAmount(sda.amounts[0].totalAmount);
@@ -41,8 +42,8 @@ const About = ({ aboutMn, aboutEn }: any) => {
           }}
         />
       </div>
-      {/* <div className="flex flex-col gap-2.5 items-start">
-        <div className="justify-between items-center w-[1300px] grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2">
+      <div className="flex flex-col gap-2.5 items-start">
+        <div className="xl:grid xl:grid-cols-2 lg:gap-6 lg:w-full 2xl:w-[1300px] xl:w-[1100px] lg:grid-cols-1">
           <div className="flex flex-col items-start gap-3">
             <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
               {t("Цугласанүн")}
@@ -64,7 +65,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-start gap-3">
+          <div className="flex flex-col items-start gap-3 mt-5 lg:mt-0">
             <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
               {t("Зорилтотүн")}
             </h1>
@@ -85,7 +86,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       <Modal />
     </div>
