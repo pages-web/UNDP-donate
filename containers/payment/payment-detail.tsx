@@ -71,7 +71,7 @@ const PaymentDetail = () => {
     <>
       {isQr &&
         (loadingAction ? (
-          <Loading className="pt-32 pb-24" />
+          <Loading className="pb-24" />
         ) : (
           (!!response?.qrData ||
             (isQr && (errorDescription || response?.error))) && (

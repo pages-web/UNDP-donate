@@ -220,7 +220,6 @@ const Donate = ({ products }: { products: IProduct[] }) => {
           {view === "info" && <DonateInfo />}
           {view === "payment" && (
             <>
-              <CardContent className="" />
               <CardFooter className="flex flex-col gap-y-4">
                 <PaymentDetail />
               </CardFooter>
@@ -229,7 +228,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
           {view === "success" && (
             <>
               <CardContent className="p-4 flex flex-col items-center">
-                <div className="h-16 w-16 rounded-full bg-blue-600 flex items-center justify-center">
+                <div className="h-16 w-16 rounded-full bg-[#3165AC] flex items-center justify-center">
                   <CheckIcon className="h-10 w-10 text-white" />
                 </div>
                 <div className="text-xl font-semibold pt-6 text-center">
