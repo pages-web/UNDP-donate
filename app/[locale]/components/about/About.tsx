@@ -16,7 +16,9 @@ const About = ({ aboutMn, aboutEn }: any) => {
 
   useEffect(() => {
     if (sda && sda.amounts && sda.amounts[0]) {
-      setTotalAmount(sda.amounts[0].totalAmount);
+      // 1,000,000 нэмэх
+      const updatedAmount = sda.amounts[0].totalAmount + 1000000;
+      setTotalAmount(updatedAmount);
     }
   }, [sda]);
 

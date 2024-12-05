@@ -186,11 +186,11 @@ const Donate = ({ products }: { products: IProduct[] }) => {
                   className=" top-[1px] left-[1px] bottom-[1px] h-[24px] w-[24px] z-10 rounded-[7px] "
                 />
                 <h1 className="text-[#000] font-inter text-sm font-medium leading-normal">
-                  5011237899 - UNDP Mongolia
+                  404322705 - UNDP Mongolia
                 </h1>
               </div>
               <CopyToClipboard
-                text="5011237899"
+                text="404322705"
                 onCopy={() => toast.success("Данс хуулагдлаа.")}
               >
                 <button className="">
