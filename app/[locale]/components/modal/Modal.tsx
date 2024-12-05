@@ -21,6 +21,7 @@ const Modal = () => {
           {t("Хандивөгөх")}
         </Button>
       </DialogTrigger>
+      
       <DialogContent className="sm:max-w-[600px] rounded-[24px] bg-[#FFF]">
         <TsahimWrapper />
       </DialogContent>

@@ -86,6 +86,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
           </div>
         </div>
       </div> */}
+
       <Modal />
     </div>
   );

@@ -35,7 +35,7 @@ const QrDetail = ({
 }) => {
   return (
     <div className="relative w-full">
-      <div className="max-h-[80vh] ">
+      <div className="max-h-[60vh]  overflow-auto">
         <QrContainer error={errorDescription}>
           {qrCode ? (
             <img

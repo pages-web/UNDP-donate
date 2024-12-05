@@ -118,6 +118,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
               {locale === "mn" ? "EN" : "MN"}
             </h1>
           </div>
+
           <Modal />
         </div>
 
