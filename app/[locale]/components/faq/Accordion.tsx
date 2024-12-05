@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 
-// Төрлийг тодорхойлох
+// Define the type for FAQ items
 interface FAQItem {
   title: string;
   content: string;
@@ -26,18 +26,20 @@ const AccordionDemo = ({
   };
 
   return (
-    <div className="flex flex-col items-start gap-3">
+    <div className="flex flex-col items-start gap-4 sm:gap-5 md:gap-6 lg:gap-7">
       {ArticleShow.map((item: FAQItem, index: number) => (
         <div
           key={index}
-          className={`flex max-w-[874px] flex-col items-start bg-white border-b border-[rgba(238,238,238,0.93)] w-full`}
+          className={`flex sm:max-w-[874px] flex-col items-start bg-white border-b border-[rgba(238,238,238,0.93)] w-full`}
         >
           <button
             onClick={() => toggleAccordion(index)}
-            className="flex py-4 px-3 self-stretch items-start gap-10 text-[#333333] font-medium text-base sm:text-lg md:text-xl"
+            className="flex px-3 py-3 sm:py-4 sm:px-4 self-stretch items-start gap-4 sm:gap-6 md:gap-8 text-[#333333] font-semibold text-sm sm:text-lg md:text-xl"
           >
-            {item.title}
-            <span className="ml-auto w-6 h-6">
+            <span className="text-[11px] sm:text-[18px] md:text-[20px]">
+              {item.title}
+            </span>
+            <span className="ml-auto text-[20px]">
               {activeIndex === index ? "−" : "+"}
             </span>
           </button>
@@ -60,7 +62,7 @@ const AccordionDemo = ({
             className="overflow-hidden"
           >
             <div
-              className="px-3 pb-4 self-stretch text-[#000000] opacity-[0.8] text-sm sm:text-base md:text-lg leading-snug"
+              className="px-4 pb-5 sm:px-5 sm:pb-6 md:px-6 md:pb-7 self-stretch text-[#000000] opacity-[0.8] text-xs sm:text-base md:text-lg leading-snug"
               dangerouslySetInnerHTML={{
                 __html: item?.content || "",
               }}

@@ -24,25 +24,25 @@ const Steps = ({
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="flex justify-between px-4 w-full">
+      <div className="flex  sm:flex-row justify-between px-4 w-full gap-2 sm:gap-4">
         <Button
           size="sm"
           variant={view === "" ? "default" : "outline"}
-          className="w-[170px] h-[8px] px-0 rounded-full "
+          className="w-full sm:w-[170px] h-[8px] px-0 rounded-full"
           onClick={() => setView("")}
           disabled={!!detail?.paidDate}
-        />
+        ></Button>
         <Button
           size="sm"
           variant={view === "info" ? "default" : "outline"}
-          className="w-[170px] h-[8px] px-0 rounded-full "
+          className="w-full sm:w-[170px] h-[8px] px-0 rounded-full"
           onClick={() => validateProduct(() => setView("info"))}
           disabled={!!detail?.paidDate}
-        />
+        ></Button>
         <Button
           size="sm"
           variant={view === "payment" ? "default" : "outline"}
-          className="w-[170px] h-[8px] px-0 rounded-full "
+          className="w-full sm:w-[170px] h-[8px] px-0 rounded-full"
           onClick={() => {
             validateProduct(() => {
               if (!detail?.description) {
@@ -53,7 +53,7 @@ const Steps = ({
             });
           }}
           disabled={!!detail?.paidDate}
-        />
+        ></Button>
       </div>
     </div>
   );

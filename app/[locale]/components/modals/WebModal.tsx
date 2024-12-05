@@ -34,7 +34,7 @@ export const WebModalEn = () => {
             <ErxesForm
               brandId="g_CB_U"
               formId="El15ya"
-              className="w-full"
+              className="w-full text-black"
               onCompleted={handleFormCompletion}
             />
           </div>

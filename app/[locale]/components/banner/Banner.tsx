@@ -24,16 +24,16 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.4, // Reduced duration for faster transition
-        delayChildren: 0.15, // Faster delay
-        staggerChildren: 0.05, // Faster stagger
+        duration: 0.4,
+        delayChildren: 0.15,
+        staggerChildren: 0.05,
       },
     },
     exit: {
       opacity: 0,
       scale: 1.05,
       transition: {
-        duration: 0.4, // Reduced duration for exit
+        duration: 0.4,
       },
     },
   };
@@ -59,7 +59,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
       y: -20,
       scale: 1.05,
       transition: {
-        duration: 0.3, // Reduced duration for faster exit
+        duration: 0.3,
       },
     },
   };
@@ -74,29 +74,26 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
     if (isValidData && !isTransitioning) {
       setIsTransitioning(true);
 
-      // Animate out current content
       await Promise.all([
         imageControls.start({
           opacity: 0,
           scale: 1.1,
-          transition: { duration: 0.3 }, // Faster transition
+          transition: { duration: 0.3 },
         }),
         textControls.start({
           opacity: 0,
           y: -20,
-          transition: { duration: 0.3 }, // Faster transition
+          transition: { duration: 0.3 },
         }),
       ]);
 
-      // Update index
       setImageIndex((prevIndex) => nextImageIndex(prevIndex, bannerMn.length));
 
-      // Animate in new content
       await Promise.all([
         imageControls.start({
           opacity: 1,
           scale: 1,
-          transition: { duration: 0.4, delay: 0.1 }, // Reduced duration
+          transition: { duration: 0.4, delay: 0.1 },
         }),
         textControls.start({
           opacity: 1,
@@ -105,7 +102,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
             type: "spring",
             stiffness: 300,
             damping: 20,
-            delay: 0.1, // Faster delay
+            delay: 0.1,
           },
         }),
       ]);
@@ -147,30 +144,31 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="flex flex-col justify-center items-center gap-4 py-[20px] px-4 rounded-[24px] bg-[#3165AC] w-full h-[674px] relative overflow-hidden"
+          className="flex flex-col justify-center items-center gap-3 sm:gap-4 py-4 sm:py-6 px-4 sm:px-6 md:px-8 rounded-3xl md:rounded-[24px] bg-[#3165AC] w-full aspect-[14/10] sm:aspect-[14/10] md:aspect-[16/7] max-h-[700px] overflow-hidden"
         >
           <motion.div
             variants={itemVariants}
-            className="flex p-2.5 rounded-[80px] bg-[#FFCE46] justify-center items-center"
+            className="flex p-2 sm:p-2.5 md:p-3 rounded-[50px] sm:rounded-[80px] bg-[#FFCE46] justify-center items-center"
           >
-            <h1 className="text-[#3165AC] text-center font-sfpro text-[18px] font-medium leading-none">
+            <h1 className="text-[#3165AC] text-center font-sfpro text-[14px] sm:text-[16px] md:text-[20px] font-medium leading-none">
               #GoSolar
             </h1>
           </motion.div>
+
           <motion.div
             variants={itemVariants}
-            className="flex flex-col gap-6 items-center"
+            className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center"
           >
             <motion.h1
               variants={itemVariants}
-              className="text-[#FFF] text-center font-roboto text-[50px] font-bold leading-none"
+              className="text-[#FFF] text-center font-roboto text-[24px] sm:text-[30px] md:text-[40px] lg:text-[45px] xl:text-[50px] font-bold leading-none"
             >
-              Нараар халаагдсан бол
+              Нараар халаадагсан бол
             </motion.h1>
 
             <motion.h1
               variants={itemVariants}
-              className="text-[#FFF] text-center font-roboto text-[18px] font-medium leading-normal"
+              className="text-[#FFF] text-center font-roboto text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-medium leading-normal"
             >
               {t("aaaaa")
                 .split("\n")
@@ -185,7 +183,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
             <motion.div variants={itemVariants}>
               <Button
                 onClick={handleContentToggle}
-                className="bg-white rounded-[100px] py-[11px] px-[21px] flex items-center justify-center hover:bg-white/90 transition-colors"
+                className="bg-white rounded-[50px] sm:rounded-[100px] py-[6px] sm:py-[8px] md:py-[10px] px-[12px] sm:px-[16px] md:px-[20px] flex items-center justify-center hover:bg-white/90 transition-colors"
               >
                 {t("Хандивөгцгөөе")}
               </Button>
@@ -198,15 +196,15 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }} // Reduced duration for faster transition
-          className="flex flex-col items-center justify-center self-stretch h-[674px] w-full gap-2.5 rounded-3xl px-2.5 relative overflow-hidden"
+          transition={{ duration: 0.4 }}
+          className="flex flex-col items-center justify-center self-stretch w-full aspect-[14/10] sm:aspect-[14/6] md:aspect-[16/7] gap-2 sm:gap-2.5 rounded-2xl sm:rounded-3xl px-2 sm:px-2.5 relative overflow-hidden"
         >
           <motion.div
             key={`image-${imageIndex}`}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.4 }} // Reduced duration for faster transition
+            transition={{ duration: 0.4 }}
             className="absolute inset-0"
           >
             <Image
@@ -215,16 +213,16 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
               quality={100}
               priority
               alt="Background Banner"
-              className="object-cover rounded-3xl w-full h-full"
+              className="rounded-2xl sm:rounded-3xl object-cover md:object-center"
             />
           </motion.div>
 
           <motion.div
             animate={textControls}
-            className="flex flex-col py-3 px-4 gap-[18px] items-center absolute bg-[rgba(0,_0,_0,_0.30)] rounded-3xl bottom-10"
+            className="flex flex-col py-2 px-3 sm:py-3 sm:px-4 gap-1.5 sm:gap-2 lg:gap-[18px] items-center absolute bg-[rgba(0,_0,_0,_0.30)] rounded-2xl sm:rounded-3xl bottom-1 sm:bottom-2 md:bottom-6 lg:bottom-10 max-w-[90%]"
           >
             <div
-              className="text-white text-center font-[SF Pro Display] text-base max-w-[603px]"
+              className="text-white text-center font-[SF Pro Display] text-[10px] sm:text-[12px] md:text-xs lg:text-sm xl:text-base max-w-[603px]"
               dangerouslySetInnerHTML={{
                 __html:
                   bannerMn[imageIndex]?.content ||
@@ -237,7 +235,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
                 onClick={handleImageTransition}
                 disabled={isTransitioning}
                 className={classNames(
-                  "rounded-[100px] py-[11px] px-[21px] flex items-center justify-center transition-colors",
+                  "rounded-[50px] sm:rounded-[100px] px-2 py-1 sm:px-4 sm:py-2 text-[10px] sm:text-xs md:text-sm lg:text-base flex items-center justify-center transition-colors",
                   isTransitioning
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-white/90",

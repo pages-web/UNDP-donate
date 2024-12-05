@@ -136,7 +136,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
     if (
       unitProduct &&
       donateItem.productId === unitProduct._id &&
-      donateItem.count < 50
+      donateItem.count < 100
     ) {
       setView("");
       return toast.error("Хамгийн багадаа 100₮ оруулана уу");
@@ -170,12 +170,11 @@ const Donate = ({ products }: { products: IProduct[] }) => {
       }}
     >
       <Steps validateProduct={validateProduct} />
-      <CardHeader className="flex items-start justify-between  flex-col ">
-        <CardTitle className="text-black font-medium text-sm">
+      <CardHeader className="flex flex-col  p-4 md:flex-col md:items-start md:justify-between">
+        <CardTitle className="text-black font-medium text-sm md:text-base">
           Collected donations
         </CardTitle>
-
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-start justify-between flex-col gap-y-4 md:flex-row md:gap-6 w-full">
           <PaymentMethods />
           {view === "" && (
             <div className="flex items-center justify-between p-1 gap-12 rounded-[8px] border border-[#EFEFEF]">
@@ -204,7 +203,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
       </CardHeader>
       {loading ? (
         <>
-          <CardContent>
+          <CardContent className="p-4">
             <Loading />
           </CardContent>
           <CardFooter />
@@ -221,32 +220,30 @@ const Donate = ({ products }: { products: IProduct[] }) => {
           {view === "info" && <DonateInfo />}
           {view === "payment" && (
             <>
-              <CardContent className="py-0 md:py-0"></CardContent>
-              <CardFooter className="flex-col">
+              <CardContent className="" />
+              <CardFooter className="flex flex-col gap-y-4">
                 <PaymentDetail />
               </CardFooter>
             </>
           )}
           {view === "success" && (
             <>
-              <CardContent>
-                <div className="flex flex-col items-center">
-                  <div className="h-16 w-16 rounded-full bg-[#3165AC] flex items-center justify-center">
-                    <CheckIcon className="h-10 w-10 text-white " />
-                  </div>
-                  <div className="text-xl font-semibold pt-6 text-center">
-                    Your donation has been successfully
-                    <span className="block"> received.</span>
-                  </div>
-                  <div className="text-neutral-500 pt-2">
-                    Thank you for supporting us and donating
-                  </div>
+              <CardContent className="p-4 flex flex-col items-center">
+                <div className="h-16 w-16 rounded-full bg-blue-600 flex items-center justify-center">
+                  <CheckIcon className="h-10 w-10 text-white" />
+                </div>
+                <div className="text-xl font-semibold pt-6 text-center">
+                  Your donation has been successfully
+                  <span className="block"> received.</span>
+                </div>
+                <div className="text-neutral-500 pt-2">
+                  Thank you for supporting us and donating
                 </div>
               </CardContent>
-              <CardFooter className="flex flex-col gap-5">
+              <CardFooter className="flex flex-col gap-y-4 p-4">
                 <Button
                   size="lg"
-                  className="w-full text-white rounded-[100px]"
+                  className="w-full text-white rounded-full"
                   onClick={reset}
                 >
                   {t("Эхлах")}

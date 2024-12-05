@@ -27,8 +27,8 @@ export default async function Home() {
   const articleCodes = [
     "banner",
     "carousel",
-    "about-mn",
-    "about-en",
+    "About-mn",
+    "About-en",
     "Gratitude-mn",
     "Gratitude-en",
     "faq-mn",
@@ -37,6 +37,7 @@ export default async function Home() {
     "Partner-Organization",
     "Сэргээгдэх",
     "Positive",
+    "video-default-image",
   ];
 
   const articles = await Promise.all(
@@ -58,6 +59,7 @@ export default async function Home() {
     Partnerorganization,
     Сэргээгдэх,
     Positive,
+    videodefaultimage,
   ] = articles;
 
   return (
@@ -73,7 +75,7 @@ export default async function Home() {
         Сэргээгдэх={Сэргээгдэх}
         Positive={Positive}
       />
-      <VideoPlayer />
+      <VideoPlayer videodefaultimage={videodefaultimage} />
       <section id="faq">
         <Faq faqMn={faqMn} faqEn={faqEn} />
       </section>

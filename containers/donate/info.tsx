@@ -11,10 +11,6 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { emailZod } from "../../lib/zod";
 import { z } from "zod";
-import Lottie from "lottie-react";
-import loadingA from "../../public/loadingA.json";
-import { useParams } from "next/navigation"; // For locale checking
-import { LoadingIcon } from "@/app/[locale]/components/ui/loading";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Нэрээ бүтнээр нь оруулана уу" }),
@@ -73,27 +69,17 @@ const DonateInfo: React.FC = () => {
         onCompleted={onErxesFormCompleted}
       />
 
-      <div className="flex items-center gap-5 mt-10">
+      <div className="flex items-center gap-4 mt-4 md:mt-10 ">
         <Button
           type="button"
           variant="secondary"
           size="lg"
-          className="w-full  bg-white hover:bg-white text-black  border border-[#EFEFEF]"
+          className="w-full md:w-full bg-white hover:bg-white text-black border border-[#EFEFEF]"
           disabled={loading}
           onClick={() => setView("")}
         >
           <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
           Back
-        </Button>
-
-        <Button
-          type="submit"
-          size="lg"
-          className="w-full rounded-[100px] text-white font-normal"
-          disabled={loading}
-        >
-          {loading && <LoadingIcon />}
-          Continue
         </Button>
       </div>
     </CardContent>

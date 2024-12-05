@@ -63,4 +63,5 @@ html {
 }
 body {
   font-family: var(--font-geist-sans), Montserrat, sans-serif;
+  overflow: visible !important;
 }

@@ -1,15 +1,16 @@
 import React from "react";
 import AccordionDemo from "./Accordion";
 import { useTranslations } from "next-intl";
+
 const Faq = ({ faqMn, faqEn }: any) => {
   const t = useTranslations();
   return (
     <div className="flex flex-col px-4 md:px-6 py-6 md:py-[42px] gap-[50px] self-stretch justify-center items-center rounded-3xl bg-[#fff]">
       <div className="flex flex-col justify-center items-center gap-[15px]">
-        <h1 className="text-[#FFCE46] text-[14px] font-normal uppercase font-sfpro">
+        <h1 className="text-[#FFCE46] text-[14px] sm:text-[16px] lg:text-[18px] font-normal uppercase font-sfpro">
           Questions
         </h1>
-        <div className="flex items-start justify-center gap-[15px] ">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-[15px] md:gap-[20px]">
           <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -24,13 +25,13 @@ const Faq = ({ faqMn, faqEn }: any) => {
               />
             </svg>
           </div>
-          <h1 className="text-[#000] text-[20px] sm:text-[22px] lg:text-[32px] font-medium font-sfpro">
+          <h1 className="text-[#000] text-[20px] sm:text-[22px] lg:text-[32px] font-medium font-sfpro text-center">
             {t("Түгээриулт")}
           </h1>
         </div>
       </div>
       <AccordionDemo faqMn={faqMn} faqEn={faqEn} />
-      <p className="text-[rgba(0,0,0,0.7)] text-[17px] font-medium font-sfpro">
+      <p className="text-[rgba(0,0,0,0.7)] text-[15px] sm:text-[17px] font-medium font-sfpro text-center">
         Visit our
         <span className="text-[#000] text-[17px] font-medium underline decoration-solid font-sfpro">
           Help Center
@@ -40,4 +41,5 @@ const Faq = ({ faqMn, faqEn }: any) => {
     </div>
   );
 };
+
 export default Faq;

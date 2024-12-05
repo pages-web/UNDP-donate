@@ -45,8 +45,9 @@ const Carousel: React.FC<CarouselProps> = ({
   }
 
   return (
-    <div className="flex flex-col gap-6 p-6 items-start bg-white rounded-3xl">
-      <div className="relative w-full aspect-square md:aspect-[3/1] overflow-hidden rounded-[24px]">
+    <div className="flex flex-col gap-6 p-4 sm:p-6 items-start bg-white rounded-3xl">
+      {/* Carousel Image */}
+      <div className="relative w-full aspect-[1/1] sm:aspect-[3/1] overflow-hidden rounded-[24px]">
         <Swiper
           modules={[Autoplay]}
           autoplay={{ delay: 3000 }}
@@ -60,7 +61,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 src={item.image?.url || "/images/default-image.jpg"}
                 quality={100}
                 priority
-                className=""
+                className="w-full h-auto object-cover"
                 alt={`Carousel image ${index + 1}`}
               />
             </SwiperSlide>
@@ -69,23 +70,16 @@ const Carousel: React.FC<CarouselProps> = ({
       </div>
 
       <div className="flex flex-col items-start gap-2">
-        {ShowArticles && ShowArticles.length > 0 ? (
-          <>
-            <h1 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 leading-tight">
-              {ShowArticles[0]?.title || "Title not available"}
-            </h1>
-            <div
-              className=" text-[#000000] opacity-[0.8] lg:text-base sm:text-sm  text-xs"
-              dangerouslySetInnerHTML={{
-                __html: ShowArticles[0]?.content || "Content not available",
-              }}
-            />
-          </>
-        ) : (
-          <div className="text-gray-500">
-            {t("No article content available")}
-          </div>
-        )}
+        <h1 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 leading-tight">
+          {t("Сэргээгд")}
+        </h1>
+        <ul className="my-0  text-xs sm:text-base">
+          <li className="my-0">{t("Орчныайжрах")}</li>
+          <li className="my-0">{t("Угаартахулгүй")}</li>
+          <li className="my-0">{t("Цэвэррчин")}</li>
+          <li className="my-0">{t("Цахилга")}</li>
+          <li className="my-0">{t("Хүлэмжиуурах")}</li>
+        </ul>
       </div>
     </div>
   );

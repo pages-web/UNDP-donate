@@ -12,7 +12,7 @@ const CheckPayment = ({ id, disabled }: { id: string; disabled?: boolean }) => {
   const { checkInvoice, loading } = useCheckInvoice();
   const { refetch } = useDonate();
   return (
-    <div className="flex items-center gap-5 mt-10">
+    <div className="flex items-center gap-5 mt-10 px-4">
       <Button
         type="button"
         variant="secondary"

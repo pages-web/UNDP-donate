@@ -23,7 +23,9 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
 
       {children}
       <div className="px-[30px]">
-        <Footer />
+        <section id="contact">
+          <Footer />
+        </section>
       </div>
     </div>
   );

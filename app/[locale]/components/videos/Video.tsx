@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
+import Image from "../ui/image";
 
-const VideoPlayer = () => {
+const VideoPlayer = ({ videodefaultimage }: any) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showImage, setShowImage] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -21,9 +23,12 @@ const VideoPlayer = () => {
     }
   }, []);
 
-  const handlePlayPause = () => {
+  const handlePlay = () => {
     const video = videoRef.current;
     if (video) {
+      setShowImage(false);
+      video.play();
+      setIsPlaying(true);
       if (isPlaying) {
         video.pause();
       } else {
@@ -35,22 +40,46 @@ const VideoPlayer = () => {
 
   return (
     <div
-      className="relative w-full h-[90vh] bg-black flex items-center justify-center"
+      className="relative w-full h-[60vh] sm:h-[80vh] md:h-[90vh] bg-black flex items-center justify-center"
       style={{ borderRadius: "30px", overflow: "hidden" }}
     >
+      {showImage && (
+        <div className="absolute w-full h-full z-10">
+          <Image
+            src={videodefaultimage[0]?.image?.url}
+            alt="Default Thumbnail"
+            className="w-full h-full object-cover"
+          />
+          <div
+            className="absolute bottom-10 sm:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
+            style={{
+              fontSize: "14px",
+              color: "#333",
+              border: "1px solid #ddd",
+            }}
+            onClick={handlePlay}
+          >
+            {isPlaying
+              ? "Please click on image to play video"
+              : "Please click on image to play video"}
+          </div>
+        </div>
+      )}
       <video
         ref={videoRef}
-        className="w-full h-full object-cover"
+        className={`w-full h-full object-cover aspect-square aspect-auto ${
+          showImage ? "hidden" : "block"
+        }`}
         playsInline
       ></video>
       <div
-        className="absolute bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
+        className="absolute bottom-10 sm:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
         style={{
           fontSize: "14px",
           color: "#333",
           border: "1px solid #ddd",
         }}
-        onClick={handlePlayPause}
+        onClick={handlePlay}
       >
         {isPlaying
           ? "Please click on image to play video"

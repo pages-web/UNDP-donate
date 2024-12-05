@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const commonFields = `
   _id
@@ -168,6 +168,38 @@ const productReview = gql`
       productId
     }
   }
+`;
+export const GET_INTEGRATIONS = `
+query Integrations($brandId: String, $kind: String, $perPage: Int, $page: Int) {
+  integrations(brandId: $brandId, kind: $kind, perPage: $perPage, page: $page) {
+    _id
+    form {
+      code
+    }
+    formId
+    brand {
+      code
+    }
+  }
+}
+`;
+
+export const GET_FORM_DETAIL = `
+query FormDetail($id: String!) {
+  formDetail(_id: $id) {
+    _id
+    description
+    type
+    title
+    fields {
+      field
+      _id
+      code
+      text
+      type
+    }
+  }
+}
 `;
 
 const queries = {
