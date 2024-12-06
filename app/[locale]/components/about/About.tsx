@@ -16,9 +16,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
 
   useEffect(() => {
     if (sda && sda.amounts && sda.amounts[0]) {
-      // 1,000,000 нэмэх
-      const updatedAmount = sda.amounts[0].totalAmount + 1000000;
-      setTotalAmount(updatedAmount);
+      setTotalAmount(sda.amounts[0].totalAmount);
     }
   }, [sda]);
 
@@ -45,7 +43,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
         />
       </div>
       <div className="flex flex-col gap-2.5 items-start">
-        <div className="xl:grid xl:grid-cols-2 lg:gap-6 lg:w-full 2xl:w-[1300px] xl:w-[1100px] lg:grid-cols-1">
+        <div className="xl:grid xl:grid-cols-2 lg:gap-6 lg:w-full 2xl:w-[1300px] xl:w-[1100px] :grid-cols-1">
           <div className="flex flex-col items-start gap-3">
             <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
               {t("Цугласанүн")}
