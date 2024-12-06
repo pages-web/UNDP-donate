@@ -18,7 +18,7 @@ const DefaultLayout = async ({ children }: DefaultLayoutProps) => {
   return (
     <div className="py-5 flex flex-col gap-5 bg-[#EBEBEB] pb-20">
       <div className="px-[30px]">
-        <NavbarTop logo={logo} />
+        <NavbarTop />
       </div>
 
       {children}

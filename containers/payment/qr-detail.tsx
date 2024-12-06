@@ -40,7 +40,7 @@ const QrDetail = ({
           {qrCode ? (
             <img
               src={qrCode}
-              className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+              className="absolute md:w-[300px] md:h-[300px] w-[200px] h-[200px] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
               height={300}
               width={300}
               alt=""
@@ -92,7 +92,7 @@ export const QrContainer = ({
 }: React.PropsWithChildren & { loading?: boolean; error?: string }) => (
   <>
     <div className="">
-      <div className="relative aspect-square mx-auto max-w-80">
+      <div className="relative aspect-square mx-auto max-w-60 sm:max-w-80">
         <div className=" rounded-lg absolute inset-0"></div>
         <div className="">{children}</div>
       </div>

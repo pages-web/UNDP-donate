@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "../../components/ui/tabs";
+import { Tabs, TabsContent } from "../../components/ui/tabs";
 import Donate from "../../../../containers/donate/donate";
-import Copy from "../../copy";
+
 import { useTranslations } from "next-intl";
 
 const Tsahim = ({ products }: any) => {

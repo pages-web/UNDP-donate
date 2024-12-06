@@ -27,8 +27,6 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
     const video = videoRef.current;
     if (video) {
       setShowImage(false);
-      video.play();
-      setIsPlaying(true);
       if (isPlaying) {
         video.pause();
       } else {
@@ -40,8 +38,12 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
 
   return (
     <div
-      className="relative w-full h-[60vh] sm:h-[80vh] md:h-[90vh] bg-black flex items-center justify-center"
-      style={{ borderRadius: "30px", overflow: "hidden" }}
+      className="relative w-full bg-black flex items-center justify-center"
+      style={{
+        height: "640px",
+        borderRadius: "30px",
+        overflow: "hidden",
+      }}
     >
       {showImage && (
         <div className="absolute w-full h-full z-10">
@@ -67,13 +69,13 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
       )}
       <video
         ref={videoRef}
-        className={`w-full h-full object-cover aspect-square aspect-auto ${
+        className={`w-full h-full object-cover ${
           showImage ? "hidden" : "block"
         }`}
         playsInline
       ></video>
       <div
-        className="absolute bottom-10 sm:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
+        className="absolute bottom-10 sm:bottom-20  xl:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
         style={{
           fontSize: "14px",
           color: "#333",
