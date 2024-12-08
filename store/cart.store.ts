@@ -1,15 +1,15 @@
-import { OrderItem, OrderItemInput } from '../types/order.types';
-import { IProduct } from '../types/product.types';
-import { atom } from 'jotai';
-import { currentUserAtom } from './auth.store';
+import { OrderItem, OrderItemInput } from "../types/order.types";
+import { IProduct } from "../types/product.types";
+import { atom } from "jotai";
+import { currentUserAtom } from "./auth.store";
 import {
   activeOrderIdAtom,
   cudOrderAtom,
   itemsAtom,
   loadingOrderAtom,
   productItemsAtom,
-} from './order.store';
-import { splitAtom, atomWithStorage } from 'jotai/utils';
+} from "./order.store";
+import { splitAtom, atomWithStorage } from "jotai/utils";
 
 interface IUpdateItem {
   _id: string;
@@ -22,7 +22,7 @@ export const changeCartItem = (
 ): OrderItem[] => {
   const { _id, count } = product;
 
-  if (typeof count === 'number') {
+  if (typeof count === "number") {
     if (count === 0) return cart.filter((item) => item._id !== _id);
 
     return cart.map((item) => (item._id === _id ? { ...item, count } : item));
@@ -56,7 +56,7 @@ export const addToCart = (
   return [...cart, cartItem];
 };
 
-export const localCartAtom = atomWithStorage<OrderItem[]>('localCart', []);
+export const localCartAtom = atomWithStorage<OrderItem[]>("localCart", []);
 
 export const cartAtom = atom(
   (get) =>

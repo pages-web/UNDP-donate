@@ -1,25 +1,24 @@
 import { useTranslations } from "next-intl";
-
 import Image from "../ui/image";
 
-const Description = ({ additionalexplanationmn }: any) => {
+const Description = ({ summary }: any) => {
   const t = useTranslations();
 
   return (
-    <div className="flex flex-col gap-6 p-6 items-center bg-white  rounded-3xl">
-      <div className="flex flex-col items-center gap-4">
-        <h1 className="text-xl md:text-3xl font-semibold text-gray-800 text-center">
-          {additionalexplanationmn[0]?.title}
+    <div className="flex flex-col gap-8 p-6 md:p-8 items-center bg-white rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <div className="flex flex-col items-center gap-4 text-center">
+        <h1 className="text-2xl md:text-4xl font-semibold text-gray-800">
+          {summary[0]?.title}
         </h1>
       </div>
-      <div className="relative w-full max-h-[486px] aspect-square overflow-hidden rounded-[24px]">
+      <div className="relative w-full max-h-[486px] aspect-square overflow-hidden rounded-[24px] shadow-md">
         <Image
           sizes="100vw"
-          src={additionalexplanationmn[0]?.image?.url}
+          src={summary[0]?.image?.url}
           quality={100}
           priority
-          className="w-full"
-          alt={`Carousel image ${additionalexplanationmn + 1}`}
+          className="w-full h-full object-cover"
+          alt={`Carousel image ${summary + 1}`}
         />
       </div>
     </div>

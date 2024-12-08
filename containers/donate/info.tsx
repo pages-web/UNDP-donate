@@ -1,87 +1,132 @@
-import React, { useState, useEffect } from "react";
-import { CardContent } from "../../app/[locale]/components/ui/card";
-import ErxesForm from "../../app/[locale]/components/modals/WebModal";
-import { Button } from "../../app/[locale]/components/ui/button";
-import { ArrowLeftIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { useDonate } from "./donate";
-import { deliveryInfoAtom, donateViewAtom } from "../../store/donate.store";
-import { useAtom, useSetAtom } from "jotai";
-import { useForm, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { emailZod } from "../../lib/zod";
-import { z } from "zod";
+"use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { CardContent } from "../../app/[locale]/components/ui/card";
+
+import { Button } from "../../app/[locale]/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../app/[locale]/components/ui/form";
+import { Input } from "../../app/[locale]/components/ui/input";
+import { phoneZod } from "@/lib/zod";
+import { useAtom, useSetAtom } from "jotai";
+import { deliveryInfoAtom, donateViewAtom } from "@/store/donate.store";
+import { useDonate } from "./donate";
+import { LoadingIcon } from "../../app/[locale]/components/ui/loading";
+import { ArrowLeftIcon } from "lucide-react";
+import { emailZod } from "@/lib/zod";
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Нэрээ бүтнээр нь оруулана уу" }),
+  name: z.string().min(2, {
+    message: "required",
+  }),
+  phone: phoneZod,
   email: emailZod,
 });
 
-const DonateInfo: React.FC = () => {
-  const [deliveryInfo, setDeliveryInfo] = useAtom(deliveryInfoAtom);
+const DonateInfo = () => {
   const { loading, action, variables } = useDonate();
+  const [deliveryInfo, setDeliveryInfo] = useAtom(deliveryInfoAtom);
   const setView = useSetAtom(donateViewAtom);
-  const t = useTranslations();
-  const { description, ...defaultValues } = deliveryInfo;
 
-  const [isLoading, setIsLoading] = useState(true);
+  const { description, ...defaultValues } = deliveryInfo;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues,
   });
 
-  const onErxesFormCompleted = (data: any) => {
-    if (data?.status !== "ERROR") {
-      const newDescription = `${data.name} ${data.email}`;
-      setDeliveryInfo({ ...data, description: newDescription });
-      setIsLoading(false);
-      setView("payment");
-    }
-  };
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    const description = `${values.name} ${values.phone}  ${values.email}`;
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const newDescription = `${values.name} ${values.email}`;
-    setDeliveryInfo({ ...values, description: newDescription });
+    setDeliveryInfo({ ...values, description });
 
     action({
       variables: {
         ...variables,
-        description: newDescription,
-        deliveryInfo: { ...values, description: newDescription },
+        description,
+        deliveryInfo: {
+          ...values,
+          description,
+        },
       },
     });
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  }
 
   return (
     <CardContent className="md:pt-0">
-      <ErxesForm
-        className="w-full"
-        formId="El15ya"
-        brandId="g_CB_U"
-        onCompleted={onErxesFormCompleted}
-      />
-
-      <div className="flex items-center gap-4 mt-4 md:mt-10 ">
-        <Button
-          type="button"
-          variant="secondary"
-          size="lg"
-          className="w-full md:w-full bg-white hover:bg-white text-black border border-[#EFEFEF]"
-          disabled={loading}
-          onClick={() => setView("")}
-        >
-          <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
-          Back
-        </Button>
-      </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Your name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone number</FormLabel>
+                <FormControl>
+                  <Input placeholder="+976 **** ****" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Your email</FormLabel>
+                <FormControl>
+                  <Input placeholder="@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex items-center gap-4">
+            <Button
+              type="button"
+              variant="secondary"
+              size="lg"
+              className="w-full md:w-full bg-white hover:bg-white text-black border border-[#EFEFEF]"
+              disabled={loading}
+              onClick={() => setView("")}
+            >
+              <ArrowLeftIcon className="h-5 w-5 mr-2 -ml-2" />
+              Back
+            </Button>
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full rounded-[32px] text-white"
+              disabled={loading}
+            >
+              {loading && <LoadingIcon />}
+              Үргэлжлүүлэх
+            </Button>
+          </div>
+        </form>
+      </Form>
     </CardContent>
   );
 };

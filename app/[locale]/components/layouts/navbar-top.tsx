@@ -46,10 +46,14 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
 
   return (
     <>
-      <div className="bg-[#f6f6f6] p-2.5 flex justify-between items-center rounded-3xl max-h-[70px] relative">
-        <div className="flex flex-col items-center justify-center p-0">
+      <div className="bg-[#f6f6f6] md:p-8 p-6 flex justify-between items-center rounded-3xl max-h-[70px] relative">
+        <div className="flex flex-col items-center justify-center">
           <Image
-            className="w-full max-w-[100px] h-auto sm:max-w-[100px]  lg:max-w-[150px] object-cover"
+            width={100}
+            quality={100}
+            height={100}
+            priority
+            className="w-full object-cover"
             src="/UNDP.png"
             alt="UNDP Logo"
           />

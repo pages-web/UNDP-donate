@@ -8,7 +8,7 @@ const Tsahim = ({ products }: any) => {
   const t = useTranslations();
 
   return (
-    <Tabs defaultValue="qpay" className="rounded-[24px]">
+    <Tabs defaultValue="qpay" className="">
       <TabsContent value="qpay">
         <Donate products={products} />
       </TabsContent>

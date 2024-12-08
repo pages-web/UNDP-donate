@@ -152,6 +152,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
     setDeliveryInfo({
       name: "",
       email: "",
+      phone: "",
       description: "",
     });
   };

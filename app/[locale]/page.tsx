@@ -33,7 +33,7 @@ export default async function Home() {
     "Gratitude-en",
     "faq-mn",
     "faq-en",
-    "additional-explanation-mn",
+    "summary",
     "Partner-Organization",
     "Сэргээгдэх",
     "Positive",
@@ -55,7 +55,7 @@ export default async function Home() {
     gratitudeEn,
     faqMn,
     faqEn,
-    additionalexplanationmn,
+    summary,
     Partnerorganization,
     Сэргээгдэх,
     Positive,
@@ -65,7 +65,7 @@ export default async function Home() {
   return (
     <div className="px-[30px]  flex flex-col gap-5 bg-[#EBEBEB]">
       <Banner bannerMn={bannerMn} />
-      <Description additionalexplanationmn={additionalexplanationmn} />
+      <Description summary={summary} />
       <section id="about">
         <About aboutMn={aboutMn} aboutEn={aboutEn} />
       </section>

@@ -45,7 +45,7 @@ const Carousel: React.FC<CarouselProps> = ({
   }
 
   return (
-    <div className="flex flex-col gap-6 p-4 sm:p-6 items-start bg-white rounded-3xl">
+    <div className="flex flex-col gap-6 p-6 md:p-8 items-start bg-white rounded-3xl">
       {/* Carousel Image */}
       <div className="relative w-full aspect-[1/1] sm:aspect-[3/1] overflow-hidden rounded-[24px]">
         <Swiper

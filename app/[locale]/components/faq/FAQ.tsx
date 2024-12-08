@@ -33,7 +33,7 @@ const Faq = ({ faqMn, faqEn }: any) => {
       <AccordionDemo faqMn={faqMn} faqEn={faqEn} />
       <p className="text-[rgba(0,0,0,0.7)] text-[15px] sm:text-[17px] font-medium font-sfpro text-center">
         Visit our
-        <span className="text-[#000] text-[17px] font-medium underline decoration-solid font-sfpro">
+        <span className="text-[#000] text-[17px] font-medium  decoration-solid font-sfpro px-1">
           Help Center
         </span>
         for more Information.

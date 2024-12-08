@@ -1,6 +1,6 @@
-import { cn } from "../../../../lib/utils";
+import { cn } from "@/lib/utils";
 import { Loader2Icon, type LucideProps } from "lucide-react";
-import React from "react";
+
 const LoadingOverlay = () => (
   <div className="fixed inset-0 z-50 bg-black/20 " />
 );
@@ -15,6 +15,7 @@ const Loading = ({
   return (
     <LoadingWrapper className={className} style={style}>
       <LoadingIcon />
+      <LoadingText />
     </LoadingWrapper>
   );
 };
@@ -45,6 +46,10 @@ export const LoadingWrapper = ({
       {children}
     </div>
   );
+};
+
+export const LoadingText = () => {
+  return <span className="text-sm">Уншиж байна...</span>;
 };
 
 export { Loading, LoadingOverlay };
