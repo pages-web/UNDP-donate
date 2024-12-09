@@ -53,11 +53,10 @@ const useCreateInvoice = ({
         contentType: "pos:orders",
         contentTypeId: detail?._id,
         customerType: "customer",
-        description:
-          "Өөрийн нэр, утасны дугаарыг бичнэ үү.",
+        description: "Өөрийн нэр, утасны дугаарыг бичнэ үү.",
         data: { posToken: process.env.NEXT_PUBLIC_POS_TOKEN },
         paymentIds,
-        email: deliveryInfo?.email,
+        email: deliveryInfo?.primaryEmail,
         ...variables,
       },
     });

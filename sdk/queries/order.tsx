@@ -179,5 +179,14 @@ export const useTotalAmount = () => {
 
   return { sda };
 };
+export const CustomerDetail = () => {
+  const { data, loading } = useQuery(queries.CustomerDetail, {
+    variables: { _id: "rSJ-_FB1vma-iDLtoIfMK" },
+  });
+
+  const customer = data?.customerDetail || {};
+
+  return { customer };
+};
 
 export default useCurrentOrder;

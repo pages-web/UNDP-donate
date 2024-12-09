@@ -199,7 +199,76 @@ const addresses = gql`
     }
   }
 `;
-
+const CustomerDetail = gql`
+  query customerDetail($_id: String!) {
+    customerDetail(_id: $_id) {
+      _id
+      firstName
+      middleName
+      lastName
+      avatar
+      sex
+      birthDate
+      primaryEmail
+      emails
+      primaryPhone
+      phones
+      state
+      visitorContactInfo
+      modifiedAt
+      position
+      department
+      leadStatus
+      hasAuthority
+      description
+      isSubscribed
+      code
+      emailValidationStatus
+      phoneValidationStatus
+      score
+      isOnline
+      lastSeenAt
+      sessionCount
+      links
+      ownerId
+      owner {
+        _id
+        details {
+          fullName
+          __typename
+        }
+        __typename
+      }
+      integrationId
+      createdAt
+      remoteAddress
+      location
+      customFieldsData
+      trackedData
+      tagIds
+      getTags {
+        _id
+        name
+        colorCode
+        __typename
+      }
+      urlVisits
+      integration {
+        kind
+        name
+        isActive
+        __typename
+      }
+      companies {
+        _id
+        primaryName
+        website
+        __typename
+      }
+      __typename
+    }
+  }
+`;
 const ordersGroupSummary = gql`
   query posOrdersGroupSummary(
     $page: Int
@@ -254,6 +323,7 @@ const queries = {
   addresses,
   donateOrderDetail,
   ordersGroupSummary,
+  CustomerDetail,
 };
 
 export default queries;

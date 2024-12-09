@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../components/ui/button";
-import Tsahim from "../titles/Tsahim";
+
 import {
   Dialog,
   DialogContent,
@@ -21,8 +21,8 @@ const Modal = () => {
           {t("Хандивөгөх")}
         </Button>
       </DialogTrigger>
-      
-      <DialogContent className="sm:max-w-[600px] rounded-[24px] bg-[#FFF]">
+
+      <DialogContent>
         <TsahimWrapper />
       </DialogContent>
     </Dialog>

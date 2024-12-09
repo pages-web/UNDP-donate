@@ -11,8 +11,8 @@ export const donateOrderIdAtom = atomWithStorage<string>("donateOrderId", "");
 export const donateItemAtom = atom<OrderItem | null>(null);
 
 export const deliveryInfoAtom = atom<{
-  name: string;
-  email: string;
-  phone: string;
+  firstName: string;
+  primaryEmail: string;
+  primaryPhone: string;
   description: string;
-}>({ name: "", email: "", phone: "", description: "" });
+}>({ firstName: "", primaryEmail: "", primaryPhone: "", description: "" });

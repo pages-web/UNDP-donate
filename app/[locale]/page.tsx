@@ -1,7 +1,6 @@
 import { getKbArticlesByCode } from "../../sdk/queries/kb";
 import { Metadata } from "next";
 import Banner from "../[locale]/components/banner/Banner";
-import React from "react";
 import Gratitude from "../[locale]/components/gratitude/Gratitude";
 import Faq from "../[locale]/components/faq/FAQ";
 import Carousel from "../[locale]/components/carousel/Carousel";
@@ -9,12 +8,10 @@ import About from "../[locale]/components/about/About";
 import { getConfig } from "../../sdk/queries/auth";
 import Description from "../[locale]/components/common/Description";
 import PartnerOrganization from "./components/partnerOrgazination/PartnerOrganization";
-
 import VideoPlayer from "./components/videos/Video";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { config } = await getConfig();
-
   return {
     title: config.name + " - Хандив өгөх",
     openGraph: {
@@ -34,7 +31,7 @@ export default async function Home() {
     "faq-mn",
     "faq-en",
     "summary",
-    "Partner-Organization",
+    "partner-organization",
     "Сэргээгдэх",
     "Positive",
     "video-default-image",
@@ -56,14 +53,14 @@ export default async function Home() {
     faqMn,
     faqEn,
     summary,
-    Partnerorganization,
+    partner,
     Сэргээгдэх,
     Positive,
     videodefaultimage,
   ] = articles;
 
   return (
-    <div className="px-[30px]  flex flex-col gap-5 bg-[#EBEBEB]">
+    <div className="px-[30px] flex flex-col gap-5 bg-[#EBEBEB]">
       <Banner bannerMn={bannerMn} />
       <Description summary={summary} />
       <section id="about">
@@ -79,7 +76,7 @@ export default async function Home() {
       <section id="faq">
         <Faq faqMn={faqMn} faqEn={faqEn} />
       </section>
-      <PartnerOrganization Partnerorganization={Partnerorganization} />
+      <PartnerOrganization partner={partner} />
       <Gratitude gratitudeMn={gratitudeMn} gratitudeEn={gratitudeEn} />
     </div>
   );

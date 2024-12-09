@@ -54,8 +54,9 @@ const QrDetail = ({
         </QrContainer>
         {!!urls?.length && (
           <div className="pt-4 grid grid-cols-3 gap-4 md:hidden">
-            {urls.map((url) => (
+            {urls.map((url, index) => (
               <Button
+                key={index}
                 className="text-xs flex flex-col gap-1 items-center justify-center px-2 py-3 shadow border border-border/10 h-auto rounded-md"
                 variant={"ghost"}
                 size="sm"

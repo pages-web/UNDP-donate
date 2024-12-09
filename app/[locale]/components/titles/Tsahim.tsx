@@ -8,11 +8,9 @@ const Tsahim = ({ products }: any) => {
   const t = useTranslations();
 
   return (
-    <Tabs defaultValue="qpay" className="">
-      <TabsContent value="qpay">
-        <Donate products={products} />
-      </TabsContent>
-    </Tabs>
+    <div>
+      <Donate products={products} />
+    </div>
   );
 };
 

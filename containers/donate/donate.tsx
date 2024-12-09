@@ -150,9 +150,9 @@ const Donate = ({ products }: { products: IProduct[] }) => {
     setDonateOrderId("");
     setDonateItem(null);
     setDeliveryInfo({
-      name: "",
-      email: "",
-      phone: "",
+      firstName: "",
+      primaryEmail: "",
+      primaryPhone: "",
       description: "",
     });
   };
@@ -175,7 +175,7 @@ const Donate = ({ products }: { products: IProduct[] }) => {
         <CardTitle className="text-black font-medium text-sm md:text-base">
           Collected donations
         </CardTitle>
-        <div className="flex items-start justify-between flex-col gap-y-4 md:flex-row md:gap-6 w-full">
+        <div className="flex items-center justify-between flex-col gap-y-4 md:flex-row md:gap-6 w-full">
           <PaymentMethods />
           {view === "" && (
             <div className="flex items-center justify-between p-1 gap-12 rounded-[8px] border border-[#EFEFEF]">
