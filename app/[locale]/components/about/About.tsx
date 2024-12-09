@@ -23,20 +23,20 @@ const About = ({ aboutMn, aboutEn }: any) => {
   return (
     <div className="flex flex-col items-start gap-10 self-stretch  p-6 md:p-8 rounded-3xl bg-[#fff]">
       <div className="flex flex-col gap-3 self-stretch items-start">
-        <h1 className="text-[#FFCE46] font-sans text-[14px] font-normal leading-none uppercase">
+        <h1 className="text-[#FFCE46]  text-[14px] font-normal leading-none uppercase">
           About Project
         </h1>
         <div className="flex items-center gap-3">
           <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]">
             <AboutIcon />
           </div>
-          <h1 className="text-black font-sans text-[20px] sm:text-[24px] font-semibold leading-none">
+          <h1 className="text-black  text-[20px] sm:text-[24px] font-semibold leading-none">
             {articleShow[0]?.title}
           </h1>
         </div>
 
         <div
-          className="text-black font-sans text-sm sm:text-base font-medium leading-normal self-stretch text-start"
+          className="text-black  text-sm sm:text-base font-medium leading-normal self-stretch text-start"
           dangerouslySetInnerHTML={{
             __html: articleShow[0]?.content || "",
           }}

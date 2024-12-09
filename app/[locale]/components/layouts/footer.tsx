@@ -11,18 +11,18 @@ const Footer = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42] font-inter opacity-60">
+            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42]  opacity-60">
               {t("Холбогдох")}
             </h1>
-            <h1 className="text-xl font-medium tracking-[-0.4px] uppercase text-[#383A42] font-inter">
+            <h1 className="text-xl font-medium tracking-[-0.4px] uppercase text-[#383A42] ">
               11 - 327585
             </h1>
           </div>
           <div className="flex flex-col gap-2">
-            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42] font-inter opacity-60">
+            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42] opacity-60">
               {t("Иейл:")}
             </h1>
-            <h1 className="text-sm font-normal tracking-[0.4px] text-[#383A42] font-inter">
+            <h1 className="text-sm font-normal tracking-[0.4px] text-[#383A42] ">
               registry.mn@undp.org
             </h1>
           </div>
@@ -30,18 +30,18 @@ const Footer = () => {
 
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42] font-inter opacity-60">
+            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42] opacity-60">
               {t("Хаяг:")}
             </h1>
-            <h1 className="text-sm font-normal tracking-[-0.4px] text-[#383A42] font-inter">
+            <h1 className="text-sm font-normal tracking-[-0.4px] text-[#383A42] ">
               {t("НҮБын")}
             </h1>
           </div>
           <div className="flex flex-col gap-2">
-            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42] font-inter opacity-60">
+            <h1 className="text-[10px] font-medium leading-[13px] tracking-[0.4px] uppercase text-[#383A42]  opacity-60">
               {t("Ажиллаххуваарь")}
             </h1>
-            <h1 className="text-sm font-normal leading-[120%] tracking-[-0.28px] text-[#383A42] font-inter">
+            <h1 className="text-sm font-normal leading-[120%] tracking-[-0.28px] text-[#383A42] ">
               {t("Дава0")}
             </h1>
           </div>

@@ -33,7 +33,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 1024); // Tailwind CSS lg breakpoint
+      setIsDesktop(window.innerWidth >= 1024);
     };
 
     handleResize(); // Initial check
@@ -45,7 +45,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
   }, []);
 
   return (
-    <>
+    <header className="">
       <div className="bg-[#f6f6f6] md:p-8 p-6 flex justify-between items-center rounded-3xl max-h-[70px] relative">
         <div className="flex flex-col items-center justify-center">
           <Image
@@ -168,7 +168,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
           </div>
         )}
       </div>
-    </>
+    </header>
   );
 };
 

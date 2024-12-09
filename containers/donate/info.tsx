@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "../../app/[locale]/components/ui/form";
 import { Input } from "../../app/[locale]/components/ui/input";
-import { phoneZod, emailZod } from "@/lib/zod";
+import { phoneZod, emailZod, nameZod } from "@/lib/zod";
 import { useAtom, useSetAtom } from "jotai";
 import { deliveryInfoAtom, donateViewAtom } from "@/store/donate.store";
 import { useDonate } from "./donate";
@@ -23,9 +23,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import useCreateCustomer from "../../sdk/graphql/mutations/customers";
 
 const formSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "required",
-  }),
+  firstName: nameZod,
   primaryPhone: phoneZod,
   primaryEmail: emailZod,
 });
