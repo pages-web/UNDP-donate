@@ -53,16 +53,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({
   children,
-  params,
-}: RootLayoutProps) {
-  const { locale } = await params;
+  params: { locale },
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
   const messages = await getMessages();
   const { config } = await getConfig();
   const { uiOptions } = config || {};
   const { colors } = uiOptions || {};
 
   return (
-    <html lang={params.locale || "en"} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.svg" />
         <link
