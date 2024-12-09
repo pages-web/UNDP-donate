@@ -2,10 +2,13 @@
 
 import Image from "../ui/image";
 import classNames from "classnames";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import React, { useState, useCallback, useEffect } from "react";
 import { Button } from "../ui/button";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import "swiper/css";
 
 const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
   const t = useTranslations();
@@ -74,6 +77,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
     if (isValidData && !isTransitioning) {
       setIsTransitioning(true);
 
+      // Hide the image and text
       await Promise.all([
         imageControls.start({
           opacity: 0,
@@ -87,8 +91,10 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
         }),
       ]);
 
+      // Update the image index to next
       setImageIndex((prevIndex) => nextImageIndex(prevIndex, bannerMn.length));
 
+      // Show the new image and text
       await Promise.all([
         imageControls.start({
           opacity: 1,
@@ -137,121 +143,48 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
 
   return (
     <AnimatePresence mode="wait">
-      {showBannerContent ? (
-        <motion.div
-          key="banner-content"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          className="flex flex-col justify-center items-center gap-3 sm:gap-4 py-4 sm:py-6 px-4 sm:px-6 md:px-8 rounded-3xl md:rounded-[24px] bg-[#3165AC] w-full aspect-[14/10] sm:aspect-[14/10] md:aspect-[16/7] max-h-[700px] overflow-hidden"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="flex p-2 sm:p-2.5 md:p-3 rounded-[50px] sm:rounded-[80px] bg-[#FFCE46] justify-center items-center"
+      <Swiper
+        key="banner-swiper"
+        autoplay={{ delay: 2500 }}
+        modules={[Autoplay]}
+        slidesPerView={1}
+        loop
+        className="flex flex-col items-center justify-center self-stretch w-full inset-0 aspect-[14/10] sm:aspect-[14/6] md:aspect-[16/7] gap-2 sm:gap-2.5 rounded-2xl sm:rounded-3xl px-2 sm:px-2.5 relative overflow-hidden"
+      >
+        {bannerMn.map((banner, index) => (
+          <SwiperSlide
+            className="flex flex-col items-center justify-center relative"
+            key={index}
           >
-            <h1 className="text-[#3165AC] text-center font-sfpro text-[14px] sm:text-[16px] md:text-[20px] font-medium leading-none">
-              #GoSolar
-            </h1>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center"
-          >
-            <motion.h1
-              variants={itemVariants}
-              className="text-[#FFF] text-center font-roboto text-[24px] sm:text-[30px] md:text-[40px] lg:text-[45px] xl:text-[50px] font-bold leading-none"
+            <motion.div
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+              className="absolute inset-0"
             >
-              Нараар халаадагсан бол
-            </motion.h1>
-
-            <motion.h1
-              variants={itemVariants}
-              className="text-[#FFF] text-center font-roboto text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-medium leading-normal"
-            >
-              {t("aaaaa")
-                .split("\n")
-                .map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-            </motion.h1>
-
-            <motion.div variants={itemVariants}>
-              <Button
-                onClick={handleContentToggle}
-                className="bg-white rounded-[50px] sm:rounded-[100px] py-[6px] sm:py-[8px] md:py-[10px] px-[12px] sm:px-[16px] md:px-[20px] flex items-center justify-center hover:bg-white/90 transition-colors"
-              >
-                {t("Хандивөгцгөөе")}
-              </Button>
+              <Image
+                sizes="100vw"
+                src={banner.image.url}
+                quality={100}
+                priority
+                alt="Background Banner"
+                className="rounded-2xl sm:rounded-3xl object-cover md:object-center "
+              />
             </motion.div>
-          </motion.div>
-        </motion.div>
-      ) : (
-        <motion.div
-          key="banner-image"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
-          className="flex flex-col items-center justify-center self-stretch w-full aspect-[14/10] sm:aspect-[14/6] md:aspect-[16/7] gap-2 sm:gap-2.5 rounded-2xl sm:rounded-3xl px-2 sm:px-2.5 relative overflow-hidden"
-        >
-          <motion.div
-            key={`image-${imageIndex}`}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0"
-          >
-            <Image
-              sizes="100vw"
-              src={bannerMn[imageIndex].image.url}
-              quality={100}
-              priority
-              alt="Background Banner"
-              className="rounded-2xl sm:rounded-3xl object-cover md:object-center"
-            />
-          </motion.div>
-
-          <motion.div
-            animate={textControls}
-            className="flex flex-col py-2 px-3 sm:py-3 sm:px-4 gap-1.5 sm:gap-2 lg:gap-[18px] items-center absolute bg-[rgba(0,_0,_0,_0.30)] rounded-2xl sm:rounded-3xl bottom-1 sm:bottom-2 md:bottom-6 lg:bottom-10 max-w-[90%]"
-          >
-            <div
-              className="text-white text-center font-[SF Pro Display] text-[10px] sm:text-[12px] md:text-xs lg:text-sm xl:text-base max-w-[603px]"
-              dangerouslySetInnerHTML={{
-                __html:
-                  bannerMn[imageIndex]?.content ||
-                  "<p>No content available</p>",
-              }}
-            />
-
-            {imageIndex !== 5 && (
-              <Button
-                onClick={handleImageTransition}
-                disabled={isTransitioning}
-                className={classNames(
-                  "rounded-[50px] sm:rounded-[100px] px-2 py-1 sm:px-4 sm:py-2 text-[10px] sm:text-xs md:text-sm lg:text-base flex items-center justify-center transition-colors",
-                  isTransitioning
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-white/90",
-                  imageIndex === 1
-                    ? "bg-[#3165AC] text-white hover:bg-[#3165AC]"
-                    : "bg-white text-black"
-                )}
-              >
-                {isTransitioning
-                  ? "Loading..."
-                  : t(imageIndex === 1 ? "Donate more" : "Start Donate")}
-              </Button>
-            )}
-          </motion.div>
-        </motion.div>
-      )}
+            <div className="flex items-center justify-center ">
+              <div className="flex flex-col py-2 px-3 sm:py-3 sm:px-4 gap-1.5 sm:gap-2 lg:gap-[18px] items-center justify-center absolute bg-[rgba(0,_0,_0,_0.30)] rounded-2xl sm:rounded-3xl bottom-2 sm:bottom-2 md:bottom-6 lg:bottom-10 ">
+                <div
+                  className="text-white text-center font-[SF Pro Display] text-[10px] sm:text-[12px] md:text-xs lg:text-sm xl:text-base max-w-[595px] "
+                  dangerouslySetInnerHTML={{
+                    __html: banner.content || "<p>No content available</p>",
+                  }}
+                />
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </AnimatePresence>
   );
 };

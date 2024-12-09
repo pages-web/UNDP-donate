@@ -30,7 +30,7 @@ export default async function Home() {
     "Gratitude-en",
     "faq-mn",
     "faq-en",
-    "summary",
+    "text-1",
     "partner-organization",
     "Сэргээгдэх",
     "Positive",

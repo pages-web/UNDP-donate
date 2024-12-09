@@ -14,7 +14,7 @@ const Description = ({ summary }: any) => {
       <div className="relative w-full max-h-[486px] aspect-square overflow-hidden rounded-[24px] shadow-md">
         <Image
           sizes="100vw"
-          src={summary[0]?.image?.url}
+          src="/image4.jpg"
           quality={100}
           priority
           className="w-full h-full object-cover"

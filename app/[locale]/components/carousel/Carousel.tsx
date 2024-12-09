@@ -27,15 +27,26 @@ interface CarouselProps {
   Сэргээгдэх: ArticleContent[];
   Positive: ArticleContent[];
 }
-
-const Carousel: React.FC<CarouselProps> = ({
-  carousel,
-  Сэргээгдэх,
-  Positive,
-}) => {
+const data = [
+  {
+    image1: "/image1.jpg",
+  },
+  {
+    image1: "/image2.jpg",
+  },
+  {
+    image1: "/image3.jpg",
+  },
+  {
+    image1: "/image4.jpg",
+  },
+  {
+    image1: "/image5.jpg",
+  },
+];
+const Carousel: React.FC<CarouselProps> = ({ carousel }) => {
   const t = useTranslations();
-  const { locale } = useParams();
-  const ShowArticles = locale === "mn" ? Сэргээгдэх : Positive;
+
   if (!carousel || carousel.length === 0) {
     return (
       <div className="flex items-center justify-center bg-gray-100 text-gray-500 p-6 rounded-3xl">
@@ -46,7 +57,6 @@ const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <div className="flex flex-col gap-6 p-6 md:p-8 items-start bg-white rounded-3xl">
-      {/* Carousel Image */}
       <div className="relative w-full aspect-[1/1] sm:aspect-[3/1] overflow-hidden rounded-[24px]">
         <Swiper
           modules={[Autoplay]}
@@ -54,11 +64,11 @@ const Carousel: React.FC<CarouselProps> = ({
           loop
           className="h-full w-full"
         >
-          {carousel.map((item, index) => (
-            <SwiperSlide key={item._id || index}>
+          {data.map((item, index) => (
+            <SwiperSlide key={index}>
               <Image
                 sizes="100vw"
-                src={item.image?.url || "/images/default-image.jpg"}
+                src={item.image1}
                 quality={100}
                 priority
                 className="w-full h-auto object-cover"

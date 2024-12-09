@@ -48,9 +48,12 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
       {showImage && (
         <div className="absolute w-full h-full z-10">
           <Image
-            src={videodefaultimage[0]?.image?.url}
+            quality={100}
+            priority
+            sizes="100vw"
+            src="/image1.jpg"
             alt="Default Thumbnail"
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover"
           />
           <div
             className="absolute bottom-10 sm:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
