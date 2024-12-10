@@ -27,6 +27,10 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
     const video = videoRef.current;
     if (video) {
       setShowImage(false);
+      if (window.innerWidth <= 768) {
+        // Зөвхөн мобайл дээр товчийг алга болгоно
+        setShowImage(false);
+      }
       if (isPlaying) {
         video.pause();
       } else {
@@ -38,9 +42,9 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
 
   return (
     <div
-      className="relative w-full bg-black flex items-center justify-center"
+      className="relative flex items-center justify-center bg-black"
       style={{
-        height: "640px",
+        height: "auto",
         borderRadius: "30px",
         overflow: "hidden",
       }}
@@ -56,7 +60,7 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
             className="w-full h-auto object-cover"
           />
           <div
-            className="absolute bottom-10 sm:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
+            className="absolute bottom-4 sm:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-1 px-2 sm:py-2 sm:px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
             style={{
               fontSize: "14px",
               color: "#333",
@@ -72,24 +76,13 @@ const VideoPlayer = ({ videodefaultimage }: any) => {
       )}
       <video
         ref={videoRef}
-        className={`w-full h-full object-cover ${
-          showImage ? "hidden" : "block"
-        }`}
+        className="w-full max-h-[400px] sm:max-h-[620px] object-cover"
         playsInline
-      ></video>
-      <div
-        className="absolute bottom-10 sm:bottom-20  xl:bottom-14 left-1/2 transform -translate-x-1/2 bg-white text-center py-2 px-4 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition"
         style={{
-          fontSize: "14px",
-          color: "#333",
-          border: "1px solid #ddd",
+          maxWidth: "100%",
+          aspectRatio: "16/9",
         }}
-        onClick={handlePlay}
-      >
-        {isPlaying
-          ? "Please click on image to play video"
-          : "Please click on image to play video"}
-      </div>
+      ></video>
     </div>
   );
 };

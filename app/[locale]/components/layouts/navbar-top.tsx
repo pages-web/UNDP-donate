@@ -86,8 +86,9 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
         {isDesktop ? (
           <div className="flex justify-center items-center gap-5 text-[#000000B2]">
             <a
-              className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
+              className="flex gap-2 p-2.5 justify-center items-center rounded-[100px] "
               href="#about"
+              onClick={() => setIsMenuOpen(false)} // Close the menu
             >
               <SolarIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -95,8 +96,9 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
               </h1>
             </a>
             <a
-              className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
+              className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] "
               href="#faq"
+              onClick={() => setIsMenuOpen(false)} // Close the menu
             >
               <PaqIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -105,13 +107,15 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             </a>
             <a
               href="#contact"
-              className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px]"
+              className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] "
+              onClick={() => setIsMenuOpen(false)} // Close the menu
             >
               <PhoneIcon />
               <h1 className="cursor-pointer transition-colors">
                 {t("Холбогдох")}
               </h1>
             </a>
+
             <div
               onClick={toggleLanguage}
               className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] cursor-pointer"
@@ -130,11 +134,12 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
               isMenuOpen
                 ? "opacity-100 translate-y-0 scale-100"
                 : "opacity-0 -translate-y-5 scale-95 pointer-events-none"
-            } absolute top-[60px] md:top-[80px] right-0 w-full z-[9999] bg-[#f6f6f6] p-4 rounded-3xl`}
+            } absolute top-[80px] md:top-[80px] right-0 w-full z-[9999] bg-[#f6f6f6] p-4 rounded-3xl`}
           >
             <a
               className="flex gap-2 p-2.5 justify-center items-center rounded-[100px] mb-3"
               href="#about"
+              onClick={() => setIsMenuOpen(false)} // Close the menu
             >
               <SolarIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -144,13 +149,18 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             <a
               className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] mb-3"
               href="#faq"
+              onClick={() => setIsMenuOpen(false)} // Close the menu
             >
               <PaqIcon />
               <h1 className="cursor-pointer transition-colors">
                 {t("Түгээмэласуулт")}
               </h1>
             </a>
-            <a className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] mb-3">
+            <a
+              href="#contact"
+              className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] mb-3"
+              onClick={() => setIsMenuOpen(false)} // Close the menu
+            >
               <PhoneIcon />
               <h1 className="cursor-pointer transition-colors">
                 {t("Холбогдох")}

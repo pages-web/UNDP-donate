@@ -15,32 +15,36 @@ const Footer = () => {
         {/* Contact Section */}
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h1 className="text-xs font-medium leading-[13px] uppercase text-gray-600">
+            <h1 className="text-xs font-medium opacity-60 leading-[13px] uppercase text-[#383A42]">
               {t("Холбогдох")}
             </h1>
-            <h2 className="text-xl font-medium text-gray-900">11 - 327585</h2>
+            <h2 className="text-xl font-normal tracking-[0.4px] text-[#383A42]">
+              11 - 327585
+            </h2>
           </div>
           <div className="flex flex-col gap-2">
-            <h1 className="text-xs font-medium leading-[13px] uppercase text-gray-600">
+            <h1 className="text-xs font-medium leading-[13px] opacity-60 uppercase text-gray-600">
               {t("Иейл:")}
             </h1>
-            <p className="text-sm text-gray-800">registry.mn@undp.org</p>
+            <p className="text-sm font-normal tracking-[0.4px] text-[#383A42]">
+              registry.mn@undp.org
+            </p>
           </div>
         </div>
-
-        {/* Address and Schedule Section */}
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h1 className="text-xs font-medium leading-[13px] uppercase text-gray-600">
+            <h1 className="text-xs font-medium leading-[13px] opacity-60 uppercase text-[#383A42]">
               {t("Хаяг:")}
             </h1>
-            <p className="text-sm text-gray-800">{t("НҮБын")}</p>
+            <p className="text-sm font-normal tracking-[0.4px]  text-[#383A42]">
+              {t("НҮБын")}
+            </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h1 className="text-xs font-medium leading-[13px] uppercase text-gray-600">
+            <h1 className="text-xs leading-[13px] font-medium opacity-60 tracking-[0.4px] uppercase text-[#383A42]">
               {t("Ажиллаххуваарь")}
             </h1>
-            <p className="text-sm text-gray-800 leading-relaxed">
+            <p className="text-sm font-normal tracking-[0.4px] text-[#383A42] leading-relaxed">
               {t("Дава0")}
             </p>
           </div>
