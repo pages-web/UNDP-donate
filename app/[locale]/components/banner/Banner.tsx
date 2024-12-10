@@ -74,22 +74,6 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
               className="rounded-2xl sm:rounded-3xl object-cover md:object-center"
             />
           </motion.div>
-          <motion.div
-            variants={contentVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="flex items-center justify-center"
-          >
-            <div className="flex flex-col py-3 px-4 sm:py-4 sm:px-5 gap-2 sm:gap-3 lg:gap-[18px] items-center justify-center absolute bg-[rgba(0,_0,_0,_0.30)] rounded-2xl sm:rounded-3xl bottom-3 sm:bottom-4 lg:bottom-8">
-              <div
-                className="text-white text-center font-[SF Pro Display] text-[12px] sm:text-sm lg:text-base xl:text-lg max-w-[595px]"
-                dangerouslySetInnerHTML={{
-                  __html: banner.content || "<p>No content available</p>",
-                }}
-              />
-            </div>
-          </motion.div>
         </SwiperSlide>
       ))}
     </Swiper>
