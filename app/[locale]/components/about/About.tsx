@@ -9,7 +9,7 @@ import Modal from "../modal/Modal";
 
 const About = ({ aboutMn, aboutEn }: any) => {
   const locale = useLocale();
-  const articleShow = locale === "en" ? aboutEn : aboutMn;
+  const articleShow = locale === "mn" ? aboutMn : aboutEn;
   const { sda } = useTotalAmount();
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const t = useTranslations();
@@ -35,11 +35,12 @@ const About = ({ aboutMn, aboutEn }: any) => {
           </h1>
         </div>
 
-        <div className="text-black text-sm sm:text-base font-medium leading-normal self-stretch text-start space-y-3">
-          <p>{t("aaaaaa_part1")}</p>
-          <p>{t("aaaaaa_part2")}</p>
-          <p>{t("aaaaaa_part3")}</p>
-        </div>
+        <div
+          className="text-black  text-sm sm:text-base font-medium leading-normal self-stretch text-start"
+          dangerouslySetInnerHTML={{
+            __html: articleShow[0]?.content || "",
+          }}
+        />
       </div>
       <div className="flex flex-col gap-2.5 items-start">
         <div className="xl:grid xl:grid-cols-2 lg:gap-6 lg:w-full 2xl:w-[1300px] xl:w-[1100px] :grid-cols-1">
