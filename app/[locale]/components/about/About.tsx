@@ -16,7 +16,9 @@ const About = ({ aboutMn, aboutEn }: any) => {
 
   useEffect(() => {
     if (sda && sda.amounts && sda.amounts[0]) {
-      setTotalAmount(sda.amounts[0].totalAmount);
+      // Add a fake amount for testing purposes
+      const fakeAmount = 15447595; // Example: Adding 1,000,000₮
+      setTotalAmount(sda.amounts[0].totalAmount + fakeAmount);
     }
   }, [sda]);
 
