@@ -78,7 +78,7 @@ export default async function RootLayout({
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        <link rel="icon" href={uiOptions?.favIcon || ""} />
+
         {!!colors && (
           <style>{`
             :root {

@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h1 className="text-xs font-medium leading-[13px] opacity-60 uppercase text-[#383A42]">
+            <h1 className="text-xs font-medium leading-[13px] uppercase opacity-60 text-[#383A42]">
               {t("Хаяг:")}
             </h1>
             <p className="text-sm font-normal tracking-[0.4px]  text-[#383A42]">
