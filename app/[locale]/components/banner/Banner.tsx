@@ -47,7 +47,7 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
 
   return (
     <Swiper
-      autoplay={{ delay: 4500, disableOnInteraction: false }}
+      autoplay={{ delay: 3500, disableOnInteraction: false }}
       modules={[Autoplay]}
       slidesPerView={1}
       loop

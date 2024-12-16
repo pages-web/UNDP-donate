@@ -1,10 +1,10 @@
-import { cache } from 'react';
-import { queries } from '../graphql/auth';
-import { getClient } from '../ssClient';
+import { cache } from "react";
+import { queries } from "../graphql/auth";
+import { getClient } from "../ssClient";
 
 export const getConfig = cache(async () => {
   const { data, error } = await getClient().query({
-    query: queries.currentConfig
+    query: queries.currentConfig,
   });
   const { currentConfig } = data || {};
 
@@ -20,13 +20,13 @@ export const getBranchDetail = cache(async () => {
   const { data, error } = await getClient().query({
     query: queries.branchDetail,
     variables: {
-      id: branchId
+      id: branchId,
     },
     context: {
       headers: {
-        'erxes-app-token': erxesAppToken
-      }
-    }
+        "erxes-app-token": erxesAppToken,
+      },
+    },
   });
 
   const { branchDetail } = data || {};
