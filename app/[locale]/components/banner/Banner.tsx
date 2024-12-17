@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "../ui/image";
-import classNames from "classnames";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import React from "react";
