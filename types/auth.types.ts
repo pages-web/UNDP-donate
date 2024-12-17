@@ -1,4 +1,4 @@
-export type CustomerType = '' | 'user' | 'company';
+export type CustomerType = "" | "user" | "company";
 
 export interface Customer {
   _id: string;
@@ -27,6 +27,5 @@ export interface IConfig {
       secondary?: string;
       third?: string;
     };
-    favIcon: string;
   };
 }

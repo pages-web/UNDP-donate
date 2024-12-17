@@ -33,6 +33,8 @@ const QrDetail = ({
   id: string;
   urls: { name: string; logo: string; link: string }[];
 }) => {
+  console.log(qrCode, "qrcode");
+
   return (
     <div className="relative w-full">
       <div className="max-h-[65vh]  overflow-auto">
