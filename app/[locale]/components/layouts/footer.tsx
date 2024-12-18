@@ -54,6 +54,8 @@ const Footer = () => {
           <div className="flex gap-4">
             <Link
               href="https://x.com/UNDPMongolia"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Visit UNDP Mongolia on X"
             >
               <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-[#3165AC] rounded-full transition-transform hover:scale-110">
@@ -62,6 +64,8 @@ const Footer = () => {
             </Link>
             <Link
               href="https://www.facebook.com/undp.mongolia"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Visit UNDP Mongolia on Facebook"
             >
               <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-[#3165AC] rounded-full transition-transform hover:scale-110">
@@ -70,6 +74,8 @@ const Footer = () => {
             </Link>
             <Link
               href="https://www.instagram.com/undpmongolia/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Visit UNDP Mongolia on Instagram"
             >
               <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-[#3165AC] rounded-full transition-transform hover:scale-110">
@@ -82,7 +88,12 @@ const Footer = () => {
             variant="link"
             asChild
           >
-            <Link href="https://erxes.mn/" aria-label="Powered by Erxes">
+            <Link
+              href="https://erxes.mn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Powered by Erxes"
+            >
               Powered by
               <ErxesLogo fill="#000" className="ml-1 h-7 w-14" />
             </Link>
