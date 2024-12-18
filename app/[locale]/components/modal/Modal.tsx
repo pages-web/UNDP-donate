@@ -5,7 +5,9 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
+  DialogTitle,
 } from "../../components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"; // Нууцлах зориулалттай компонент
 import { useTranslations } from "use-intl";
 import TsahimWrapper from "../titles/TsahimWrapper";
 
@@ -23,9 +25,13 @@ const Modal = () => {
       </DialogTrigger>
 
       <DialogContent>
+        <VisuallyHidden>
+          <DialogTitle>-</DialogTitle>
+        </VisuallyHidden>
         <TsahimWrapper />
       </DialogContent>
     </Dialog>
   );
 };
+
 export default Modal;

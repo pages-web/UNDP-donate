@@ -9,10 +9,10 @@ import NextTopLoader from "nextjs-toploader";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Montserrat from "next/font/local";
 import ConfigProvider from "./components/layouts/config";
-import Psda from "../../app/[locale]/components/Psda";
 import React from "react";
 import { cn, getSimilarColorWithOpacity, hexToHsl } from "../../lib/utils";
 import "./globals.css";
+
 interface RootLayoutProps {
   children: React.ReactNode;
   params: { locale: string };
@@ -32,20 +32,20 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL(pdomain || "https://www.erxes.io"),
-    title: name,
-    description,
+    title: name || "Default Title",
+    description: description || "Default Description",
     openGraph: {
-      title: name,
-      description,
+      title: name || "Default Title",
+      description: description || "Default Description",
       images: [
         {
-          url: uiOptions?.bgImage,
+          url: uiOptions?.bgImage || "/default-image.jpg",
           width: 600,
           height: 600,
-          alt: name,
+          alt: name || "Default Title",
         },
       ],
-      url: pdomain,
+      url: pdomain || "https://www.erxes.io",
       type: "website",
     },
   };
@@ -54,23 +54,19 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({
   children,
   params: { locale },
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+}: RootLayoutProps) {
   const messages = await getMessages();
   const { config } = await getConfig();
   const { uiOptions } = config || {};
   const { colors } = uiOptions || {};
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale || "en"} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.svg" />
         <link
           rel="stylesheet"
           type="text/css"
-          charSet="UTF-8"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
         />
         <link

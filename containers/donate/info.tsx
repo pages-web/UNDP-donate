@@ -75,9 +75,7 @@ const DonateInfo = () => {
           customerId: newCustomerId,
         },
       });
-    } catch (error) {
-      console.error("Error creating customer or processing order:", error);
-    }
+    } catch (error) {}
   }
 
   return (

@@ -30,7 +30,6 @@ const PaymentDetail = () => {
   });
 
   const { errorDescription, status, response, _id } = data || {};
-  console.log(response, "a");
 
   useSubscription(
     gql`
