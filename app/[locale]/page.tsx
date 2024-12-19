@@ -72,7 +72,7 @@ export default async function Home() {
         Сэргээгдэх={Сэргээгдэх}
         Positive={Positive}
       />
-      <VideoPlayer videodefaultimage={videodefaultimage} />
+      <VideoPlayer />
       <section id="faq">
         <Faq faqMn={faqMn} faqEn={faqEn} />
       </section>
