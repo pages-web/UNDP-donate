@@ -1,17 +1,58 @@
+"use client";
+
 import React from "react";
 import AccordionDemo from "./Accordion";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Faq = ({ faqMn, faqEn }: any) => {
   const t = useTranslations();
+
+  // Ensure the hook is used correctly
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.75,
+  });
+
+  const animation = {
+    initial: { y: "100%", opacity: 0 },
+    enter: (i: number) => ({
+      y: "0",
+      opacity: 1,
+      transition: {
+        duration: 0.75,
+        ease: [0.33, 1, 0.68, 1],
+        delay: i * 0.1,
+      },
+    }),
+  };
+
   return (
-    <div className="flex flex-col px-4 md:px-6 py-6 md:py-[42px] gap-[50px] self-stretch justify-center items-center rounded-3xl bg-[#fff]">
-      <div className="flex flex-col justify-center items-center gap-[15px]">
-        <h1 className="text-[#FFCE46] text-[14px] sm:text-[16px] lg:text-[18px] font-normal uppercase font-sfpro">
-          Questions
-        </h1>
+    <motion.div className="flex flex-col px-4 md:px-6 py-6 md:py-[42px] gap-[50px] self-stretch justify-center items-center rounded-3xl bg-[#fff]">
+      <motion.div
+        initial="initial"
+        animate={inView ? "enter" : ""}
+        ref={ref}
+        className="flex flex-col justify-center items-center gap-[15px]"
+      >
+        <motion.h1
+          className="text-[#FFCE46] text-[14px] sm:text-[16px] lg:text-[18px] font-normal uppercase font-sfpro"
+          custom={0}
+          variants={animation}
+          initial="initial"
+          animate={inView ? "enter" : ""}
+        >
+          {t("Questions")}
+        </motion.h1>
         <div className="flex flex-col md:flex-row items-center justify-center gap-[15px] md:gap-[20px]">
-          <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]">
+          <motion.div
+            className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]"
+            custom={1}
+            variants={animation}
+            initial="initial"
+            animate={inView ? "enter" : ""}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -24,21 +65,33 @@ const Faq = ({ faqMn, faqEn }: any) => {
                 fill="white"
               />
             </svg>
-          </div>
-          <h1 className="text-[#000] text-[20px] sm:text-[22px] lg:text-[32px] font-medium font-sfpro text-center">
+          </motion.div>
+          <motion.h1
+            className="text-[#000] text-[20px] sm:text-[22px] lg:text-[32px] font-medium font-sfpro text-center"
+            custom={2}
+            variants={animation}
+            initial="initial"
+            animate={inView ? "enter" : ""}
+          >
             {t("Түгээриулт")}
-          </h1>
+          </motion.h1>
         </div>
-      </div>
+      </motion.div>
       <AccordionDemo faqMn={faqMn} faqEn={faqEn} />
-      <p className="text-[rgba(0,0,0,0.7)] text-[14px] sm:text-[17px] font-medium font-sfpro text-center">
+      <motion.p
+        className="text-[rgba(0,0,0,0.7)] text-[14px] sm:text-[17px] font-medium font-sfpro text-center"
+        custom={3}
+        variants={animation}
+        initial="initial"
+        animate={inView ? "enter" : ""}
+      >
         Visit our
-        <span className="text-[#000] text-[14px] sm:text-[17px] font-medium  decoration-solid font-sfpro px-1">
+        <span className="text-[#000] text-[14px] sm:text-[17px] font-medium decoration-solid font-sfpro px-1">
           Help Center
         </span>
         for more Information.
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   );
 };
 

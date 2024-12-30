@@ -6,6 +6,8 @@ import AnimatedCounter from "../common/AnimatedCounter";
 import { useTotalAmount } from "@/sdk/queries/order";
 import AboutIcon from "../svg/AbuoutIcon";
 import Modal from "../modal/Modal";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const About = ({ aboutMn, aboutEn }: any) => {
   const locale = useLocale();
@@ -14,42 +16,91 @@ const About = ({ aboutMn, aboutEn }: any) => {
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const t = useTranslations();
 
+  const { ref, inView } = useInView({
+    threshold: 0.75,
+    triggerOnce: true,
+  });
+
+  const animation = {
+    initial: { y: "100%", opacity: 0 },
+    enter: (i: number) => ({
+      y: "0",
+      opacity: 1,
+      transition: {
+        duration: 0.75,
+        ease: [0.33, 1, 0.68, 1],
+        delay: i * 0.1,
+      },
+    }),
+  };
+
   useEffect(() => {
     if (sda && sda.amounts && sda.amounts[0]) {
-      // Add a fake amount for testing purposes
-      const fakeAmount = 27484694; // Example: Adding 1,000,000₮
+      const fakeAmount = 27484694;
       setTotalAmount(sda.amounts[0].totalAmount + fakeAmount);
     }
   }, [sda]);
 
   return (
-    <div className="flex flex-col items-start gap-10 self-stretch  p-6 md:p-8 rounded-3xl bg-[#fff]">
-      <div className="flex flex-col gap-3 self-stretch items-start">
-        <h1 className="text-[#FFCE46]  text-[14px] font-normal leading-none uppercase">
+    <motion.div
+      className="flex flex-col items-start gap-10 self-stretch  p-6 md:p-8 rounded-3xl bg-[#fff]"
+      ref={ref}
+      initial="initial"
+      animate={inView ? "enter" : ""}
+    >
+      <motion.div
+        className="flex flex-col gap-3 self-stretch items-start"
+        initial="initial"
+        animate={inView ? "enter" : ""}
+      >
+        <motion.h1
+          className="text-[#FFCE46] text-[14px] font-normal leading-none uppercase"
+          custom={0}
+          variants={animation}
+        >
           About Project
-        </h1>
+        </motion.h1>
         <div className="flex items-center gap-3">
           <div className="flex p-3 items-center gap-2.5 rounded-[12px] bg-[#3165AC]">
             <AboutIcon />
           </div>
-          <h1 className="text-black  text-[20px] sm:text-[24px] font-semibold leading-none">
+          <motion.h1
+            className="text-black text-[20px] sm:text-[24px] font-semibold leading-none"
+            custom={1}
+            variants={animation}
+          >
             {articleShow[0]?.title}
-          </h1>
+          </motion.h1>
         </div>
 
-        <div
-          className="text-black  text-sm sm:text-base font-medium leading-normal self-stretch text-start"
+        <motion.div
+          className="text-black text-sm sm:text-base font-medium leading-normal self-stretch text-start"
+          custom={2}
+          variants={animation}
           dangerouslySetInnerHTML={{
             __html: articleShow[0]?.content || "",
           }}
         />
-      </div>
-      <div className="flex flex-col gap-2.5 items-start">
+      </motion.div>
+
+      <motion.div
+        className="flex flex-col gap-2.5 items-start"
+        custom={3}
+        variants={animation}
+      >
         <div className="xl:grid xl:grid-cols-2 lg:gap-6 lg:w-full 2xl:w-[1300px] xl:w-[1100px] :grid-cols-1">
-          <div className="flex flex-col items-start gap-3">
-            <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
+          <motion.div
+            className="flex flex-col items-start gap-3"
+            custom={4}
+            variants={animation}
+          >
+            <motion.h1
+              className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal"
+              custom={5}
+              variants={animation}
+            >
               {t("Цугласанүн")}
-            </h1>
+            </motion.h1>
             <div className="flex flex-col items-start flex-shrink-0">
               <div className="flex px-[4px] justify-end items-start flex-[1_0_0] self-stretch">
                 {totalAmount ? (
@@ -66,11 +117,20 @@ const About = ({ aboutMn, aboutEn }: any) => {
                 )}
               </div>
             </div>
-          </div>
-          <div className="flex flex-col items-start gap-3 mt-5 lg:mt-0">
-            <h1 className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal">
+          </motion.div>
+
+          <motion.div
+            className="flex flex-col items-start gap-3 mt-5 lg:mt-0"
+            custom={6}
+            variants={animation}
+          >
+            <motion.h1
+              className="text-[rgba(0,0,0,0.8)] font-[SF Pro Display] text-[16px] font-normal leading-normal"
+              custom={7}
+              variants={animation}
+            >
               {t("Зорилтотүн")}
-            </h1>
+            </motion.h1>
             <div className="flex flex-col items-start flex-shrink-0">
               <div className="flex px-[4px] justify-end items-start flex-[1_0_0] self-stretch">
                 <AnimatedCounter
@@ -86,12 +146,12 @@ const About = ({ aboutMn, aboutEn }: any) => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <Modal />
-    </div>
+    </motion.div>
   );
 };
 
