@@ -43,7 +43,7 @@ const Faq = ({ faqMn, faqEn }: any) => {
           initial="initial"
           animate={inView ? "enter" : ""}
         >
-          {t("Questions")}
+          Questions
         </motion.h1>
         <div className="flex flex-col md:flex-row items-center justify-center gap-[15px] md:gap-[20px]">
           <motion.div
