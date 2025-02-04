@@ -36,7 +36,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
 
   useEffect(() => {
     if (sda && sda.amounts && sda.amounts[0]) {
-      const fakeAmount = 43761324;
+      const fakeAmount = 47045400;
       setTotalAmount(sda.amounts[0].totalAmount + fakeAmount);
     }
   }, [sda]);
