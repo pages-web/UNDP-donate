@@ -76,7 +76,17 @@ export default async function Home() {
       <section id="faq">
         <Faq faqMn={faqMn} faqEn={faqEn} />
       </section>
-      <PartnerOrganization partner={partner} />
+      <PartnerOrganization
+        partner={partner.map((article) => ({
+          _id: article._id,
+          name: article.title,
+          image:
+            article.image && article.image.url
+              ? { url: article.image.url }
+              : undefined,
+        }))}
+      />
+
       <Gratitude gratitudeMn={gratitudeMn} gratitudeEn={gratitudeEn} />
     </div>
   );
