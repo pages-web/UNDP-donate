@@ -2,12 +2,18 @@
 
 import Image from "../ui/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import React from "react";
+import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+
 import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   if (!Array.isArray(bannerMn) || bannerMn.length === 0) {
     return (
       <div className="flex items-center justify-center h-[674px] w-full bg-gray-200 rounded-3xl">
@@ -21,61 +27,91 @@ const Banner = ({ bannerMn }: { bannerMn: any[] }) => {
     animate: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.8, ease: [0.42, 0, 0.58, 1] },
+      transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] },
     },
     exit: {
       opacity: 0,
-      scale: 0.95,
-      transition: { duration: 0.6, ease: "easeOut" },
+      scale: 1.05,
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
 
   const contentVariants = {
-    initial: { opacity: 0, y: 30 },
-    animate: {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay: 0.3, ease: "easeInOut" },
-    },
-    exit: {
-      opacity: 0,
-      y: -30,
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
+      transition: {
+        duration: 0.8,
+        delay: 0.2 + index * 0.1,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    }),
   };
 
   return (
-    <Swiper
-      autoplay={{ delay: 3500, disableOnInteraction: false }}
-      modules={[Autoplay]}
-      slidesPerView={1}
-      loop
-      className="flex flex-col items-center justify-center w-full aspect-[14/10] sm:aspect-[14/6] md:aspect-[16/7] gap-2 sm:gap-2.5 rounded-2xl sm:rounded-3xl px-2 sm:px-2.5 relative overflow-hidden"
-    >
-      {bannerMn.map((banner, index) => (
-        <SwiperSlide
-          className="flex flex-col items-center justify-center relative"
-          key={index}
-        >
-          <motion.div
-            variants={imageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="absolute inset-0"
+    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
+      <Swiper
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        modules={[Autoplay, EffectFade, Pagination, Navigation]}
+        effect="fade"
+        slidesPerView={1}
+        loop
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        className="w-full aspect-[14/10] sm:aspect-[14/6] md:aspect-[16/7] rounded-2xl sm:rounded-3xl overflow-hidden"
+      >
+        {bannerMn.map((banner, index) => (
+          <SwiperSlide
+            className="relative flex items-center justify-center overflow-hidden"
+            key={index}
           >
-            <Image
-              sizes="100vw"
-              src={banner.image.url}
-              quality={100}
-              priority
-              alt="Background Banner"
-              className="rounded-2xl sm:rounded-3xl object-cover md:object-center"
-            />
-          </motion.div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+            <motion.div
+              variants={imageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="absolute inset-0 w-full h-full"
+            >
+              <Image
+                sizes="100vw"
+                src={banner.image.url}
+                quality={100}
+                priority
+                alt={banner.title || "Banner image"}
+                className="object-cover w-full h-full rounded-2xl sm:rounded-3xl"
+                layout="fill"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-70 rounded-2xl sm:rounded-3xl" />
+            </motion.div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <motion.div
+        className="absolute bottom-0 left-0 h-1 bg-white z-20"
+        initial={{ width: "0%" }}
+        animate={{ width: "100%" }}
+        transition={{
+          duration: 5,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
+      />
+
+      <div className="absolute bottom-4 right-4 z-20 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full">
+        {activeIndex + 1} / {bannerMn.length}
+      </div>
+    </div>
   );
 };
 
