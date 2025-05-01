@@ -22,7 +22,7 @@ const PaymentMethods = () => {
     <>
       <h2 className="">
         {selectedPrice && (
-          <div className="text-primary text-[40px] font-semibold">
+          <div className="text-primary text-[40px]  font-semibold font-sans">
             {selectedPrice}
           </div>
         )}

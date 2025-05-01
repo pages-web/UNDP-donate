@@ -5,11 +5,7 @@ import {
 } from "../../app/[locale]/components/ui/alert";
 import { BanIcon, InfoIcon } from "lucide-react";
 import Image from "../../app/[locale]/components/ui/image";
-import { DialogFooter } from "../../app/[locale]/components/ui/dialog";
 import { Button } from "../../app/[locale]/components/ui/button";
-import { useSetAtom } from "jotai";
-import { handleMethodAtom } from "@/store/payment.store";
-import BackButton from "./back-button";
 import CheckPayment from "./check-payment";
 import Link from "next/link";
 
@@ -22,7 +18,6 @@ const getName = (name: string) => {
 
 const QrDetail = ({
   errorDescription,
-  status,
   qrCode,
   id,
   urls,
@@ -107,7 +102,6 @@ export const QrContainer = ({
     )}
     {loading && (
       <div className="pt-4">
-        {/* <BackButton disabled /> */}
         <Button size="lg" className="flex-1 w-full" disabled>
           Check payment
         </Button>

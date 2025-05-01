@@ -88,7 +88,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             <a
               className="flex gap-2 p-2.5 justify-center items-center rounded-[100px] "
               href="#about"
-              onClick={() => setIsMenuOpen(false)} // Close the menu
+              onClick={() => setIsMenuOpen(false)}
             >
               <SolarIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -98,7 +98,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             <a
               className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] "
               href="#faq"
-              onClick={() => setIsMenuOpen(false)} // Close the menu
+              onClick={() => setIsMenuOpen(false)}
             >
               <PaqIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -108,7 +108,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             <a
               href="#contact"
               className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] "
-              onClick={() => setIsMenuOpen(false)} // Close the menu
+              onClick={() => setIsMenuOpen(false)}
             >
               <PhoneIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -139,7 +139,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             <a
               className="flex gap-2 p-2.5 justify-center items-center rounded-[100px] mb-3"
               href="#about"
-              onClick={() => setIsMenuOpen(false)} // Close the menu
+              onClick={() => setIsMenuOpen(false)}
             >
               <SolarIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -149,7 +149,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             <a
               className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] mb-3"
               href="#faq"
-              onClick={() => setIsMenuOpen(false)} // Close the menu
+              onClick={() => setIsMenuOpen(false)}
             >
               <PaqIcon />
               <h1 className="cursor-pointer transition-colors">
@@ -159,7 +159,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
             <a
               href="#contact"
               className="flex gap-2.5 p-2.5 justify-center items-center rounded-[100px] mb-3"
-              onClick={() => setIsMenuOpen(false)} // Close the menu
+              onClick={() => setIsMenuOpen(false)}
             >
               <PhoneIcon />
               <h1 className="cursor-pointer transition-colors">

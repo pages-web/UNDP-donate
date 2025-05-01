@@ -43,16 +43,31 @@ const ChooseProducts = ({
   };
 
   const handleCustomValueChange = (value: string) => {
-    if (Number(value) < 0) return null;
-    !!unitProduct &&
-      setItem({
-        _id: Math.random().toString(),
-        productId: unitProduct._id,
-        count: Number(value),
-        unitPrice: 1,
-      });
+    if (value === "") {
+      !!unitProduct &&
+        setItem({
+          _id: Math.random().toString(),
+          productId: unitProduct._id,
+          count: 0,
+          unitPrice: 1,
+        });
+      setSelectedPrice("0₮");
+      return;
+    }
 
-    setSelectedPrice(value + "₮");
+    const numericValue = parseInt(value, 10);
+
+    if (!isNaN(numericValue) && numericValue >= 0) {
+      !!unitProduct &&
+        setItem({
+          _id: Math.random().toString(),
+          productId: unitProduct._id,
+          count: numericValue,
+          unitPrice: 1,
+        });
+
+      setSelectedPrice(numericValue + "₮");
+    }
   };
 
   const handleSubmit = () => validateProduct(action);
@@ -88,7 +103,9 @@ const ChooseProducts = ({
             <Label className="pb-2 block ">Enter your amount</Label>
             <Input
               type="number"
-              value={unitProduct._id === item?.productId ? item.count : ""}
+              value={
+                unitProduct._id === item?.productId ? item.count || "" : ""
+              }
               className="flex py-2 px-3 items-center text-[26px] text-[#6C707E] gap-[10px] self-stretch rounded-[8px] border border-[#EFEFEF]"
               placeholder="0₮"
               min={1}

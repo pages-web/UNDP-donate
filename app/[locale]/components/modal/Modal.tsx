@@ -7,7 +7,7 @@ import {
   DialogTrigger,
   DialogTitle,
 } from "../../components/ui/dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden"; // Нууцлах зориулалттай компонент
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useTranslations } from "use-intl";
 import TsahimWrapper from "../titles/TsahimWrapper";
 
