@@ -150,7 +150,7 @@ const About = ({ aboutMn, aboutEn }: any) => {
         </div>
       </motion.div>
 
-      <Modal />
+      {/* <Modal /> */}
     </motion.div>
   );
 };

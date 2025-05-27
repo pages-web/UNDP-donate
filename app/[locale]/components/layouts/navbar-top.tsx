@@ -126,7 +126,7 @@ const NavbarTop: React.FC<NavbarTopProps> = () => {
               </h1>
             </div>
 
-            <Modal />
+            {/* <Modal /> */}
           </div>
         ) : (
           <div
